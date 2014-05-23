@@ -1,6 +1,9 @@
+require 'common_model'
 class Word < ActiveRecord::Base
+  include CommonModel # custom library placed in lib directory, containing methods common to all models
   # associations
   belongs_to :user
+  has_and_belongs_to_many :flag
 
   # validations
   validates :word, presence: true, uniqueness: true, length: {maximum: 25}
@@ -9,7 +12,11 @@ class Word < ActiveRecord::Base
   validates :additional_info, length: {maximum: 2048}
 
   # callbacks
+  before_validation :convert_blank_to_nil
+  before_save :convert_blank_to_nil
 
   # scopes
+  default_scope ->{ order(:word => :asc) }
+  scope :to_work_upon, ->{ where('trick IS NULL') }
 
 end

@@ -3,6 +3,7 @@ class CreateFlags < ActiveRecord::Migration
     create_table :flags do |t|
       t.string :name, :limit => 25, :null => false
       t.string :desc, :limit => 100, :null => true
+      t.references :user, index: true
 
       t.timestamps
     end

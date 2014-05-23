@@ -28,11 +28,13 @@ ActiveRecord::Schema.define(version: 20140523071701) do
   create_table "flags", force: true do |t|
     t.string   "name",       limit: 25,  null: false
     t.string   "desc",       limit: 100
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "flags", ["name"], name: "index_flags_on_name", unique: true, using: :btree
+  add_index "flags", ["user_id"], name: "index_flags_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name",             limit: 15,               null: false
@@ -61,11 +63,13 @@ ActiveRecord::Schema.define(version: 20140523071701) do
   create_table "words", force: true do |t|
     t.string   "word",            limit: 25,   null: false
     t.string   "trick",           limit: 100
+    t.integer  "user_id"
     t.string   "additional_info", limit: 2048
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "words", ["user_id"], name: "index_words_on_user_id", using: :btree
   add_index "words", ["word"], name: "index_words_on_word", unique: true, using: :btree
 
 end

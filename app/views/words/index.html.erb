@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>User</th>
       <th>Word</th>
       <th>Trick</th>
       <th>Additional info</th>
@@ -13,6 +14,7 @@
   <tbody>
     <% @words.each do |word| %>
       <tr>
+        <td><%= word.user %></td>
         <td><%= word.word %></td>
         <td><%= word.trick %></td>
         <td><%= word.additional_info %></td>

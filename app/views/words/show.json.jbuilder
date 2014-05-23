@@ -1,1 +1,1 @@
-json.extract! @word, :id, :word, :trick, :additional_info, :created_at, :updated_at
+json.extract! @word, :id, :word, :trick, :user_id, :additional_info, :created_at, :updated_at

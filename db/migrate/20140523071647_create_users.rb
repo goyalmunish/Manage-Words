@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :type
       t.string :provider
       t.string :uid
-      t.string :additional_info, :limit => 100, :null => true
+      t.string :additional_info, :limit => 100
 
       t.timestamps
     end

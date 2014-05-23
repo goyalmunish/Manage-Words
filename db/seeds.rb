@@ -5,3 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# USER NOTIFICATION
+puts '*****************************'
+puts "Note: RAILS_ENV=#{ENV['RAILS_ENV']}"
+puts "Waiting for 10 secs"
+sleep(10.seconds.to_i) # had to use seconds.to_i instead of just seconds in case of JRuby
+puts '*****************************'
+
+# REQUIRING FILES FROM SEEDS DIRECTORY IN SORTED ORDER
+Dir.glob(File.join(Rails.root, 'db', 'seeds', '*.rb')).sort.each { |f| require f }
+

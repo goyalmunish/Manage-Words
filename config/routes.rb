@@ -1,9 +1,32 @@
 Rails.application.routes.draw do
+  devise_for :users
+  resources :users
+
+  get 'site_home/home'
+
+  get 'site_home/sign_up'
+
+  get 'site_home/sign_in'
+
+  get 'site_home/contact_us'
+
+  get 'site_home/about_us'
+
+  get 'site_home/faqs'
+
+  get 'site_home/help'
+
+  resources :app_settings
+
+  resources :flags
+
+  resources :words
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root to: 'site_home#home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

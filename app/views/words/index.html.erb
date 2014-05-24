@@ -21,6 +21,16 @@
         <td><%= link_to 'Show', word %></td>
         <td><%= link_to 'Edit', edit_word_path(word) %></td>
         <td><%= link_to 'Destroy', word, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <td><%= link_to 'Cambridge', Word.cambridge(word.word), {:target => '_blank'} %></td>
+        <td><%= link_to 'Macmillan', Word.macmillan(word.word), {:target => '_blank'} %></td>
+        <td><%= link_to 'Longman', Word.longman(word.word), {:target => '_blank'} %></td>
+        <td><%= link_to 'Collins', Word.collins(word.word), {:target => '_blank'} %></td>
+        <td><%= link_to 'Merriam Webster', Word.merriam_webster(word.word), {:target => '_blank'} %></td>
+        <td><%= link_to 'Oxford Learner', Word.oxford_learner(word.word), {:target => '_blank'} %></td>
+        <td><%= link_to 'Dictionary.com', Word.dictionary_dot_com(word.word), {:target => '_blank'} %></td>
+        <td><%= link_to 'Google Search', Word.google_search(word.word), {:target => '_blank'} %></td>
+
       </tr>
     <% end %>
   </tbody>

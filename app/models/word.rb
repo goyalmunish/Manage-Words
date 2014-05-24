@@ -1,6 +1,8 @@
 require 'common_model'
+require 'my_dictionary'
 class Word < ActiveRecord::Base
   include CommonModel # custom library placed in lib directory, containing methods common to all models
+  include MyDictionary
   # associations
   belongs_to :user
   has_and_belongs_to_many :flag

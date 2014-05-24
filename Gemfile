@@ -52,3 +52,6 @@ end
 
 # Authentication related gems
 gem 'devise'
+
+# Style related gems
+gem 'twitter-bootstrap-rails'

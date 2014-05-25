@@ -4,7 +4,7 @@ class WordsController < ApplicationController
   # GET /words
   # GET /words.json
   def index
-    @words = current_user.words
+    @words = current_user.words.includes(:flags)
   end
 
   # GET /words/1
@@ -15,6 +15,7 @@ class WordsController < ApplicationController
   # GET /words/new
   def new
     @word = current_user.words.build
+    @word.flags.build
   end
 
   # GET /words/1/edit
@@ -64,12 +65,13 @@ class WordsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_word
-      # TODO: to check and document this query
-      @word = current_user.words.find(params[:id])
+      @word = current_user.words.where(id: params[:id]).includes(:flags).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def word_params
+      # TODO: to take care of nested parameters
       params.require(:word).permit(:word, :trick, :additional_info)
+      # params.require(:word).permit(:all)
     end
 end

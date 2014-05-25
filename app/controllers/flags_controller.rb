@@ -70,6 +70,6 @@ class FlagsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def flag_params
-      params.require(:flag).permit(:name, :desc)
+      params.require(:flag).permit(:name, :value, :desc)
     end
 end

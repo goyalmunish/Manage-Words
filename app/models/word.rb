@@ -21,4 +21,3 @@ class Word < ActiveRecord::Base
   scope :to_work_upon, ->{ where('trick IS NULL') }
 
 end
-

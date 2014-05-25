@@ -6,7 +6,10 @@ if ENV['RAILS_ENV']=='development'
   sleep(5.seconds.to_i)
 
   # SEEDING
-  User.create!(:first_name => 'Munish', :last_name => 'Goyal', :email => 'munishapc@gmail.com', :password => 'munishgoyal', :password_confirmation => 'munishgoyal')
+  if User.count == 0
+    User.create!(:first_name => 'Munish', :last_name => 'Goyal', :type => 'Admin', :email => 'munishapc@gmail.com', :password => 'munishgoyal', :password_confirmation => 'munishgoyal')
+  end
+
 end
 
 

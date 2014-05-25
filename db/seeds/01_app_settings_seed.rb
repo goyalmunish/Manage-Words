@@ -15,11 +15,11 @@ require 'securerandom'
 # puts AppSetting.set_if_nil('mailer_credentials', JSON.generate({'email1' => 'passpwd1', 'email2' => 'passwd2'}))
 
 # Seeding flags
-Flag.create!(name: 'comfort_level_3', desc: 'Highly Comfortable')
-Flag.create!(name: 'comfort_level_2', desc: 'Comfortable')
-Flag.create!(name: 'comfort_level_1', desc: 'Familiar')
-Flag.create!(name: 'comfort_level_0', desc: 'To Learn')
-Flag.create!(name: 'pronunciation', desc: 'Check Pronunciation')
+Flag.create!(name: 'CL3', desc: 'Highly Comfortable (Comfort Level 3)')
+Flag.create!(name: 'CL2', desc: 'Comfortable (Comfort Level 2)')
+Flag.create!(name: 'CL1', desc: 'Familiar (Comfort Level 1)')
+Flag.create!(name: 'CL0', desc: 'To Learn (Comfort Level 0)')
+Flag.create!(name: 'CP', desc: 'Check Pronunciation')
 
 #
 # puts AppSetting.set_if_nil('facebook_app_id', 'XXX')

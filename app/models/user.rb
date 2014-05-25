@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   # callbacks
   before_validation :convert_blank_to_nil
   before_save :convert_blank_to_nil
-  before_create :mark_user_as_general
+  before_create :mark_user_as_general_by_default
 
   # validations
   validates :first_name, presence: true, length: {maximum: 15}
@@ -28,8 +28,8 @@ class User < ActiveRecord::Base
     self.email
   end
 
-  def mark_user_as_general
-    self.type = General.to_s
+  def mark_user_as_general_by_default
+    self.type ||= General.to_s
   end
 
   # scopes

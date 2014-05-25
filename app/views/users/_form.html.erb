@@ -1,41 +1,52 @@
 <%= form_for(@user, {:class => "form-horizontal"}) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="field form-group">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, {:class => "form-control"} %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name, {:class => "form-control"} %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name, {:class => "form-control"} %>
-  </div>
-  <div class="field form-group">
-    <%= f.label :type %><br>
-    <%= f.text_field :type, {:class => "form-control"} %>
-  </div>
-  <div class="field form-group">
-    <%= f.label :provider %><br>
-    <%= f.text_field :provider, {:class => "form-control"} %>
-  </div>
-  <div class="field form-group">
-    <%= f.label :uid %><br>
-    <%= f.text_field :uid, {:class => "form-control"} %>
-  </div>
-  <div class="field form-group">
-    <%= f.label :additional_info %><br>
-    <%= f.text_field :additional_info, {:class => "form-control"} %>
-  </div>
-  <div class="actions">
-    <%= f.submit nil, {:class => "btn btn-primary"}%>
-  </div>
+    <div class="field form-group">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, {:class => "form-control"} %>
+    </div>
+    <div class="field form-group">
+      <%= f.label :email %>
+      <%= f.text_field :email, {:class => "form-control"} %>
+    </div>
+    <div class="field form-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, autocomplete: "off" %>
+    </div>
+    <div class="field form-group">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    </div>
+    <!--<div class="field form-group">-->
+      <!--<%= f.label :type %>-->
+      <!--<%= f.text_field :type, {:class => "form-control"} %>-->
+    <!--</div>-->
+    <!--<div class="field form-group">-->
+    <!--<%= f.label :provider %>-->
+    <!--<%= f.text_field :provider, {:class => "form-control"} %>-->
+    <!--</div>-->
+    <!--<div class="field form-group">-->
+    <!--<%= f.label :uid %>-->
+    <!--<%= f.text_field :uid, {:class => "form-control"} %>-->
+    <!--</div>-->
+    <div class="field form-group">
+      <%= f.label :additional_info %>
+      <%= f.text_area :additional_info, {:rows => '3', :class => "form-control"} %>
+    </div>
+    <div class="actions">
+      <%= f.submit nil, {:class => "btn btn-primary"} %>
+    </div>
 <% end %>

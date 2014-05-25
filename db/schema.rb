@@ -26,13 +26,14 @@ ActiveRecord::Schema.define(version: 20140523172938) do
   add_index "app_settings", ["key"], name: "index_app_settings_on_key", unique: true, using: :btree
 
   create_table "flags", force: true do |t|
-    t.string   "name",       limit: 25,  null: false
+    t.string   "name",       limit: 5,   null: false
+    t.integer  "value",                  null: false
     t.string   "desc",       limit: 100
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "flags", ["name"], name: "index_flags_on_name", unique: true, using: :btree
+  add_index "flags", ["name", "value"], name: "index_flags_on_name_and_value", unique: true, using: :btree
 
   create_table "flags_words", force: true do |t|
     t.integer "word_id"

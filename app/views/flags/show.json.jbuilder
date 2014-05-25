@@ -1,1 +1,1 @@
-json.extract! @flag, :id, :name, :desc, :created_at, :updated_at
+json.extract! @flag, :id, :name, :value, :desc, :created_at, :updated_at

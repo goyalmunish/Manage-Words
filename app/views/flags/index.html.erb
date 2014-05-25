@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <!--<th>User</th>-->
-      <th>Name</th>
+      <th>Name - Value</th>
       <th>Desc</th>
       <!--<th colspan="3"></th>-->
     </tr>
@@ -13,7 +13,7 @@
   <tbody>
     <% @flags.each do |flag| %>
       <tr>
-        <td><%= link_to flag.name, flag, {:class => "btn btn-default"} %></td>
+        <td><%= link_to "#{flag.name} - #{flag.value}", flag, {:class => "btn btn-default"} %></td>
         <td><%= flag.desc %></td>
         <!--<td><%= link_to 'Show', flag %></td>-->
         <!--<td><%= link_to 'Edit', edit_flag_path(flag) %></td>-->

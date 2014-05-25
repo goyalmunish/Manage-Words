@@ -1,25 +1,29 @@
-<%= form_for(@flag, {:class => "form-horizontal"})  do |f| %>
-  <% if @flag.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@flag.errors.count, "error") %> prohibited this flag from being saved:</h2>
+<%= form_for(@flag, {:class => "form-horizontal"}) do |f| %>
+    <% if @flag.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@flag.errors.count, "error") %> prohibited this flag from being saved:</h2>
 
-      <ul>
-      <% @flag.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @flag.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, {:class => "form-control"} %>
     </div>
-  <% end %>
-
-  <div class="field form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, {:class => "form-control"} %>
-  </div>
-  <div class="field form-group">
-    <%= f.label :desc %>
-    <%= f.text_field :desc, {:class => "form-control"} %>
-  </div>
-  <div class="actions">
-    <%= f.submit nil, {:class => "btn btn-primary"} %>
-  </div>
+    <div class="field form-group">
+      <%= f.label :value %>
+      <%= f.number_field :value, {:class => "form-control"} %>
+    </div>
+    <div class="field form-group">
+      <%= f.label :desc %>
+      <%= f.text_field :desc, {:class => "form-control"} %>
+    </div>
+    <div class="actions">
+      <%= f.submit nil, {:class => "btn btn-primary"} %>
+    </div>
 <% end %>

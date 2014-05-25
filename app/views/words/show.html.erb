@@ -20,6 +20,6 @@
   <%= @word.additional_info %>
 </p>
 
-<%= link_to 'Edit', edit_word_path(@word), {:class => "btn btn-primary active"} %> |
-<%= link_to 'Destroy', @word, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger active" %> |
-<%= link_to 'Back', words_path, {:class => "btn btn-default active"} %>
+<%= link_to 'Edit', edit_word_path(@word), {:class => "btn btn-primary"} %> |
+<%= link_to 'Destroy', @word, {method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"} %> |
+<%= link_to 'Back', words_path, {:class => "btn btn-default"} %>

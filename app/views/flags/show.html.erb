@@ -10,5 +10,6 @@
   <%= @flag.desc %>
 </p>
 
-<%= link_to 'Edit', edit_flag_path(@flag) %> |
-<%= link_to 'Back', flags_path %>
+<%= link_to 'Edit', edit_flag_path(@flag), {:class => "btn btn-primary"} %> |
+<%= link_to 'Destroy', @flag, {method: :delete, data: { confirm: 'Are you sure?'}, :class => "btn btn-danger"} %> |
+<%= link_to 'Back', flags_path, {:class => "btn btn-default"} %>

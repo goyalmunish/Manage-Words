@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :users
-  # TODO: routes for admin and general user
+  resources :admin, controller: 'users'
+  resources :general, controller: 'users'
 
   get 'site_home/home'
 

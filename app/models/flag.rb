@@ -24,5 +24,6 @@ class Flag < ActiveRecord::Base
   end
 
   # scopes
-  default_scope ->{ order(:name => :asc) }
+  default_scope ->{ order(:name => :asc, :value => :desc) }
 end
+

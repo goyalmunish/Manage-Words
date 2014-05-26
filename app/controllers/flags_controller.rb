@@ -65,7 +65,7 @@ class FlagsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_flag
-      @flag = Flag.find(params[:id]).includes(:words)
+      @flag = Flag.includes(:words).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

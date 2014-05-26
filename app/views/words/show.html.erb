@@ -1,25 +1,30 @@
 <p id="notice"><%= notice %></p>
 
+<h2>Word Details: </h2>
 <p>
   <strong>User:</strong>
   <%= @word.user %>
 </p>
-
 <p>
   <strong>Word:</strong>
   <%= @word.word %>
 </p>
-
 <p>
   <strong>Trick:</strong>
   <%= @word.trick %>
 </p>
-
 <p>
   <strong>Additional info:</strong>
   <%= @word.additional_info %>
 </p>
+<br/>
 
+<h2>Associated Flags: </h2>
+<%= render 'word_flags_span', :word => @word %>
+<br/>
+
+<h2>Navigation: </h2>
 <%= link_to 'Edit', edit_word_path(@word), {:class => "btn btn-primary"} %> |
-<%= link_to 'Destroy', @word, {method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"} %> |
+<%= link_to 'Destroy', @word, {method: :delete, data: {confirm: 'Are you sure?'}, :class => "btn btn-danger"} %> |
 <%= link_to 'Back', words_path, {:class => "btn btn-default"} %>
+<br/>

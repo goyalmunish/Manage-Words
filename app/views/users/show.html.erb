@@ -1,35 +1,33 @@
 <p id="notice"><%= notice %></p>
 
+<h2>User Details: </h2>
 <p>
   <strong>First name:</strong>
   <%= @user.first_name %>
 </p>
-
 <p>
   <strong>Last name:</strong>
   <%= @user.last_name %>
 </p>
-
 <p>
   <strong>Type:</strong>
   <%= @user.type %>
 </p>
-
 <p>
   <strong>Provider:</strong>
   <%= @user.provider %>
 </p>
-
 <p>
   <strong>Uid:</strong>
   <%= @user.uid %>
 </p>
-
 <p>
   <strong>Additional info:</strong>
   <%= @user.additional_info %>
 </p>
+<br/>
 
+<h2>Navigation: </h2>
 <%= link_to 'Edit', edit_user_path(@user), {:class => "btn btn-primary"} %> |
 <%= link_to 'Destroy', @user, {method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"} %> |
 <%= link_to 'Back', users_path, {:class => "btn btn-default"} %>

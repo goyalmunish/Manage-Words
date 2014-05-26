@@ -23,7 +23,6 @@ class Flag < ActiveRecord::Base
     return flag_hash
   end
 
-
   # scopes
   default_scope ->{ order(:name => :asc) }
 end

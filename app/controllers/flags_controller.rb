@@ -5,7 +5,7 @@ class FlagsController < ApplicationController
   # GET /flags
   # GET /flags.json
   def index
-    @flags = Flag.all
+    @flags = Flag.includes(:words).all
   end
 
   # GET /flags/1
@@ -65,7 +65,7 @@ class FlagsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_flag
-      @flag = Flag.find(params[:id])
+      @flag = Flag.find(params[:id]).includes(:words)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

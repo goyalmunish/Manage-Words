@@ -7,17 +7,19 @@ class Word < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :flags
 
+  # callbacks
+  before_validation :convert_blank_to_nil
+  before_save :convert_blank_to_nil
+
   # validations
   validates :word, presence: true, uniqueness: true, length: {maximum: 25}
   validates :trick, length: {maximum: 100}
   validates :additional_info, length: {maximum: 2048}
 
-  # callbacks
-  before_validation :convert_blank_to_nil
-  before_save :convert_blank_to_nil
+  # custom methods
 
   # scopes
   default_scope ->{ order(:word => :asc) }
   scope :to_work_upon, ->{ where('trick IS NULL') }
-
 end
+

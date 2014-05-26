@@ -4,6 +4,7 @@ class WordsController < ApplicationController
   # GET /words
   # GET /words.json
   def index
+    # TODO: to check if includes can be called on an ActiveRelation
     @words = current_user.words.includes(:flags)
   end
 
@@ -15,7 +16,6 @@ class WordsController < ApplicationController
   # GET /words/new
   def new
     @word = current_user.words.build
-    @word.flags.build
   end
 
   # GET /words/1/edit
@@ -65,13 +65,12 @@ class WordsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_word
-      @word = current_user.words.where(id: params[:id]).includes(:flags).first
+      # TODO: to check if includes can be called on an instance
+      @word = current_user.words.where(id: params[:id]).first.includes(:flags)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def word_params
-      # TODO: to take care of nested parameters
       params.require(:word).permit(:word, :trick, :additional_info)
-      # params.require(:word).permit(:all)
     end
 end

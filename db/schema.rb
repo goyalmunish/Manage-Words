@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20140523172938) do
     t.integer "flag_id"
   end
 
+  add_index "flags_words", ["word_id", "flag_id"], name: "index_flags_words_on_word_id_and_flag_id", unique: true, using: :btree
+
   create_table "users", force: true do |t|
     t.string   "first_name",             limit: 15,               null: false
     t.string   "last_name",              limit: 15,               null: false

@@ -21,7 +21,7 @@ class Word < ActiveRecord::Base
   def remove_similar_flags_with_lower_level
     # finding required ids
     ids = Flag.flag_ids_with_available_max_level(self.flags)
-    # deleting appropriate ids from association so that only required ids are present 
+    # deleting appropriate ids from association so that only required ids are present
     self.flag_ids = ids
   end
 

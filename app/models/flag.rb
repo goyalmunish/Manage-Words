@@ -14,9 +14,9 @@ class Flag < ActiveRecord::Base
   validates :desc, length: {maximum: 100}
 
   # custom methods
-  def self.flag_hash
+  def self.flag_hash(flags = Flag.all)
     flag_hash = Hash.new
-    Flag.all.each do |flag|
+    flags.each do |flag|
       flag_hash[flag.name.to_sym] ||= Array.new
       flag_hash[flag.name.to_sym] << flag.value
     end

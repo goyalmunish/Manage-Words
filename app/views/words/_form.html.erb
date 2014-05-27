@@ -28,7 +28,7 @@
   <% Flag.all.each do |flag| %>
     <div class="field form-group">
       <%= check_box_tag 'word[flag_ids][]', flag.id, @word.flags.include?(flag), {:class => "form-control"} %>
-      <%= "#{flag.name} - #{flag.value}" %>
+      <%= flag_name_and_value(flag) %>
       <br/>
       <br/>
     </div>

@@ -1,28 +1,29 @@
 Rails.application.routes.draw do
+  # user routes
   devise_for :users
   resources :users
   resources :admin, controller: 'users'
   resources :general, controller: 'users'
 
-  get 'site_home/home'
-
-  get 'site_home/sign_up'
-
-  get 'site_home/sign_in'
-
-  get 'site_home/contact_us'
-
-  get 'site_home/about_us'
-
-  get 'site_home/faqs'
-
-  get 'site_home/help'
-
+  # normal routes for AppSetting, Word, and Flag
   resources :app_settings
-
+  resources :words
   resources :flags
 
-  resources :words
+  # routes for SiteHome controller
+  get 'site_home/home'
+  get 'site_home/sign_up'
+  get 'site_home/sign_in'
+  get 'site_home/contact_us'
+  get 'site_home/about_us'
+  get 'site_home/faqs'
+  get 'site_home/help'
+
+  # Nested Routes
+  resources :flags do
+    resources :words, :only => [:index]
+  end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

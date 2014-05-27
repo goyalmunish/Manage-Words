@@ -4,7 +4,12 @@ class WordsController < ApplicationController
   # GET /words
   # GET /words.json
   def index
-    @words = current_user.words.includes(:flags)
+    if params[:flag_id]
+      @flag = Flag.find(params[:flag_id])
+      @words = current_user.words.includes(:flags).where("flags.id" => @flag.id)
+    else
+      @words = current_user.words.includes(:flags)
+    end
   end
 
   # GET /words/1
@@ -62,13 +67,13 @@ class WordsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_word
-      @word = current_user.words.includes(:flags).find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_word
+    @word = current_user.words.includes(:flags).find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def word_params
-      params.require(:word).permit(:word, :trick, :additional_info, :flag_ids => [])
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def word_params
+    params.require(:word).permit(:word, :trick, :additional_info, :flag_ids => [])
+  end
 end

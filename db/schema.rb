@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20140523172938) do
 
   add_index "flags", ["name", "value"], name: "index_flags_on_name_and_value", unique: true, using: :btree
 
-  create_table "flags_words", force: true do |t|
+  create_table "flags_words", id: false, force: true do |t|
     t.integer "word_id"
     t.integer "flag_id"
   end

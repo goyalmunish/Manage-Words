@@ -10,6 +10,7 @@ class Word < ActiveRecord::Base
   # callbacks
   before_validation :convert_blank_to_nil
   before_save :convert_blank_to_nil
+  after_save :remove_similar_flags_with_lower_level
 
   # validations
   validates :word, presence: true, uniqueness: true, length: {maximum: 25}
@@ -17,8 +18,15 @@ class Word < ActiveRecord::Base
   validates :additional_info, length: {maximum: 2048}
 
   # custom methods
+  def remove_similar_flags_with_lower_level
+    # finding required ids
+    ids = Flag.flag_ids_with_available_max_level(self.flags)
+    # deleting appropriate ids from association so that only required ids are present 
+    self.flag_ids = ids
+  end
 
   # scopes
   default_scope ->{ order(:word => :asc) }
   scope :to_work_upon, ->{ where('trick IS NULL') }
 end
+

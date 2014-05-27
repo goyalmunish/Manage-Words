@@ -23,6 +23,15 @@ class Flag < ActiveRecord::Base
     return flag_hash
   end
 
+  def self.flag_ids_with_available_max_level(flags = Flag.all)
+    flag_hash = self.flag_hash(flags)
+    ids = Array.new
+    flag_hash.each do |key, values|
+      ids << Flag.where(:name => key.to_s, :value => values.max).first.id
+    end
+    return ids
+  end
+
   # scopes
   default_scope ->{ order(:name => :asc, :value => :desc) }
 end

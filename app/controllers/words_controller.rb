@@ -4,15 +4,38 @@ class WordsController < ApplicationController
   # GET /words
   # GET /words.json
   def index
-    if params[:flag_id]
-      @flag = Flag.find(params[:flag_id])
+    # resetting parameters
+    if params[:reset]
+      [:flag_id, :without_trick, :sort_by, :reset].each do |elem|
+        params[elem] = nil
+        session[elem] = nil
+      end
+    end
+
+    # setting params hash to session
+    [:flag_id, :without_trick, :sort_by].each do |elem|
+      if params[elem]
+        session[elem] = params[elem]
+      end
+    end
+
+    # getting words collection
+    if session[:flag_id]
+      @flag = Flag.find(session[:flag_id])
       @words = current_user.words.includes(:flags).where("flags.id" => @flag.id)
     else
       @words = current_user.words.includes(:flags)
     end
-    if params[:without_trick]
+    if session[:without_trick]
       @words = @words.without_trick
     end
+    if session[:sort_by]
+      if session[:sort_by] == 'rand'
+        @words = @words.sort_by{rand}
+      end
+    end
+
+    # responding
     respond_to do |format|
       format.html # index.html.erb
       format.json # index.json.jbuilder

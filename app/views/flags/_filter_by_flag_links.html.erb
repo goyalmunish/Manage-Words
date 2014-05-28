@@ -1,0 +1,3 @@
+<% Flag.all.each do |flag| %>
+    <%= link_to flag_name_and_value(flag), flag_words_path(flag), {:class => "btn btn-warning"} %>
+<% end %>

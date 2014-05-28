@@ -27,6 +27,6 @@ class Word < ActiveRecord::Base
 
   # scopes
   default_scope ->{ order(:word => :asc) }
-  scope :to_work_upon, ->{ where('trick IS NULL') }
+  scope :without_trick, ->{ where('trick IS NULL') }
 end
 

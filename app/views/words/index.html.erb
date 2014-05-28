@@ -2,8 +2,8 @@
 <h2>Links</h2>
 <p>Register new word:</p>
 <%= link_to 'New Word', new_word_path, {:class => "btn btn-primary"} %>
-<p>Words to be worded upon: </p>
-<%= link_to 'To Do', words_path(), {:class => "btn btn-primary"} %>
+<p>Filter words without trick: </p>
+<%= link_to 'Without Trick', words_path(:without_trick => true), {:class => "btn btn-primary"} %>
 <h2>Listing Words</h2>
 <% if @flag %>
   <p><%= "Listing words for flag #{flag_name_value_and_desc(@flag)}:" %></p>

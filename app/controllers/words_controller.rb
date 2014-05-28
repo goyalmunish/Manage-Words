@@ -10,6 +10,9 @@ class WordsController < ApplicationController
     else
       @words = current_user.words.includes(:flags)
     end
+    if params[:without_trick]
+      @words = @words.without_trick
+    end
   end
 
   # GET /words/1

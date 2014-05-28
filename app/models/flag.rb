@@ -5,8 +5,8 @@ class Flag < ActiveRecord::Base
   has_and_belongs_to_many :words
 
   # callbacks
-  before_validation :convert_blank_to_nil
-  before_save :convert_blank_to_nil
+  before_validation :convert_blank_to_nil, :strip_name_and_desc
+  before_save :convert_blank_to_nil, :strip_name_and_desc
 
   # validations
   validates :name, presence: true, uniqueness: {scope: [:value]}, length: {maximum: 5}
@@ -14,6 +14,11 @@ class Flag < ActiveRecord::Base
   validates :desc, length: {maximum: 100}
 
   # custom methods
+  def strip_name_and_desc
+    self.name.strip! if self.name
+    self.desc.strip! if self.desc
+  end
+
   def self.flag_hash(flags = Flag.all)
     flag_hash = Hash.new
     flags.each do |flag|

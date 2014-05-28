@@ -8,8 +8,8 @@ class Word < ActiveRecord::Base
   has_and_belongs_to_many :flags
 
   # callbacks
-  before_validation :convert_blank_to_nil
-  before_save :convert_blank_to_nil
+  before_validation :convert_blank_to_nil, :strip_word_trick_and_additional_info
+  before_save :convert_blank_to_nil, :strip_word_trick_and_additional_info
   after_save :remove_similar_flags_with_lower_level
 
   # validations
@@ -23,6 +23,12 @@ class Word < ActiveRecord::Base
     ids = Flag.flag_ids_with_available_max_level(self.flags)
     # deleting appropriate ids from association so that only required ids are present
     self.flag_ids = ids
+  end
+
+  def strip_word_trick_and_additional_info
+    self.word.strip! if self.word
+    self.trick.strip! if self.trick
+    self.additional_info.strip! if self.additional_info
   end
 
   # for backup

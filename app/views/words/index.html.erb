@@ -1,8 +1,14 @@
-<h2>Words: </h2>
+<h1>Words </h1>
+<h2>Links</h2>
+<p>Register new word:</p>
+<%= link_to 'New Word', new_word_path, {:class => "btn btn-primary"} %>
+<p>Words to be worded upon: </p>
+<%= link_to 'To Do', words_path(), {:class => "btn btn-primary"} %>
+<h2>Listing Words</h2>
 <% if @flag %>
-  <p><%= "Listing Words for Flag: #{flag_name_value_and_desc(@flag)}" %></p>
+  <p><%= "Listing words for flag #{flag_name_value_and_desc(@flag)}:" %></p>
 <% else %>
-  <p>Listing all Words</p>
+  <p>Listing all words:</p>
 <% end %>
 
 <table class="table table-bordered table-hover table-condensed">
@@ -40,7 +46,4 @@
   <% end %>
   </tbody>
 </table>
-
 <br>
-
-<%= link_to 'New Word', new_word_path, {:class => "btn btn-primary"} %>

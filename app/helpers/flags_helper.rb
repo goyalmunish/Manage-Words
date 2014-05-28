@@ -7,3 +7,4 @@ module FlagsHelper
     "#{flag.name}-#{flag.value} | #{flag.desc}"
   end
 end
+

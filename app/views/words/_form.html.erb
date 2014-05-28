@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <h2>Word: </h2>
+  <h3>Word: </h3>
   <div class="field form-group">
     <%= f.label :word %>
     <%= f.text_field :word, {:class => "form-control"} %>
@@ -24,7 +24,7 @@
     <%= f.label :additional_info %>
     <%= f.text_area :additional_info, {:rows => '3', :class => "form-control"} %>
   </div>
-  <h2>Associated Flags: </h2>
+  <h3>Associated Flags: </h3>
   <% Flag.all.each do |flag| %>
     <div class="field form-group">
       <%= check_box_tag 'word[flag_ids][]', flag.id, @word.flags.include?(flag), {:class => "form-control"} %>

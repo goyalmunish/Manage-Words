@@ -26,8 +26,7 @@ class Word < ActiveRecord::Base
   end
 
   # for backup
-  # TODO: this method is yet not working correctly
-  def self.data_for_backup_and_restore(words = Word.all)
+  def self.data_backup(words = Word.all)
     data = Array.new
     words.each do |word|
       temp_hash = {
@@ -35,7 +34,7 @@ class Word < ActiveRecord::Base
           :trick => word.trick,
           :additional_info => word.additional_info,
           :flags => Array.new}
-      word.flags do |flag|
+      word.flags.each do |flag|
         temp_hash[:flags] << {:name => flag.name, :value => flag.value}
       end
       data << temp_hash
@@ -47,4 +46,3 @@ class Word < ActiveRecord::Base
   default_scope -> { order(:word => :asc) }
   scope :without_trick, -> { where('trick IS NULL') }
 end
-

@@ -50,6 +50,10 @@ group :development, :test do
   gem 'launchy'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 # Authentication related gems
 gem 'devise'
 

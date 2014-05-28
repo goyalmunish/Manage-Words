@@ -98,6 +98,17 @@ class WordsController < ApplicationController
     end
   end
 
+  def backup_restore
+    # getting json content
+    file = params[:file]
+    json_content = JSON.parse(file.read)
+    # passing it to model to process
+    count = Word.restore_backup(current_user.id, json_content)
+    # responding to user
+    flash[:notice] = "Number of records added: #{count}"
+    redirect_to words_path and return
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_word

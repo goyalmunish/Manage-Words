@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
   # normal routes for AppSetting, Word, and Flag
   resources :app_settings
-  resources :words
+  resources :words do
+    collection do
+      post 'backup_restore'
+    end
+  end
   resources :flags
 
   # routes for SiteHome controller

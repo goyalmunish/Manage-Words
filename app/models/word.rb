@@ -32,6 +32,7 @@ class Word < ActiveRecord::Base
   end
 
   # for backup
+  # Note: the 'restore_backup' method depends on JSON format created by this method
   def self.data_backup(words = Word.all)
     data = Array.new
     words.each do |word|
@@ -39,13 +40,38 @@ class Word < ActiveRecord::Base
           :word => word.word,
           :trick => word.trick,
           :additional_info => word.additional_info,
-          :flags => Array.new}
+          :flags_attributes => Array.new}
       word.flags.each do |flag|
-        temp_hash[:flags] << {:name => flag.name, :value => flag.value}
+        temp_hash[:flags_attributes] << {:name => flag.name, :value => flag.value}
       end
       data << temp_hash
     end
     return data
+  end
+
+  # for backup restore from given JSON file
+  # Note: format of given backup file should be same as generated backup file
+  def self.restore_backup(user_id, array_data)
+    user = User.find(user_id)
+    count = 0
+    array_data.each do |hash_data|
+      # extracting flag_attributes
+      flags_attributes = hash_data['flags_attributes']
+      hash_data.except!('flags_attributes')
+      # saving word
+      word = user.words.create(hash_data)
+      if word && word.id
+        count += 1
+        # now associating flags
+        flags_attributes.each do |flag_hash|
+          flag = Flag.where(flag_hash).first
+          if flag
+            word.flags << flag
+          end
+        end
+      end
+    end
+    return count
   end
 
   # scopes

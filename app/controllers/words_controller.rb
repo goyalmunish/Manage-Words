@@ -17,6 +17,7 @@ class WordsController < ApplicationController
       format.html # index.html.erb
       format.json # index.json.jbuilder
       format.xml { render :xml => @words.to_xml(:include => {:flags => {:only => [:name, :value]}}, :only => [:word, :trick, :additional_info]) }
+      format.download { send_data Word.data_for_backup_and_restore(@words).to_json, {:filename => "words-#{Time.now.getutc}.json"} }
     end
   end
 

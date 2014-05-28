@@ -4,6 +4,8 @@
 <%= link_to 'New Word', new_word_path, {:class => "btn btn-primary"} %>
 <p class="text-info">Filter words without trick: </p>
 <%= link_to 'Without Trick', words_path(:without_trick => true), {:class => "btn btn-primary"} %>
+<p class="text-info">Download complete list: </p>
+<%= link_to 'Download', words_path(:format => :download), {:class => "btn btn-primary"} %>
 <h2>Listing Words</h2>
 <% if @flag %>
   <p><%= "Listing words for flag #{flag_name_value_and_desc(@flag)}:" %></p>

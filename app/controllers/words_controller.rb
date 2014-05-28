@@ -13,6 +13,11 @@ class WordsController < ApplicationController
     if params[:without_trick]
       @words = @words.without_trick
     end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json # index.json.jbuilder
+      format.xml { render :xml => @words.to_xml(:include => {:flags => {:only => [:name, :value]}}, :only => [:word, :trick, :additional_info]) }
+    end
   end
 
   # GET /words/1

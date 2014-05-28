@@ -13,7 +13,7 @@ class Word < ActiveRecord::Base
   after_save :remove_similar_flags_with_lower_level
 
   # validations
-  validates :word, presence: true, uniqueness: true, length: {maximum: 25}
+  validates :word, presence: true, uniqueness: {scope: :user_id}, length: {maximum: 25}
   validates :trick, length: {maximum: 100}
   validates :additional_info, length: {maximum: 2048}
 

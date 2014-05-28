@@ -8,6 +8,6 @@ class CreateWords < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index(:words, :word, unique: true)
+    add_index(:words, [:user_id, :word], unique: true)
   end
 end

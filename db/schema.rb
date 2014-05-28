@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20140523172938) do
     t.datetime "updated_at"
   end
 
+  add_index "words", ["user_id", "word"], name: "index_words_on_user_id_and_word", unique: true, using: :btree
   add_index "words", ["user_id"], name: "index_words_on_user_id", using: :btree
-  add_index "words", ["word"], name: "index_words_on_word", unique: true, using: :btree
 
 end

@@ -29,4 +29,3 @@ class Word < ActiveRecord::Base
   default_scope ->{ order(:word => :asc) }
   scope :without_trick, ->{ where('trick IS NULL') }
 end
-

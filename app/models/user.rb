@@ -13,8 +13,7 @@ class User < ActiveRecord::Base
   has_many :words, dependent: :nullify
 
   # callbacks
-  before_validation :convert_blank_to_nil
-  before_save :convert_blank_to_nil
+  before_validation :convert_blank_to_nil, :strip_string_fields
   before_create :mark_user_as_general_by_default
 
   # validations

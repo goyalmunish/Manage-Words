@@ -32,6 +32,7 @@ GEM
     arel (5.0.1.20140414130214)
     autotest-rails (4.2.1)
       ZenTest (~> 4.5)
+    awesome_print (1.2.0)
     bcrypt (3.1.7)
     builder (3.2.2)
     capybara (2.2.1)
@@ -190,6 +191,7 @@ PLATFORMS
 
 DEPENDENCIES
   autotest-rails
+  awesome_print
   capybara
   cucumber-rails
   database_cleaner

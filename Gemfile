@@ -59,3 +59,6 @@ gem 'devise'
 
 # Style related gems
 gem 'twitter-bootstrap-rails'
+
+# Console related
+gem 'awesome_print'

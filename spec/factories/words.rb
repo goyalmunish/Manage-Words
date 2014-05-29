@@ -2,8 +2,9 @@
 
 FactoryGirl.define do
   factory :word do
+    user
     word "MyString"
     trick "MyString"
-    additional_info "MyString"
+    additional_info "MyString "
   end
 end

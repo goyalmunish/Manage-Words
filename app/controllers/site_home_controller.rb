@@ -22,4 +22,8 @@ class SiteHomeController < ApplicationController
 
   def help
   end
+
+  def display_error_path
+
+  end
 end

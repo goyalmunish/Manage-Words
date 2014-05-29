@@ -23,12 +23,12 @@ Rails.application.routes.draw do
   get 'site_home/about_us'
   get 'site_home/faqs'
   get 'site_home/help'
+  match 'error' => 'site_home#display_error', :as => 'display_error', :via => [:get, :post]
 
   # Nested Routes
   resources :flags do
     resources :words, :only => [:index]
   end
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -5,7 +5,7 @@ class WordsController < ApplicationController
   # GET /words.json
   def index
     # resetting parameters
-    if params[:reset]
+    if params[:reset] || params[:format] == 'download'
       [:flag_id, :without_trick, :sort_by, :reset].each do |elem|
         params[elem] = nil
         session[elem] = nil

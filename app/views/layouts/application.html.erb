@@ -80,13 +80,15 @@
       <%= yield %>
     </div>
 
-    <div class="span3 hidden">
+    <div class="span3 show">
       <div class="well sidebar-nav">
         <ul class="nav nav-list">
           <li class="nav-header">Sidebar</li>
-          <li> <%= link_to('Words', '#') %> </li>
-          <li> <%= link_to('Flags', '#') %> </li>
-          <li> <%= link_to('Users', '#') %> </li>
+          <li><%= link_to 'New Word', new_word_path %></li>
+          <li><%= link_to 'Take Backup', words_path(:format => :download) %></li>
+          <li><%= link_to 'Restore Backup', backup_restore_form_words_path %></li>
+          <li> <%= link_to('Words', words_path) %> </li>
+          <li> <%= link_to('Flags', flags_path) %> </li>
         </ul>
       </div>
       <!--/.well -->

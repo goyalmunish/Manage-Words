@@ -3,7 +3,7 @@ class CreateWords < ActiveRecord::Migration
     create_table :words do |t|
       t.string :word, :limit => 25, :null => false, :unique => true
       t.string :trick, :limit => 100
-      t.references :user, index: true
+      t.references :user, index: true, :null => false
       t.string :additional_info, :limit => 2048
 
       t.timestamps

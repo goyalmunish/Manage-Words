@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20140523172938) do
   create_table "words", force: true do |t|
     t.string   "word",            limit: 25,   null: false
     t.string   "trick",           limit: 100
-    t.integer  "user_id"
+    t.integer  "user_id",                      null: false
     t.string   "additional_info", limit: 2048
     t.datetime "created_at"
     t.datetime "updated_at"

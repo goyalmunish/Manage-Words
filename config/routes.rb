@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :app_settings
   resources :words do
     collection do
+      get 'backup_restore_form'
       post 'backup_restore'
     end
   end

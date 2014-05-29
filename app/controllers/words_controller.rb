@@ -98,6 +98,9 @@ class WordsController < ApplicationController
     end
   end
 
+  def backup_restore_form
+  end
+
   def backup_restore
     # getting json content
     file = params[:file]

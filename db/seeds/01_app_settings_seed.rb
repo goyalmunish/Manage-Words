@@ -17,8 +17,8 @@ require 'securerandom'
 # Seeding flags
 Flag.create!(name: 'CL', value: 3, desc: 'Highly Comfortable (Comfort Level 3)')
 Flag.create!(name: 'CL', value: 2, desc: 'Comfortable (Comfort Level 2)')
-Flag.create!(name: 'CL', value: 1, desc: 'Familiar (Comfort Level 1)')
-Flag.create!(name: 'CL', value: 0, desc: 'To Learn (Comfort Level 0)')
+Flag.create!(name: 'CL', value: 1, desc: 'Slightly Comfortable (Comfort Level 1)')
+Flag.create!(name: 'CL', value: 0, desc: 'Familiar Word (Comfort Level 0)')
 Flag.create!(name: 'CP', value: 1, desc: 'Check Pronunciation')
 
 #

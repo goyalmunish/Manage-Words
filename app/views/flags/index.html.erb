@@ -10,6 +10,7 @@
     <thead>
     <tr>
       <!--<th>User</th>-->
+      <th>Id</th>
       <th>Name - Value</th>
       <th>Desc</th>
       <th>Words</th>
@@ -20,6 +21,7 @@
     <tbody>
     <% @flags.each do |flag| %>
       <tr>
+        <td><%= flag.id %></td>
         <td><%= link_to flag_name_and_value(flag), flag, {:class => "btn btn-default"} %></td>
         <td><%= flag.desc %></td>
         <td><%= link_to 'Show', flag_words_path(flag), {:class => "btn btn-primary"} %></td>

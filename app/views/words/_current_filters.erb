@@ -1,0 +1,5 @@
+<% if filters.empty? %>
+    <p> Current Filters: All </p>
+<% else %>
+    <p> Current Filters: <%= filters.join(' | ') %> </p>
+<% end %>

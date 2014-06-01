@@ -4,6 +4,8 @@ class WordsController < ApplicationController
   # GET /words
   # GET /words.json
   def index
+    @filters = Array.new
+    @order = String.new
     # resetting parameters
     if params[:reset] || params[:format] == 'download'
       [:flag_id, :without_trick, :sort_by, :reset].each do |elem|
@@ -23,15 +25,18 @@ class WordsController < ApplicationController
     if session[:flag_id]
       @flag = Flag.find(session[:flag_id])
       @words = current_user.words.includes(:flags).where("flags.id" => @flag.id)
+      @filters << "Flag: #{"#{@flag.name}-#{@flag.value}"}"
     else
       @words = current_user.words.includes(:flags)
     end
     if session[:without_trick]
       @words = @words.without_trick
+      @filters << 'Words Without Trick'
     end
     if session[:sort_by]
       if session[:sort_by] == 'rand'
         @words = @words.sort_by{rand}
+        @order = 'Random'
       end
     end
 

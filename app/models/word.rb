@@ -25,6 +25,11 @@ class Word < ActiveRecord::Base
     self.flag_ids = ids
   end
 
+  def self.touch_latest_updated_at_record
+    last_updated_record = Word.order(:updated_at => :desc).first
+    last_updated_record.touch
+  end
+
   # for backup
   # Note: the 'restore_backup' method depends on JSON format created by this method
   def self.data_backup(words = Word.all)

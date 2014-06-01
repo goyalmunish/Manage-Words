@@ -49,6 +49,11 @@ class WordsController < ApplicationController
     end
   end
 
+  def expire_caches
+    Word.touch_latest_updated_at_record
+    redirect_to words_path and return
+  end
+
   # GET /words/1
   # GET /words/1.json
   def show

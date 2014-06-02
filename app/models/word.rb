@@ -26,8 +26,7 @@ class Word < ActiveRecord::Base
   end
 
   def self.touch_latest_updated_at_record
-    # TODO: to check default_scope effect on below query
-    last_updated_record = Word.order(:updated_at => :desc).first
+    last_updated_record = Word.reorder(:updated_at => :desc).first
     last_updated_record.touch
   end
 
@@ -78,4 +77,3 @@ class Word < ActiveRecord::Base
   default_scope -> { order(:word => :asc) }
   scope :without_trick, -> { where('trick IS NULL') }
 end
-

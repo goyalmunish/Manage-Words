@@ -34,9 +34,12 @@ class WordsController < ApplicationController
       @filters << 'Words Without Trick'
     end
     if session[:sort_by]
-      if session[:sort_by] == 'rand'
+      if session[:sort_by] == 'random'
         @words = @words.sort_by{rand}
         @order = 'Random'
+      elsif session[:sort_by] == 'recent'
+        @words = @words.reorder(:updated_at => :desc)
+        @order = 'Recent'
       end
     end
 

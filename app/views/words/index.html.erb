@@ -22,7 +22,8 @@
   <div class="div3">
     <h3>Orders: </h3>
     <%= render 'words/current_order', :order => @order %>
-    <%= link_to 'Random Order', words_path(:sort_by => 'rand'), {:class => "btn btn-warning"} %>
+    <%= link_to 'Random Order', words_path(:sort_by => 'random'), {:class => "btn btn-warning"} %>
+    <%= link_to 'Recent First', words_path(:sort_by => 'recent'), {:class => "btn btn-warning"} %>
   </div>
   <div class="div3">
     <% cache(words_index_fragment_name(current_user.id, @filters, @order)) do %>

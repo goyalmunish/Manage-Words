@@ -15,6 +15,12 @@ module WordsHelper
     end
   end
 
+  def flags_name_value_array(word)
+    name_value_array = word.flags.map do |flag|
+      "#{flag.name}-#{flag.value}"
+    end
+  end
+
   def words_index_fragment_name(user_id, filters, order)
     name = Array.new
     name << "USERID-#{user_id}"

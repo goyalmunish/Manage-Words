@@ -10,13 +10,14 @@
 
   <div class="div3">
     <h3>Reset all ordering and filtering: </h3>
-    <%= link_to 'Reset', words_path(:reset => true), {:class => "btn btn-info"} %>
+    <%= link_to 'Reset', words_path(:reset => true), {:class => "btn btn-primary"} %>
     <%= link_to('Expire Caches', expire_caches_words_path, {:class => "btn btn-danger"}) %>
   </div>
   <div class="div3">
     <h3>Filters: </h3>
     <%= render 'words/current_filters', :filters => @filters %>
-    <%= link_to 'Without Trick', words_path(:without_trick => true), {:class => "btn btn-info"} %>
+    <%= link_to 'Without Trick', words_path(:filter_by => 'without_trick'), {:class => "btn btn-info"} %>
+    <%= link_to 'With Trick', words_path(:filter_by => 'with_trick'), {:class => "btn btn-info"} %>
     <%= render 'flags/filter_by_flag_links' %>
   </div>
   <div class="div3">

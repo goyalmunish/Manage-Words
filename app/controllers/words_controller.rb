@@ -8,31 +8,42 @@ class WordsController < ApplicationController
     @order = String.new
     # resetting parameters
     if params[:reset] || params[:format] == 'download'
-      [:flag_id, :without_trick, :sort_by, :reset].each do |elem|
+      [:flag_id, :sort_by, :filter_by, :reset].each do |elem|
         params[elem] = nil
         session[elem] = nil
       end
     end
 
     # setting params hash to session
-    [:flag_id, :without_trick, :sort_by].each do |elem|
+    [:flag_id, :sort_by, :filter_by].each do |elem|
       if params[elem]
         session[elem] = params[elem]
       end
     end
 
-    # getting words collection
+    # checking filters
     if session[:flag_id]
-      @flag = Flag.find(session[:flag_id])
-      @words = current_user.words.includes(:flags).where("flags.id" => @flag.id)
-      @filters << "Flag: #{"#{@flag.name}-#{@flag.value}"}"
+      if session[:flag_id].to_i > 0
+        @flag = Flag.find(session[:flag_id])
+        @words = current_user.words.with_flag_having_id(@flag.id)
+        @filters << "Flag: #{"#{@flag.name}-#{@flag.value}"}"
+      elsif session[:flag_id].to_i == 0
+        @words = current_user.words.without_flag
+        @filters << "Flag: #{"No Flag"}"
+      end
     else
       @words = current_user.words.includes(:flags)
     end
-    if session[:without_trick]
-      @words = @words.without_trick
-      @filters << 'Words Without Trick'
+    if session[:filter_by]
+      if session[:filter_by] == 'without_trick'
+        @words = @words.without_trick
+        @filters << 'Without Trick'
+      elsif session[:filter_by] == 'with_trick'
+        @words = @words.where("trick IS NOT NULL")
+        @filters << 'With Trick'
+      end
     end
+    # checking order
     if session[:sort_by]
       if session[:sort_by] == 'random'
         @words = @words.sort_by{rand}

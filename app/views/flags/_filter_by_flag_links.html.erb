@@ -1,3 +1,4 @@
 <% Flag.all.each do |flag| %>
     <%= link_to flag_name_and_value(flag), flag_words_path(flag), {:class => "btn btn-warning"} %>
 <% end %>
+<%= link_to 'No Flag', words_path(:flag_id => 0), {:class => "btn btn-warning"} %>

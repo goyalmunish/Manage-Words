@@ -76,4 +76,6 @@ class Word < ActiveRecord::Base
   # scopes
   default_scope -> { order(:word => :asc) }
   scope :without_trick, -> { where('trick IS NULL') }
+  scope :with_flag_having_id, lambda {|flag_id| includes(:flags).where("flags.id" => flag_id.to_i) }
+  scope :without_flag, -> { includes(:flags).where("flags.id IS NULL").references(:flags) }
 end

@@ -22,6 +22,7 @@ class Word < ActiveRecord::Base
     # finding required ids
     ids = Flag.flag_ids_with_available_max_level(self.flags)
     # deleting appropriate ids from association so that only required ids are present
+    # records will automatically be handled in JOIN table 
     self.flag_ids = ids
   end
 
@@ -79,3 +80,4 @@ class Word < ActiveRecord::Base
   scope :with_flag_having_id, lambda {|flag_id| includes(:flags).where("flags.id" => flag_id.to_i) }
   scope :without_flag, -> { includes(:flags).where("flags.id IS NULL").references(:flags) }
 end
+

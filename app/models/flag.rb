@@ -13,7 +13,8 @@ class Flag < ActiveRecord::Base
   validates :desc, length: {maximum: 100}
 
   # custom methods
-
+  # it DRIes up given flags hash and makes it more understandable to humans and programs
+  # example {:CL=>[3, 2, 1, 0], :CP=>[1]}
   def self.flag_hash(flags = Flag.all)
     flag_hash = Hash.new
     flags.each do |flag|
@@ -23,6 +24,7 @@ class Flag < ActiveRecord::Base
     return flag_hash
   end
 
+  # returns array of only relevant flag ids
   def self.flag_ids_with_available_max_level(flags = Flag.all)
     flag_hash = self.flag_hash(flags)
     ids = Array.new

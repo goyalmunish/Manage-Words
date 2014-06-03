@@ -144,6 +144,14 @@ class WordsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def word_params
+    # patch for check_box_tag
+    # an attribute from check_box_tag becomes part of params only if it is checked
+    # so, the if you try to uncheck the only unchecked flag left for a word, nothing happen to flags association
+    # it is because flag_ids in this case is nil, so we need to set it to blank array
+    unless params[:word][:flag_ids]
+      params[:word][:flag_ids] = []
+    end
+    # resuming to actual logic
     params.require(:word).permit(:word, :trick, :additional_info, :flag_ids => [])
   end
 end

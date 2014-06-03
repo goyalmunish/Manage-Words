@@ -34,6 +34,12 @@ class Flag < ActiveRecord::Base
     return ids
   end
 
+  # it return name and value of the flag
+  def flag_name_and_value
+    "#{self.name}-#{self.value}"
+  end
+
   # scopes
   default_scope ->{ order(:name => :asc, :value => :desc) }
 end
+

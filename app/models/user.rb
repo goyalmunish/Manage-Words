@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   # associations
   has_many :words, dependent: :nullify
+  has_and_belongs_to_many :dictionaries
 
   # callbacks
   before_validation :convert_blank_to_nil, :strip_string_fields

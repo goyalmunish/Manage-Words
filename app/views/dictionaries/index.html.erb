@@ -1,0 +1,33 @@
+<h1>Listing dictionaries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Url</th>
+      <th>Separator</th>
+      <th>Suffix</th>
+      <th>Additional info</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dictionaries.each do |dictionary| %>
+      <tr>
+        <td><%= dictionary.name %></td>
+        <td><%= dictionary.url %></td>
+        <td><%= dictionary.separator %></td>
+        <td><%= dictionary.suffix %></td>
+        <td><%= dictionary.additional_info %></td>
+        <td><%= link_to 'Show', dictionary %></td>
+        <td><%= link_to 'Edit', edit_dictionary_path(dictionary) %></td>
+        <td><%= link_to 'Destroy', dictionary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dictionary', new_dictionary_path %>

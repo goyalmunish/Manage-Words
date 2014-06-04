@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140523172938) do
+ActiveRecord::Schema.define(version: 20140604094655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,25 @@ ActiveRecord::Schema.define(version: 20140523172938) do
   end
 
   add_index "app_settings", ["key"], name: "index_app_settings_on_key", unique: true, using: :btree
+
+  create_table "dictionaries", force: true do |t|
+    t.string   "name",            limit: 15,  null: false
+    t.string   "url",             limit: 150, null: false
+    t.string   "separator",       limit: 5,   null: false
+    t.string   "suffix",          limit: 25
+    t.string   "additional_info", limit: 250
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "dictionaries", ["name"], name: "index_dictionaries_on_name", unique: true, using: :btree
+
+  create_table "dictionaries_users", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "dictionary_id"
+  end
+
+  add_index "dictionaries_users", ["user_id", "dictionary_id"], name: "index_dictionaries_users_on_user_id_and_dictionary_id", unique: true, using: :btree
 
   create_table "flags", force: true do |t|
     t.string   "name",       limit: 5,   null: false

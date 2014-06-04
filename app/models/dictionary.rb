@@ -15,7 +15,10 @@ class Dictionary < ActiveRecord::Base
   validates :additional_info, presence: false, length: {maximum: 250}
 
   # custom methods
+  def url_for_phrase(phrase)
+    "#{self.url}#{phrase.split.join('-')} #{self.suffix}"
+  end
 
   # scopes
-
+  
 end

@@ -27,7 +27,7 @@ module WordsHelper
     name << "FILTERS-#{current_filters(filters).split(' ').join('-')}"
     name << "ORDER-#{current_order(order)}"
     name << "COUNT-#{Word.count}"
-    name << "MAX-UPDATED-AT-#{Word.maximum(:updated_at).getutc}"
+    name << "MAX-UPDATED-AT-#{Word.maximum(:updated_at).try(:getutc)}"
     return name.join('__')
   end
 end

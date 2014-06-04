@@ -10,7 +10,7 @@ module FlagsHelper
   def flags_index_fragment_name
     name = Array.new
     name << "COUNT-#{Flag.count}"
-    name << "MAX-UPDATED-AT-#{Flag.maximum(:updated_at).getutc}"
+    name << "MAX-UPDATED-AT-#{Flag.maximum(:updated_at).try(:getutc)}"
     return name.join('__')
   end
 end

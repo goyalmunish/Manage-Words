@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140604094655) do
   add_index "app_settings", ["key"], name: "index_app_settings_on_key", unique: true, using: :btree
 
   create_table "dictionaries", force: true do |t|
-    t.string   "name",            limit: 15,  null: false
+    t.string   "name",            limit: 25,  null: false
     t.string   "url",             limit: 150, null: false
     t.string   "separator",       limit: 5,   null: false
     t.string   "suffix",          limit: 25

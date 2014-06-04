@@ -1,7 +1,7 @@
 class CreateDictionaries < ActiveRecord::Migration
   def change
     create_table :dictionaries do |t|
-      t.string :name, :limit => 15, :null => false, :unique => true
+      t.string :name, :limit => 25, :null => false, :unique => true
       t.string :url, :limit => 150, :null => false
       t.string :separator, :limit => 5, :null => false
       t.string :suffix, :limit => 25

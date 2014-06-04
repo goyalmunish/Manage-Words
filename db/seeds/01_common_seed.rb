@@ -1,6 +1,6 @@
 # USER NOTIFICATION
 puts "\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-puts '** Seeding AppSettings (if required) **'
+puts '** Seeding Common Settings (if required) **'
 puts '** Note: Pay heed to following messages **'
 sleep(5.seconds.to_i)
 
@@ -34,22 +34,25 @@ require 'securerandom'
 # 
 
 # Seeding flags
-Flag.create!(name: 'CL', value: 3, desc: 'Highly Comfortable (Comfort Level 3)')
-Flag.create!(name: 'CL', value: 2, desc: 'Comfortable (Comfort Level 2)')
-Flag.create!(name: 'CL', value: 1, desc: 'Slightly Comfortable (Comfort Level 1)')
-Flag.create!(name: 'CL', value: 0, desc: 'Familiar Word (Comfort Level 0)')
-Flag.create!(name: 'CP', value: 1, desc: 'Check Pronunciation')
+if Flag.count == 0
+  Flag.create!(name: 'CL', value: 3, desc: 'Highly Comfortable (Comfort Level 3)')
+  Flag.create!(name: 'CL', value: 2, desc: 'Comfortable (Comfort Level 2)')
+  Flag.create!(name: 'CL', value: 1, desc: 'Slightly Comfortable (Comfort Level 1)')
+  Flag.create!(name: 'CL', value: 0, desc: 'Familiar Word (Comfort Level 0)')
+  Flag.create!(name: 'CP', value: 1, desc: 'Check Pronunciation')
+end
 
 # Seeding dictionaries
-Flag.create!(name: 'cambridge', url: 'http://dictionary.cambridge.org/dictionary/british/', separator: '-', suffix: nil, additional_info: nil)
-Flag.create!(name: 'collins', url: '', separator: '', suffix: nil, additional_info: nil)
-Flag.create!(name: 'merriam_webster', url: '', separator: '', suffix: nil, additional_info: nil)
-Flag.create!(name: 'google_search', url: '', separator: '', suffix: nil, additional_info: nil)
-Flag.create!(name: 'macmillan', url: '', separator: '', suffix: nil, additional_info: nil)
-Flag.create!(name: 'longman', url: '', separator: '', suffix: nil, additional_info: nil)
-Flag.create!(name: 'oxford_learner', url: '', separator: '', suffix: nil, additional_info: nil)
-Flag.create!(name: 'dictionary_dot_com', url: '', separator: '', suffix: nil, additional_info: nil)
-Flag.create!(name: 'oxford', url: '', separator: '', suffix: nil, additional_info: nil)
+if Dictionary.count == 0
+  Dictionary.create!(name: 'cambridge', url: 'http://dictionary.cambridge.org/dictionary/british/', separator: '-', suffix: nil, additional_info: nil)
+  Dictionary.create!(name: 'collins', url: 'http://www.collinsdictionary.com/dictionary/english/', separator: '-', suffix: nil, additional_info: nil)
+  Dictionary.create!(name: 'merriam_webster', url: 'http://www.merriam-webster.com/dictionary/', separator: '%20', suffix: nil, additional_info: nil)
+  Dictionary.create!(name: 'google_search', url: 'https://www.google.co.in/webhp?#q=', separator: '+', suffix: ' meaning', additional_info: nil)
+  Dictionary.create!(name: 'macmillan', url: 'http://www.macmillandictionary.com/dictionary/british/', separator: '-', suffix: nil, additional_info: nil)
+  Dictionary.create!(name: 'longman', url: 'http://www.ldoceonline.com/search/?q=', separator: '%20', suffix: nil, additional_info: nil)
+  Dictionary.create!(name: 'oxford_learner', url: 'http://www.oxfordlearnersdictionaries.com/definition/english/', separator: '-', suffix: nil, additional_info: nil)
+  Dictionary.create!(name: 'dictionary_dot_com', url: 'http://dictionary.reference.com/browse/', separator: '+', suffix: nil, additional_info: nil)
+end
 
 
 # LAST LINE: 

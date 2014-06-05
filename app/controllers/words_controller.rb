@@ -4,8 +4,10 @@ class WordsController < ApplicationController
   # GET /words
   # GET /words.json
   def index
+    # filter and order instance variables to hold current filter and order information
     @filters = Array.new
     @order = String.new
+
     # resetting parameters
     if params[:reset] || params[:format] == 'download'
       [:flag_id, :sort_by, :filter_by, :reset].each do |elem|
@@ -24,7 +26,6 @@ class WordsController < ApplicationController
     # words collection with eager loaded flags
     @words = current_user.words.includes(:flags)
     # user dictionaries
-    # @current_user = User.where(:id => current_user.id).includes(:dictionaries).first
     @dictionaries = current_user.dictionaries
 
     # checking filters
@@ -37,18 +38,17 @@ class WordsController < ApplicationController
         @words = @words.without_flag
         @filters << "Flag: #{"No Flag"}"
       end
-    else
-      @words = current_user.words.includes(:flags)
     end
     if session[:filter_by]
       if session[:filter_by] == 'without_trick'
         @words = @words.without_trick
         @filters << 'Without Trick'
       elsif session[:filter_by] == 'with_trick'
-        @words = @words.where("trick IS NOT NULL")
+        @words = @words.with_trick
         @filters << 'With Trick'
       end
     end
+
     # checking order
     if session[:sort_by]
       if session[:sort_by] == 'random'

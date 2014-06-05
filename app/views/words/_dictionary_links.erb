@@ -1,0 +1,3 @@
+<% dictionaries.each do |dict| %>
+  <%= link_to "#{dict.name}", dict.url_for_phrase(phrase), {:target => '_blank'} %>
+<% end %>

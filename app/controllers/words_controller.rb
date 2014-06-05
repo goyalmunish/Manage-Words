@@ -21,14 +21,20 @@ class WordsController < ApplicationController
       end
     end
 
+    # words collection with eager loaded flags
+    @words = current_user.words.includes(:flags)
+    # user dictionaries
+    # @current_user = User.where(:id => current_user.id).includes(:dictionaries).first
+    @dictionaries = current_user.dictionaries
+
     # checking filters
     if session[:flag_id]
       if session[:flag_id].to_i > 0
         @flag = Flag.find(session[:flag_id])
-        @words = current_user.words.with_flag_having_id(@flag.id)
+        @words = @words.with_flag_having_id(@flag.id)
         @filters << "Flag: #{"#{@flag.name}-#{@flag.value}"}"
       elsif session[:flag_id].to_i == 0
-        @words = current_user.words.without_flag
+        @words = @words.without_flag
         @filters << "Flag: #{"No Flag"}"
       end
     else

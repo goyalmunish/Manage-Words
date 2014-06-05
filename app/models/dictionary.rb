@@ -19,6 +19,10 @@ class Dictionary < ActiveRecord::Base
     "#{self.url}#{phrase.split.join('-')} #{self.suffix}"
   end
 
+  def humanized_name
+    self.name.titleize
+  end
+
   # scopes
-  
+
 end

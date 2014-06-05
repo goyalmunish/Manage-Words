@@ -3,7 +3,12 @@ Rails.application.routes.draw do
 
   # user routes
   devise_for :users
-  resources :users
+  resources :users do
+    collection do
+      get 'edit_your_dictionaries'
+      post 'update_your_dictionaries'
+    end
+  end
   resources :admin, controller: 'users'
   resources :general, controller: 'users'
 

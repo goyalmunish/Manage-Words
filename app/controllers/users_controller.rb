@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_filter :admin_only
+  before_filter :admin_only, except: [:edit_your_dictionaries, :update_your_dictionaries]
 
   # GET /users
   # GET /users.json
@@ -62,11 +62,30 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit_your_dictionaries
+    @user = User.includes(:dictionaries).find(current_user.id)
+  end
+
+  def update_your_dictionaries
+    @user = User.includes(:dictionaries).find(current_user.id)
+    respond_to do |format|
+      if @user.update(dictionary_ids_params)
+        format.html { redirect_to flags_path, notice: 'User dictionaries were successfully updated.' }
+      else
+        format.html { redirect_to flags_path, alert: 'Error in updating your dictionaries' }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.includes(:words => :flags).find(params[:id])
     end
+
+  def dictionary_ids_params
+    params.require(:user).permit(:dictionary_ids => [])
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params

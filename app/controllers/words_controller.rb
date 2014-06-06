@@ -61,16 +61,19 @@ class WordsController < ApplicationController
     end
 
     # generating custom ETag
-    fresh_when([@words, @filters, @order])
+    # fresh_when([@words, @filters, @order])
 
     # responding
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json # index.json.jbuilder
-      format.xml { render :xml => @words.to_xml(:include => {:flags => {:only => [:name, :value]}}, :only => [:word, :trick, :additional_info]) }
-      format.download { send_data Word.data_backup(@words).to_json, {:filename => "words #{Time.now.getutc}.json".split(' ').join('-')} }
+    # if stale?(etag: [@words, @filters, @order], last_modified: @words.max(:updated_at))
+    if stale?(etag: [@words, @filters, @order])
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json # index.json.jbuilder
+        format.xml { render :xml => @words.to_xml(:include => {:flags => {:only => [:name, :value]}}, :only => [:word, :trick, :additional_info]) }
+        format.download { send_data Word.data_backup(@words).to_json, {:filename => "words #{Time.now.getutc}.json".split(' ').join('-')} }
+      end
     end
-    return
+
   end
 
   def expire_caches

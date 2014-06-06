@@ -3,12 +3,14 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   # handling any left unhandled exception
 
-  # I want to run below commented out code only in case of production
-  # rescue_from Exception do |ex|
-  #   # displaying error
-  #   flash[:alert] = 'Error: ' + ex.message
-  #   redirect_to display_error_path
-  # end
+  # I want to run below code only in case of production
+  if Rails.env == 'production'
+    rescue_from Exception do |ex|
+      # displaying error
+      flash[:alert] = 'Error: ' + ex.message
+      redirect_to display_error_path
+    end
+  end
 
   protect_from_forgery with: :exception
 

@@ -60,6 +60,9 @@ class WordsController < ApplicationController
       end
     end
 
+    # generating custom ETag
+    fresh_when([@words, @filters, @order])
+
     # responding
     respond_to do |format|
       format.html # index.html.erb

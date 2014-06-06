@@ -4,12 +4,14 @@ class DictionariesController < ApplicationController
   # GET /dictionaries
   # GET /dictionaries.json
   def index
+    @page_title = ['Dictionaries']
     @dictionaries = Dictionary.all
   end
 
   # GET /dictionaries/1
   # GET /dictionaries/1.json
   def show
+    @page_title = [@dictionary.name]
   end
 
   # GET /dictionaries/new
@@ -19,6 +21,7 @@ class DictionariesController < ApplicationController
 
   # GET /dictionaries/1/edit
   def edit
+    @page_title = [@dictionary.name, 'Edit']
   end
 
   # POST /dictionaries

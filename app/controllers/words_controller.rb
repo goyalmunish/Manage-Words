@@ -4,6 +4,8 @@ class WordsController < ApplicationController
   # GET /words
   # GET /words.json
   def index
+    @page_title = ['Words']
+
     # filter and order instance variables to hold current filter and order information
     @filters = Array.new
     @order = String.new
@@ -84,6 +86,7 @@ class WordsController < ApplicationController
   # GET /words/1
   # GET /words/1.json
   def show
+    @page_title = [@word.word]
   end
 
   # GET /words/new
@@ -93,6 +96,7 @@ class WordsController < ApplicationController
 
   # GET /words/1/edit
   def edit
+    @page_title = [@word.word, 'Edit']
   end
 
   # POST /words
@@ -130,7 +134,7 @@ class WordsController < ApplicationController
   def destroy
     @word.destroy
     respond_to do |format|
-      format.html { redirect_to words_url, notice: 'Word was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Word was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

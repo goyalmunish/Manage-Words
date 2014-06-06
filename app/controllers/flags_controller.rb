@@ -5,12 +5,14 @@ class FlagsController < ApplicationController
   # GET /flags
   # GET /flags.json
   def index
+    @page_title = ['Flags']
     @flags = Flag.includes(:words).all
   end
 
   # GET /flags/1
   # GET /flags/1.json
   def show
+    @page_title = [@flag.flag_name_and_value]
   end
 
   # GET /flags/new
@@ -20,6 +22,7 @@ class FlagsController < ApplicationController
 
   # GET /flags/1/edit
   def edit
+    @page_title = [@flag.flag_name_and_value, 'Edit']
   end
 
   # POST /flags

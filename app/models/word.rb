@@ -81,4 +81,3 @@ class Word < ActiveRecord::Base
   scope :with_flag_having_id, lambda {|flag_id| includes(:flags).where("flags.id" => flag_id.to_i) }
   scope :without_flag, -> { includes(:flags).where("flags.id IS NULL").references(:flags) }
 end
-

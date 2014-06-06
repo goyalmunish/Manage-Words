@@ -46,7 +46,7 @@
               <% @words.each do |word| %>
                   <tr>
                     <td><%= word.id %></td>
-                    <td><%= link_to word.word, word, {:class => "btn btn-default"} %></td>
+                    <td><%= link_to word.word, word, {:class => "btn btn-default", :target => '_blank'} %></td>
                     <td><%= render 'word_flags_span', :word => word %></td>
                     <!--<td><%= link_to 'Show', word %></td>-->
                     <!--<td><%= link_to 'Edit', edit_word_path(word) %></td>-->

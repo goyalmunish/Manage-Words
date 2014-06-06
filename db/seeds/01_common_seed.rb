@@ -32,6 +32,9 @@ require 'securerandom'
 # puts AppSetting.set_if_nil('devise_secret_key', SecureRandom.hex(128))
 # puts "\n!!!!!!!!!!Note: devise_secret_key should never be changed.\n\n"
 # 
+# Seeding AppSettings
+puts AppSetting.set_if_nil('site_name', 'WordList')
+puts AppSetting.set_if_nil('site_url', 'http://manage-words.herokuapp.com')
 
 # Seeding flags
 if Flag.count == 0

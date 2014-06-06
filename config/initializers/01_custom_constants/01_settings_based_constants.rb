@@ -20,9 +20,7 @@ end
 #### DEFINING CONSTANTS ###########################
 
 # SITE NAME
-SITE_NAME_PLAIN = AppSetting.get('site_name_plain')
-SITE_NAME_STYLE = AppSetting.get('site_name_style')
-SITE_NAME_CAPS = AppSetting.get('site_name_caps')
+SITE_NAME = AppSetting.get('site_name')
 SITE_URL = AppSetting.get('site_url')
 EMAIL_CUSTOMER_CARE = AppSetting.get('email_customer_care')
 

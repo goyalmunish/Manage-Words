@@ -52,8 +52,8 @@
         <ul class="nav">
           <% if user_signed_in? %>
 
-              <li> <%= link_to('Words', words_path) %> </li>
-              <li> <%= link_to('Flags', flags_path) %> </li>
+              <li> <%= link_to('Words', words_path, "data-no-turbolink" => true) %> </li>
+              <li> <%= link_to('Flags', flags_path, "data-no-turbolink" => true) %> </li>
               <li> <%= link_to('Users', users_path) %> </li>
               <li> <%= link_to(current_user, '#') %> </li>
               <li> <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> </li>
@@ -82,16 +82,19 @@
 
     <div class="span3 show">
       <div class="well sidebar-nav">
-        <ul class="nav nav-list">
-          <li class="nav-header">Sidebar</li>
-          <li><%= link_to 'New Word', new_word_path %></li>
-          <li><%= link_to 'Take Backup', words_path(:format => :download) %></li>
-          <li><%= link_to 'Restore Backup', backup_restore_form_words_path %></li>
-          <li><%= link_to 'Manage Your Dictionaries', edit_your_dictionaries_users_path %></li>
-          <li> <%= link_to('Words', words_path) %> </li>
-          <li> <%= link_to('Flags', flags_path) %> </li>
-          <li> <%= link_to('Expire Caches', expire_caches_words_path) %> </li>
-        </ul>
+        <% if user_signed_in? %>
+          <ul class="nav nav-list">
+            <li class="nav-header">Sidebar</li>
+            <li><%= link_to 'New Word', new_word_path %></li>
+            <li><%= link_to 'Take Backup', words_path(:format => :download) %></li>
+            <li><%= link_to 'Restore Backup', backup_restore_form_words_path %></li>
+            <li><%= link_to 'Manage Your Dictionaries', edit_your_dictionaries_users_path %></li>
+            <li> <%= link_to('Words', words_path, "data-no-turbolink" => true) %> </li>
+            <li> <%= link_to('Flags', flags_path, "data-no-turbolink" => true) %> </li>
+            <li> <%= link_to('Expire Caches', expire_caches_words_path, "data-no-turbolink" => true) %> </li>
+          </ul>
+        <% end %>
+
       </div>
       <!--/.well -->
     </div>

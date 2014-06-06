@@ -70,6 +70,7 @@ class WordsController < ApplicationController
       format.xml { render :xml => @words.to_xml(:include => {:flags => {:only => [:name, :value]}}, :only => [:word, :trick, :additional_info]) }
       format.download { send_data Word.data_backup(@words).to_json, {:filename => "words #{Time.now.getutc}.json".split(' ').join('-')} }
     end
+    return
   end
 
   def expire_caches

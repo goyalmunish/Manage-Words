@@ -70,7 +70,7 @@
 </div>
 
 <div class="container-fluid">
-  <div id='loading'>Loading..</div>
+  <div id='loading' class="fixed_position">Loading..</div>
   <div class="text-info"><%= flash[:notice] %></div>
   <div class="text-info"><%= flash[:info] %></div>
   <div class="text-warning"><%= flash[:alert] %></div>
@@ -83,7 +83,7 @@
     </div>
 
     <div class="span3 show">
-      <div class="well sidebar-nav">
+      <div class="well sidebar-nav fixed_position">
         <% if user_signed_in? %>
           <ul class="nav nav-list">
             <li class="nav-header">Sidebar</li>

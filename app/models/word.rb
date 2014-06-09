@@ -9,6 +9,7 @@ class Word < ActiveRecord::Base
 
   # callbacks
   before_validation :convert_blank_to_nil, :strip_string_fields
+  before_validation :down_case_word
   after_save :remove_similar_flags_with_lower_level
 
   # validations
@@ -24,6 +25,10 @@ class Word < ActiveRecord::Base
     # deleting appropriate ids from association so that only required ids are present
     # records will automatically be handled in JOIN table
     self.flag_ids = ids
+  end
+
+  def down_case_word
+    self.word = self.word.downcase
   end
 
   def self.touch_latest_updated_at_record

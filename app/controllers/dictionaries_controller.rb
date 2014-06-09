@@ -1,5 +1,6 @@
 class DictionariesController < ApplicationController
   before_action :set_dictionary, only: [:show, :edit, :update, :destroy]
+  before_filter :admin_only, except: [:index, :show]
 
   # GET /dictionaries
   # GET /dictionaries.json

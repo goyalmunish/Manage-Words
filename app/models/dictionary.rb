@@ -26,4 +26,3 @@ class Dictionary < ActiveRecord::Base
   # scopes
 
 end
-

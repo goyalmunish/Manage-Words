@@ -51,9 +51,10 @@
       <div class="container-fluid nav-collapse">
         <ul class="nav">
           <% if user_signed_in? %>
-
-            <li> <%= link_to('Words', words_path, "data-no-turbolink" => true) %> </li>
-            <li> <%= link_to('Flags', flags_path, "data-no-turbolink" => true) %> </li>
+            <!--<li> <%= link_to('Words', words_path, "data-no-turbolink" => true) %> </li>-->
+            <!--<li> <%= link_to('Flags', flags_path, "data-no-turbolink" => true) %> </li>-->
+            <li> <%= link_to('Words', words_path) %> </li>
+            <li> <%= link_to('Flags', flags_path) %> </li>
             <% if current_user.type == 'Admin' %>
               <li> <%= link_to('Dictionaries', dictionaries_path) %> </li>
               <li> <%= link_to('Users', users_path) %> </li>
@@ -71,6 +72,7 @@
 </div>
 
 <div class="container-fluid">
+  <div id='loading'>Loading..</div>
   <div class="text-info"><%= flash[:notice] %></div>
   <div class="text-info"><%= flash[:info] %></div>
   <div class="text-warning"><%= flash[:alert] %></div>
@@ -91,8 +93,8 @@
             <li><%= link_to 'Take Backup', words_path(:format => :download) %></li>
             <li><%= link_to 'Restore Backup', backup_restore_form_words_path %></li>
             <li><%= link_to 'Manage Your Dictionaries', edit_your_dictionaries_users_path %></li>
-            <li> <%= link_to('Words', words_path, "data-no-turbolink" => true) %> </li>
-            <li> <%= link_to('Flags', flags_path, "data-no-turbolink" => true) %> </li>
+            <li> <%= link_to('Words', words_path) %> </li>
+            <li> <%= link_to('Flags', flags_path) %> </li>
             <li> <%= link_to('Expire Caches', expire_caches_words_path, "data-no-turbolink" => true) %> </li>
           </ul>
         <% end %>

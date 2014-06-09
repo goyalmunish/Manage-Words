@@ -30,6 +30,7 @@
   <div class="div3">
     <% cache(words_index_fragment_name(current_user.id, @filters, @order)) do %>
         <h3>Listing all words:</h3>
+        <p>No. of words: <%= @words.length %> </p>
         <% if @words.empty? %>
             <p class="text-info"> Empty word list </p>
         <% else %>

@@ -52,14 +52,16 @@
         <ul class="nav">
           <% if user_signed_in? %>
 
-              <li> <%= link_to('Words', words_path, "data-no-turbolink" => true) %> </li>
-              <li> <%= link_to('Flags', flags_path, "data-no-turbolink" => true) %> </li>
+            <li> <%= link_to('Words', words_path, "data-no-turbolink" => true) %> </li>
+            <li> <%= link_to('Flags', flags_path, "data-no-turbolink" => true) %> </li>
+            <% if current_user.type == 'Admin' %>
+              <li> <%= link_to('Dictionaries', dictionaries_path) %> </li>
               <li> <%= link_to('Users', users_path) %> </li>
-              <li> <%= link_to(current_user, '#') %> </li>
-              <li> <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> </li>
-
+            <% end %>
+            <li> <%= link_to(current_user, '#') %> </li>
+            <li> <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> </li>
           <% else %>
-              <li> <%= link_to('Login', new_user_session_path) %> </li>
+            <li> <%= link_to('Login', new_user_session_path) %> </li>
           <% end %>
         </ul>
       </div>
@@ -69,10 +71,10 @@
 </div>
 
 <div class="container-fluid">
-  <div class="text-info"><%= flash[:notice]%></div>
-  <div class="text-info"><%= flash[:info]%></div>
-  <div class="text-warning"><%= flash[:alert]%></div>
-  <div class="text-danger"><%= flash[:error]%></div>
+  <div class="text-info"><%= flash[:notice] %></div>
+  <div class="text-info"><%= flash[:info] %></div>
+  <div class="text-warning"><%= flash[:alert] %></div>
+  <div class="text-danger"><%= flash[:error] %></div>
   <div class="row-fluid">
 
     <div class="span9 show">

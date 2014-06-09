@@ -31,8 +31,8 @@ class Word < ActiveRecord::Base
     self.word = self.word.downcase
   end
 
-  def self.touch_latest_updated_at_record
-    last_updated_record = Word.reorder(:updated_at => :desc).first
+  def self.touch_latest_updated_at_word_record_for_user(user)
+    last_updated_record = user.words.reorder(:updated_at => :desc).first
     last_updated_record.touch
   end
 
@@ -86,3 +86,4 @@ class Word < ActiveRecord::Base
   scope :with_flag_having_id, lambda {|flag_id| includes(:flags).where("flags.id" => flag_id.to_i) }
   scope :without_flag, -> { includes(:flags).where("flags.id IS NULL").references(:flags) }
 end
+

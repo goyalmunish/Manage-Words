@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     collection do
       get 'backup_restore_form'
       post 'backup_restore'
-      get 'expire_caches'
+      get 'expire_my_word_caches'
     end
   end
   resources :flags

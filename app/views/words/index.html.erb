@@ -12,7 +12,7 @@
   <div class="div3">
     <h3>Reset all ordering and filtering: </h3>
     <%= link_to 'Reset', words_path(:reset => true), {:class => "btn btn-primary"} %>
-    <%= link_to('Expire Caches', expire_caches_words_path, {:class => "btn btn-danger", "data-no-turbolink" => true}) %>
+    <%= link_to('Expire My Caches', expire_my_word_caches_words_path, {:class => "btn btn-danger", "data-no-turbolink" => true}) %>
   </div>
   <div class="div3">
     <h3>Filters: </h3>

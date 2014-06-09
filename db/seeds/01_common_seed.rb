@@ -57,6 +57,14 @@ if Dictionary.count == 0
   Dictionary.create!(name: 'dictionary_dot_com', url: 'http://dictionary.reference.com/browse/', separator: '+', suffix: nil, additional_info: nil)
 end
 
+# Seeding Important Users
+if User.count == 0
+  User.create!(:first_name => 'Munish', :last_name => 'Goyal', :type => 'Admin', :email => 'munishapc@gmail.com', :password => 'munishgoyal', :password_confirmation => 'munishgoyal')
+  User.create!(:first_name => 'Ritika', :last_name => 'Goyal', :type => 'General', :email => 'ritikamittal9@gmail.com', :password => 'munishgoyal', :password_confirmation => 'munishgoyal')
+  User.create!(:first_name => 'Manish', :last_name => 'Arya', :type => 'General', :email => 'coolaryan54@gmail.com', :password => 'rahularya', :password_confirmation => 'rahularya')
+  User.create!(:first_name => 'Geetika', :last_name => 'Mittal', :type => 'General', :email => 'mittal.gitika@gmail.com', :password => 'iamdbest', :password_confirmation => 'iamdbest')
+end
+
 
 # LAST LINE: 
 puts "\n"+'!!!!!!!!!!Check your app_settings table and look for nil and "XXX" values, and update them.'+"\n"

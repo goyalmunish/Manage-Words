@@ -6,4 +6,4 @@ $(document).on('page:change', function() {
     $('#loading').hide();
 });
 
-// 
+//

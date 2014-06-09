@@ -1,9 +1,10 @@
 <h1>Words </h1>
 <div class="div2">
   <h2>Links</h2>
-  <%= link_to 'New Word', new_word_path, {:class => "btn btn-primary"} %>
+  <%= link_to 'New Word', new_word_path, {:class => "btn btn-primary", :target => '_blank'} %>
   <%= link_to 'Take Backup', words_path(:format => :download), {:class => "btn btn-info"} %>
   <%= link_to 'Restore Backup', backup_restore_form_words_path, {:class => "btn btn-info"} %>
+  <%= link_to 'Manage Your Dictionaries', edit_your_dictionaries_users_path, :class => 'btn btn-info', :target => '_blank' %>
 </div>
 <div class="div2">
   <h2>Listing Words</h2>
@@ -11,7 +12,7 @@
   <div class="div3">
     <h3>Reset all ordering and filtering: </h3>
     <%= link_to 'Reset', words_path(:reset => true), {:class => "btn btn-primary"} %>
-    <%= link_to('Expire Caches', expire_caches_words_path, {:class => "btn btn-danger"}) %>
+    <%= link_to('Expire Caches', expire_caches_words_path, {:class => "btn btn-danger", "data-no-turbolink" => true}) %>
   </div>
   <div class="div3">
     <h3>Filters: </h3>

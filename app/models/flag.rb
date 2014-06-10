@@ -1,18 +1,18 @@
 require 'common_model'
 class Flag < ActiveRecord::Base
   include CommonModel # custom library placed in lib directory, containing methods common to all models
-  # associations
+  # ASSOCIATIONS
   has_and_belongs_to_many :words
 
-  # callbacks
+  # CALLBACKS
   before_validation :convert_blank_to_nil, :strip_string_fields
 
-  # validations
+  # VALIDATIONS
   validates :name, presence: true, uniqueness: {scope: [:value]}, length: {maximum: 5}
   validates :value, presence: true, numericality: :only_integer
   validates :desc, length: {maximum: 100}
 
-  # custom methods
+  # CUSTOM METHODS
   # it DRIes up given flags hash and makes it more understandable to humans and programs
   # example {:CL=>[3, 2, 1, 0], :CP=>[1]}
   def self.flag_hash(flags = Flag.all)
@@ -39,6 +39,9 @@ class Flag < ActiveRecord::Base
     "#{self.name}-#{self.value}"
   end
 
-  # scopes
+  # SCOPES
   default_scope ->{ order(:name => :asc, :value => :desc) }
+  scope :with_flag_id, lambda { |id| where(:id => id.to_i) }
+
+  # ACCESS
 end

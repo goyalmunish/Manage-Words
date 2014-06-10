@@ -3,34 +3,23 @@ require 'my_dictionary'
 class Word < ActiveRecord::Base
   include CommonModel # custom library placed in lib directory, containing methods common to all models
   include MyDictionary
-  # associations
+
+  # ASSOCIATIONS
   belongs_to :user
   has_and_belongs_to_many :flags
 
-  # callbacks
+  # CALLBACKS
   before_validation :convert_blank_to_nil, :strip_string_fields
   before_validation :down_case_word
   after_save :remove_similar_flags_with_lower_level
 
-  # validations
+  # VALIDATIONS
   validates :user_id , presence: true
   validates :word, presence: true, uniqueness: {scope: :user_id}, length: {maximum: 25}
   validates :trick, length: {maximum: 100}
   validates :additional_info, length: {maximum: 2048}
 
-  # custom methods
-  def remove_similar_flags_with_lower_level
-    # finding required ids
-    ids = Flag.flag_ids_with_available_max_level(self.flags)
-    # deleting appropriate ids from association so that only required ids are present
-    # records will automatically be handled in JOIN table
-    self.flag_ids = ids
-  end
-
-  def down_case_word
-    self.word = self.word.downcase
-  end
-
+  # CUSTOM METHODS
   def self.touch_latest_updated_at_word_record_for_user(user)
     last_updated_record = user.words.reorder(:updated_at => :desc).first
     last_updated_record.touch
@@ -79,10 +68,25 @@ class Word < ActiveRecord::Base
     return count
   end
 
-  # scopes
+  def remove_similar_flags_with_lower_level
+    # finding required ids
+    ids = Flag.flag_ids_with_available_max_level(self.flags)
+    # deleting appropriate ids from association so that only required ids are present
+    # records will automatically be handled in JOIN table
+    self.flag_ids = ids
+  end
+
+  def down_case_word
+    self.word = self.word.downcase
+  end
+
+  # SCOPES
   default_scope -> { order(:word => :asc) }
   scope :without_trick, -> { where('trick IS NULL') }
   scope :with_trick, -> { where('trick IS NOT NULL') }
-  scope :with_flag_having_id, lambda {|flag_id| includes(:flags).where("flags.id" => flag_id.to_i) }
+  scope :with_flag_id, lambda { |flag_id| joins(:flags).merge(Flag.with_flag_id(flag_id)) }
   scope :without_flag, -> { includes(:flags).where("flags.id IS NULL").references(:flags) }
+
+  # ACCESS
+  protected :down_case_word, :remove_similar_flags_with_lower_level
 end

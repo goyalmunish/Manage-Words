@@ -7,23 +7,23 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # constants
+  # CONSTANTS
 
-  # associations
+  # ASSOCIATIONS
   has_many :words, dependent: :nullify
   has_and_belongs_to_many :dictionaries
 
-  # callbacks
+  # CALLBACKS
   before_validation :convert_blank_to_nil, :strip_string_fields
   before_create :mark_user_as_general_by_default
 
-  # validations
+  # VALIDATIONS
   validates :first_name, presence: true, length: {maximum: 15}
   validates :last_name, presence: true, length: {maximum: 15}
   validates :additional_info, presence: false, length: {maximum: 100}
   validates :email, presence: true, uniqueness: true
 
-  # custom methods
+  # CUSTOM METHODS
   def to_s
     self.email
   end
@@ -32,6 +32,8 @@ class User < ActiveRecord::Base
     self.type ||= General.to_s
   end
 
-  # scopes
-end
+  # SCOPES
 
+  # ACCESS
+  protected :mark_user_as_general_by_default
+end

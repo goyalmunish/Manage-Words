@@ -42,4 +42,7 @@ module CommonModel
     return all_fields
   end
 
+  # access
+  protected :convert_blank_to_nil, :strip_string_fields
+
 end

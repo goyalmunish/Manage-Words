@@ -34,7 +34,7 @@ class WordsController < ApplicationController
     if session[:flag_id]
       if session[:flag_id].to_i > 0
         @flag = Flag.find(session[:flag_id])
-        @words = @words.with_flag_having_id(@flag.id)
+        @words = @words.with_flag_id(@flag.id)
         @filters << "Flag: #{"#{@flag.name}-#{@flag.value}"}"
       elsif session[:flag_id].to_i == 0
         @words = @words.without_flag

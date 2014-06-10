@@ -62,8 +62,7 @@ class AppSetting < ActiveRecord::Base
   end
 
 
-  # CUSTOM SCOPES
+  # SCOPES
 
-
-  # attr_accessible :key, :value
+  # ACCESS
 end

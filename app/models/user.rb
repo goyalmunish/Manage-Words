@@ -34,3 +34,4 @@ class User < ActiveRecord::Base
 
   # scopes
 end
+

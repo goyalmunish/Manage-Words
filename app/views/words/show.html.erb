@@ -8,6 +8,10 @@
   <%= @word.word %>
 </p>
 <p>
+  <strong>Meaning:</strong>
+  <%= render :partial => 'dictionary_links', :locals => {:dictionaries => @dictionaries, :phrase => @word.word} %>
+</p>
+<p>
   <strong>Trick:</strong>
   <%= @word.trick %>
 </p>

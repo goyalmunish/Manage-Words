@@ -87,6 +87,7 @@ class WordsController < ApplicationController
   # GET /words/1.json
   def show
     @page_title = [@word.word]
+    @dictionaries = current_user.dictionaries
   end
 
   # GET /words/new

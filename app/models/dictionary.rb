@@ -2,8 +2,9 @@ class Dictionary < ActiveRecord::Base
   include CommonModel # custom library placed in lib directory, containing methods common to all models
 
   # ASSOCIATIONS
-  has_and_belongs_to_many :users
-
+  # has_and_belongs_to_many :users
+  has_many :dictionaries_users
+  has_many :users, through: :dictionaries_users
   # CALLBACKS
   before_validation :convert_blank_to_nil, :strip_string_fields
 

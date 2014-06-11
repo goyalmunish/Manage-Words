@@ -6,7 +6,9 @@ class Word < ActiveRecord::Base
 
   # ASSOCIATIONS
   belongs_to :user
-  has_and_belongs_to_many :flags
+  # has_and_belongs_to_many :flags
+  has_many :flags_words
+  has_many :flags, through: :flags_words
 
   # CALLBACKS
   before_validation :convert_blank_to_nil, :strip_string_fields

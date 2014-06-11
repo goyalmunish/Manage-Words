@@ -37,9 +37,11 @@ ActiveRecord::Schema.define(version: 20140604094655) do
 
   add_index "dictionaries", ["name"], name: "index_dictionaries_on_name", unique: true, using: :btree
 
-  create_table "dictionaries_users", id: false, force: true do |t|
-    t.integer "user_id"
-    t.integer "dictionary_id"
+  create_table "dictionaries_users", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "dictionary_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "dictionaries_users", ["user_id", "dictionary_id"], name: "index_dictionaries_users_on_user_id_and_dictionary_id", unique: true, using: :btree
@@ -54,9 +56,11 @@ ActiveRecord::Schema.define(version: 20140604094655) do
 
   add_index "flags", ["name", "value"], name: "index_flags_on_name_and_value", unique: true, using: :btree
 
-  create_table "flags_words", id: false, force: true do |t|
-    t.integer "word_id"
-    t.integer "flag_id"
+  create_table "flags_words", force: true do |t|
+    t.integer  "word_id"
+    t.integer  "flag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "flags_words", ["word_id", "flag_id"], name: "index_flags_words_on_word_id_and_flag_id", unique: true, using: :btree

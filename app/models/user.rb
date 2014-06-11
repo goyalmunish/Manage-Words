@@ -11,7 +11,9 @@ class User < ActiveRecord::Base
 
   # ASSOCIATIONS
   has_many :words, dependent: :nullify
-  has_and_belongs_to_many :dictionaries
+  # has_and_belongs_to_many :dictionaries
+  has_many :dictionaries_users
+  has_many :dictionaries, through: :dictionaries_users
 
   # CALLBACKS
   before_validation :convert_blank_to_nil, :strip_string_fields
@@ -37,4 +39,3 @@ class User < ActiveRecord::Base
   # ACCESS
   protected :mark_user_as_general_by_default
 end
-

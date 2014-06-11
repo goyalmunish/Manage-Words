@@ -78,6 +78,7 @@ class WordsController < ApplicationController
 
   end
 
+  # this action is no longer used as now cache is being expired on 'touch' on association 
   def expire_my_word_caches
     Word.touch_latest_updated_at_word_record_for_user(current_user)
     redirect_to words_path and return

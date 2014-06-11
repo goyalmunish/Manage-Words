@@ -6,7 +6,7 @@ class FlagsWord < ActiveRecord::Base
 
   # ASSOCIATIONS
   belongs_to :flag
-  belongs_to :word
+  belongs_to :word, touch: true
 
   # CALLBACKS
 

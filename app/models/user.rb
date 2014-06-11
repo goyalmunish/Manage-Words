@@ -37,3 +37,4 @@ class User < ActiveRecord::Base
   # ACCESS
   protected :mark_user_as_general_by_default
 end
+

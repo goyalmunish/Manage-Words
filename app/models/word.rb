@@ -87,6 +87,7 @@ class Word < ActiveRecord::Base
   scope :without_trick, -> { where('trick IS NULL') }
   scope :with_trick, -> { where('trick IS NOT NULL') }
   scope :with_flag_id, lambda { |flag_id| joins(:flags).merge(Flag.with_flag_id(flag_id)) }
+  scope :with_flag_id2, lambda { |flag_id| where("flags.id" => flag_id) } # for test
   scope :without_flag, -> { includes(:flags).where("flags.id IS NULL").references(:flags) }
 
   # ACCESS

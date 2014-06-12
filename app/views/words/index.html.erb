@@ -48,7 +48,8 @@
                   <tr>
                     <td><%= word.id %></td>
                     <td><%= link_to word.word, word, {:class => "btn btn-default", :target => '_blank'} %></td>
-                    <td><%= render 'word_flags_span', :word => word %></td>
+                    <!--<td><%= render 'word_flags_span', :word => word %></td>-->
+                    <td><%= render 'word_flags_span', :word => @all_words.find(word.id) %></td>
                     <!--<td><%= link_to 'Show', word %></td>-->
                     <!--<td><%= link_to 'Edit', edit_word_path(word) %></td>-->
                     <!--<td><%= link_to 'Destroy', word, method: :delete, data: {confirm: 'Are you sure?'} %></td>-->

@@ -16,8 +16,10 @@ class WordsController < ApplicationController
       clear_all_filters_and_orders
     end
 
-    # words collection with eager loaded flags
+    # words collection with eager loaded flags, this collection can be modified going forward
     @words = current_user.words.includes(:flags)
+    # all words with eager loaded words, this collection won't be modified 
+    @all_words = current_user.words.includes(:flags)
     # user dictionaries
     @dictionaries = current_user.dictionaries
 
@@ -192,3 +194,4 @@ class WordsController < ApplicationController
   end
 
 end
+

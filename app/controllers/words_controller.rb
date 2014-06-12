@@ -18,7 +18,7 @@ class WordsController < ApplicationController
 
     # words collection with eager loaded flags, this collection can be modified going forward
     @words = current_user.words.includes(:flags)
-    # all words with eager loaded words, this collection won't be modified 
+    # all words with eager loaded words, this collection won't be modified
     @all_words = current_user.words.includes(:flags)
     # user dictionaries
     @dictionaries = current_user.dictionaries
@@ -194,4 +194,3 @@ class WordsController < ApplicationController
   end
 
 end
-

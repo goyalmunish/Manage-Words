@@ -47,7 +47,7 @@ end
 
 # Seeding dictionaries
 if Dictionary.count == 0
-  Dictionary.create!(name: 'cambridge', url: 'http://dictionary.cambridge.org/dictionary/british/', separator: '-', suffix: nil, additional_info: nil)
+  Dictionary.create!(name: 'cambridge', url: 'http://dictionary.cambridge.org/search/british/direct/?q=', separator: '-', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'collins', url: 'http://www.collinsdictionary.com/dictionary/english/', separator: '-', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'merriam_webster', url: 'http://www.merriam-webster.com/dictionary/', separator: '%20', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'google_search', url: 'https://www.google.co.in/webhp?#q=', separator: '+', suffix: ' meaning', additional_info: nil)

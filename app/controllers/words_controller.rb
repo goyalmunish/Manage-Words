@@ -1,28 +1,19 @@
 class WordsController < ApplicationController
   before_action :set_word, only: [:show, :edit, :update, :destroy]
+  helper_method :current_filters_and_orders, :add_to_current_filters_and_orders
 
   # GET /words
   # GET /words.json
   def index
     @page_title = ['Words']
 
-    # filter and order instance variables to hold current filter and order information
-    @filters = Array.new
-    @order = String.new
-
-    # resetting parameters
-    if params[:reset] || params[:format] == 'download'
-      [:flag_id, :sort_by, :filter_by, :reset].each do |elem|
-        params[elem] = nil
-        session[elem] = nil
-      end
+    # conditionally clear_all_filters_and_orders
+    if params[:reset]
+      clear_all_filters_and_orders
+      redirect_to words_path and return
     end
-
-    # setting params hash to session
-    [:flag_id, :sort_by, :filter_by].each do |elem|
-      if params[elem]
-        session[elem] = params[elem]
-      end
+    if params[:format] == 'download'
+      clear_all_filters_and_orders
     end
 
     # words collection with eager loaded flags
@@ -31,34 +22,28 @@ class WordsController < ApplicationController
     @dictionaries = current_user.dictionaries
 
     # checking filters
-    if session[:flag_id]
-      if session[:flag_id].to_i > 0
-        @flag = Flag.find(session[:flag_id])
+    if params[:flag_id]
+      if params[:flag_id].to_i > 0
+        @flag = Flag.find(params[:flag_id])
         @words = @words.with_flag_id(@flag.id)
-        @filters << "Flag: #{"#{@flag.name}-#{@flag.value}"}"
-      elsif session[:flag_id].to_i == 0
+      elsif params[:flag_id].to_i == 0
         @words = @words.without_flag
-        @filters << "Flag: #{"No Flag"}"
       end
     end
-    if session[:filter_by]
-      if session[:filter_by] == 'without_trick'
+    if params[:filter_by]
+      if params[:filter_by] == 'without_trick'
         @words = @words.without_trick
-        @filters << 'Without Trick'
-      elsif session[:filter_by] == 'with_trick'
+      elsif params[:filter_by] == 'with_trick'
         @words = @words.with_trick
-        @filters << 'With Trick'
       end
     end
 
-    # checking order
-    if session[:sort_by]
-      if session[:sort_by] == 'random'
-        @words = @words.sort_by{rand}
-        @order = 'Random'
-      elsif session[:sort_by] == 'recent'
+    # checking orders
+    if params[:sort_by]
+      if params[:sort_by] == 'random'
+        @words = @words.sort_by { rand }
+      elsif params[:sort_by] == 'recent'
         @words = @words.reorder(:updated_at => :desc)
-        @order = 'Recent'
       end
     end
 
@@ -66,8 +51,7 @@ class WordsController < ApplicationController
     # fresh_when([@words, @filters, @order])
 
     # responding
-    # if stale?(etag: [@words, @filters, @order], last_modified: @words.max(:updated_at))
-    if stale?(etag: [@words, @filters, @order])
+    if stale?(etag: [current_user.id, current_filters_and_orders, @words])
       respond_to do |format|
         format.html # index.html.erb
         format.json # index.json.jbuilder
@@ -155,6 +139,30 @@ class WordsController < ApplicationController
     redirect_to words_path and return
   end
 
+  # note that this method should not attempt to add values to params directly
+  def add_to_current_filters_and_orders(passed_hash = nil)
+    filters_and_orders = current_filters_and_orders
+    # adding passed hash to params
+    unless passed_hash.blank?
+      passed_hash.each do |key, value|
+        filters_and_orders[key] = value
+      end
+    end
+    # returning current value of filters and orders
+    return filters_and_orders
+  end
+
+  def current_filters_and_orders
+    filters_and_orders = Hash.new
+    # existing filters or orders
+    [:flag_id, :sort_by, :filter_by].each do |elem|
+      if params[elem]
+        filters_and_orders[elem] = params[elem]
+      end
+    end
+    return filters_and_orders
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_word
@@ -174,4 +182,13 @@ class WordsController < ApplicationController
     # resuming to actual logic
     params.require(:word).permit(:word, :trick, :additional_info, :flag_ids => [])
   end
+
+  # called by index action
+  def clear_all_filters_and_orders
+    [:flag_id, :sort_by, :filter_by, :reset].each do |elem|
+      params[elem] = nil
+      # session[elem] = nil # though, this is not required
+    end
+  end
+
 end

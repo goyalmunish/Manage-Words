@@ -11,24 +11,23 @@
 
   <div class="div3">
     <h3>Reset all ordering and filtering: </h3>
+    <p><%= "Current Filters and Orders: #{humanized_hash(current_filters_and_orders)}" %></p>
     <%= link_to 'Reset', words_path(:reset => true), {:class => "btn btn-primary"} %>
     <!--<%= link_to('Expire My Caches', expire_my_word_caches_words_path, {:class => "btn btn-danger", "data-no-turbolink" => true}) %>-->
   </div>
   <div class="div3">
     <h3>Filters: </h3>
-    <%= render 'words/current_filters', :filters => @filters %>
-    <%= link_to 'Without Trick', words_path(:filter_by => 'without_trick'), {:class => "btn btn-info"} %>
-    <%= link_to 'With Trick', words_path(:filter_by => 'with_trick'), {:class => "btn btn-info"} %>
+    <%= link_to 'Without Trick', words_path(add_to_current_filters_and_orders(:filter_by => 'without_trick')), {:class => "btn btn-info"} %>
+    <%= link_to 'With Trick', words_path(add_to_current_filters_and_orders(:filter_by => 'with_trick')), {:class => "btn btn-info"} %>
     <%= render 'flags/filter_by_flag_links' %>
   </div>
   <div class="div3">
     <h3>Orders: </h3>
-    <%= render 'words/current_order', :order => @order %>
     <%= link_to 'Random Order', words_path(:sort_by => 'random'), {:class => "btn btn-warning"} %>
     <%= link_to 'Recent First', words_path(:sort_by => 'recent'), {:class => "btn btn-warning"} %>
   </div>
   <div class="div3">
-    <% cache(words_index_fragment_name(current_user.id, @filters, @order)) do %>
+    <% cache(words_index_fragment_name(current_user.id, current_filters_and_orders)) do %>
         <h3>Listing all words:</h3>
         <p>No. of words: <%= @words.length %> </p>
         <% if @words.empty? %>

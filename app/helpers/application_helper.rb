@@ -16,5 +16,18 @@ module ApplicationHelper
     page_title_array += @page_title if @page_title
     page_title_array.join(' | ')
   end
+
+  def humanized_hash(hash)
+    array = Array.new
+    hash.each do |key, value|
+      array << "#{key.to_s.camelize}:#{value.to_s.camelize}"
+    end
+    if hash.empty?
+      return 'None'
+    else
+      return array.join(' | ')
+    end
+  end
+
 end
 

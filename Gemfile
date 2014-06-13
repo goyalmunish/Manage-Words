@@ -62,3 +62,7 @@ gem 'twitter-bootstrap-rails'
 
 # Console related
 gem 'awesome_print'
+
+# Server related and Application Start related gems
+gem 'puma'
+gem 'foreman'

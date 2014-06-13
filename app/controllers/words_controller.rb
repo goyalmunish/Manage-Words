@@ -194,3 +194,4 @@ class WordsController < ApplicationController
   end
 
 end
+

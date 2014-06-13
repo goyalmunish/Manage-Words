@@ -18,8 +18,6 @@ class WordsController < ApplicationController
 
     # words collection with eager loaded flags, this collection can be modified going forward
     @words = current_user.words.includes(:flags)
-    # all words with eager loaded words, this collection won't be modified
-    @all_words = current_user.words.includes(:flags)
     # user dictionaries
     @dictionaries = current_user.dictionaries
 
@@ -27,10 +25,12 @@ class WordsController < ApplicationController
     if params[:flag_id]
       if params[:flag_id].to_i > 0
         @flag = Flag.find(params[:flag_id])
-        @words = @words.with_flag_id(@flag.id)
+        @temp_words = @words.with_flag_id(@flag.id)
       elsif params[:flag_id].to_i == 0
-        @words = @words.without_flag
+        @temp_words = @words.without_flag
       end
+      relevant_word_ids = @temp_words.pluck(:id)
+      @words = @words.where(:id => relevant_word_ids)
     end
     if params[:filter_by]
       if params[:filter_by] == 'without_trick'

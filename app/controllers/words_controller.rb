@@ -49,6 +49,9 @@ class WordsController < ApplicationController
       end
     end
 
+    # generating additions required instance variables
+    @flag_size = Word.number_of_flag_associations(@words)
+
     # generating custom ETag
     # fresh_when([@words, @filters, @order])
 
@@ -194,4 +197,3 @@ class WordsController < ApplicationController
   end
 
 end
-

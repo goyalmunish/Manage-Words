@@ -70,6 +70,27 @@ class Word < ActiveRecord::Base
     return count
   end
 
+  # it returns number of associated flags for given passed word collection 
+  def self.number_of_flag_associations(word_collection)
+    # checking nature of the collection
+    if [Word::ActiveRecord_Associations_CollectionProxy, Word::ActiveRecord_Relation, Word::ActiveRecord_AssociationRelation].include?(word_collection.class)
+      relevant_ids = word_collection.pluck(:id)
+    elsif word_collection.class == Array
+      relevant_ids = word_collection.map { |word| word.id }
+    elsif word_collection.class == Word
+      relevant_ids =  word_collection.id
+    else
+      raise 'IncorrectArguments'
+    end
+    # calculating associated number of flags
+    words = Word.where(:id => relevant_ids).includes(:flags)
+    num = 0
+    words.each do |word|
+      num += word.flags.size
+    end
+    return num
+  end
+
   def remove_similar_flags_with_lower_level
     # finding required ids
     ids = Flag.flag_ids_with_available_max_level(self.flags)
@@ -93,3 +114,4 @@ class Word < ActiveRecord::Base
   # ACCESS
   protected :down_case_word, :remove_similar_flags_with_lower_level
 end
+

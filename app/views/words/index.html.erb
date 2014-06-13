@@ -33,22 +33,24 @@
         <% if @words.empty? %>
             <p class="text-info"> Empty word list </p>
         <% else %>
-            <table class="table table-bordered table-hover table-condensed">
-              <thead>
-              <tr>
-                <th>Id</th>
-                <th>Word</th>
-                <th>Flags</th>
-                <th colspan="1">Dictionaries</th>
-                <th>Trick</th>
-              </tr>
-              </thead>
-              <tbody>
-              <% @words.each do |word| %>
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover table-condensed">
+                <thead>
+                <tr class="info">
+                  <th>Id</th>
+                  <th>Word</th>
+                  <th>Flags</th>
+                  <th colspan="1">Dictionaries</th>
+                  <th class="success">Trick</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @words.each do |word| %>
                   <tr>
                     <td><%= word.id %></td>
                     <td><%= link_to word.word, word, {:class => "btn btn-default", :target => '_blank'} %></td>
                     <!--<td><%= render 'word_flags_span', :word => word %></td>-->
+                    <!--TODO: This query is still not optimized, for every partial it is making database hit-->
                     <td><%= render 'word_flags_span', :word => @all_words.find(word.id) %></td>
                     <!--<td><%= link_to 'Show', word %></td>-->
                     <!--<td><%= link_to 'Edit', edit_word_path(word) %></td>-->
@@ -60,9 +62,10 @@
                     <td><%= word.trick %></td>
 
                   </tr>
-              <% end %>
-              </tbody>
-            </table>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
         <% end %>
     <% end %>
   </div>

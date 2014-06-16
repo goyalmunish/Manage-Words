@@ -39,22 +39,8 @@ class WordsController < ApplicationController
         @words = @words.with_trick
       end
     end
-
-    # applying filter as per given search text
     if params[:search_text]
-      if AppSetting.get('database') == 'pg'
-        if params[:search_type] == 'word'
-          @words = @words.search_word_pg_regex(params[:search_text])
-        elsif params[:search_type] == 'record'
-          @words = @words.search_full_pg_regex(params[:search_text])
-        end
-      else
-        if params[:search_type] == 'word'
-          @words = @words.search_word_text(params[:search_text])
-        elsif params[:search_type] == 'record'
-          @words = @words.search_full_text(params[:search_text])
-        end
-      end
+      @words = @words.search(AppSetting.get('database'), params[:search_text], params[:search_type])
     end
 
     # checking orders

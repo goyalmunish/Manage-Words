@@ -80,7 +80,7 @@ class Word < ActiveRecord::Base
     elsif word_collection.class == Word
       relevant_ids =  word_collection.id
     else
-      raise 'IncorrectArguments'
+      raise "InCorrectArgument; WordCollectionClass: #{word_collection.class}"
     end
     # calculating associated number of flags
     words = Word.where(:id => relevant_ids).includes(:flags)
@@ -101,6 +101,31 @@ class Word < ActiveRecord::Base
 
   def down_case_word
     self.word = self.word.downcase
+  end
+
+  def self.search(database, search_text, search_type)
+    # search by default for word
+    if search_type.blank?
+      search_type = 'word'
+    end
+    # executing relevant query
+    if search_text && !search_text.blank?
+      if database == 'pg'
+        if search_type == 'word'
+          search_word_pg_regex(search_text)
+        elsif search_type == 'record'
+          search_full_pg_regex(search_text)
+        end
+      else
+        if search_type == 'word'
+          search_word_text(search_text)
+        elsif search_type == 'record'
+          search_full_text(search_text)
+        end
+      end
+    else
+      all  # returning a chainable relation
+    end
   end
 
   # SCOPES

@@ -42,7 +42,19 @@ class WordsController < ApplicationController
 
     # applying filter as per given search text
     if params[:search_text]
-      @words = @words.search_text(params[:search_text])
+      if AppSetting.get('database') == 'pg'
+        if params[:search_type] == 'word'
+          @words = @words.search_word_pg_regex(params[:search_text])
+        elsif params[:search_type] == 'record'
+          @words = @words.search_full_pg_regex(params[:search_text])
+        end
+      else
+        if params[:search_type] == 'word'
+          @words = @words.search_word_text(params[:search_text])
+        elsif params[:search_type] == 'record'
+          @words = @words.search_full_text(params[:search_text])
+        end
+      end
     end
 
     # checking orders
@@ -165,7 +177,7 @@ class WordsController < ApplicationController
   def current_filters_and_orders
     filters_and_orders = Hash.new
     # existing filters or orders
-    [:flag_id, :sort_by, :filter_by, :search_text].each do |elem|
+    [:flag_id, :sort_by, :filter_by, :search_text, :search_type].each do |elem|
       if params[elem]
         filters_and_orders[elem] = params[elem]
       end

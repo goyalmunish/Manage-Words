@@ -35,6 +35,7 @@ require 'securerandom'
 # Seeding AppSettings
 puts AppSetting.set_if_nil('site_name', 'WordList')
 puts AppSetting.set_if_nil('site_url', 'http://manage-words.herokuapp.com')
+puts AppSetting.set_if_nil('database', 'pg')
 
 # Seeding flags
 if Flag.count == 0

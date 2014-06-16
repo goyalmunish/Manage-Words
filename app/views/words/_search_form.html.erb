@@ -3,12 +3,11 @@
     <% current_filters_and_orders.each do |key, value| %>
       <%= hidden_field_tag key, value %>
     <% end %>
-    <!--<div class="form-group">-->
-      <!--<%= label_tag :search_text, 'Search Text' %>-->
-      <%= text_field_tag :search_text, current_filters_and_orders[:search_text], {:placeholder => "Search Text", :class => "form-control"} %>
-    <!--</div>-->
-    <!--<div class="actions">-->
-      <%= submit_tag 'Search', {:class=> "btn btn-success"} %>
-    <!--</div>-->
+    <%= text_field_tag :search_text, current_filters_and_orders[:search_text], {:placeholder => "Search Text", :class => "form-control"} %>
+    <%= radio_button_tag :search_type, 'word', current_filters_and_orders[:search_type] == 'word' %>
+    <%= label_tag :search_type, 'Only Word' %>
+    <%= radio_button_tag :search_type, 'record', current_filters_and_orders[:search_type] == 'record' %>
+    <%= label_tag :search_type, 'Whole Record' %>
+    <%= submit_tag 'Search', {:class => "btn btn-success"} %>
   <% end %>
 </div>

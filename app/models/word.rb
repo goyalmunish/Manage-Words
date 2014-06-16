@@ -110,8 +110,12 @@ class Word < ActiveRecord::Base
   scope :with_flag_id, lambda { |flag_id| joins(:flags).merge(Flag.with_flag_id(flag_id)) }
   scope :with_flag_id2, lambda { |flag_id| where("flags.id" => flag_id) } # FOR TEST (NOT IN USE)
   scope :without_flag, -> { includes(:flags).where("flags.id IS NULL").references(:flags) }
-  scope :search_text, lambda { |search_text| where('word LIKE :text OR trick LIKE :text OR additional_info LIKE :text', :text => "%#{search_text}%") }
+  scope :search_word_text, lambda { |search_text| where('word LIKE :text', :text => "%#{search_text}%") }
+  scope :search_full_text, lambda { |search_text| where('word LIKE :text OR trick LIKE :text OR additional_info LIKE :text', :text => "%#{search_text}%") }
+  scope :search_word_pg_regex, lambda { |search_text| where('word ~* :text', :text => search_text) } # Note: it works only in postgres
+  scope :search_full_pg_regex, lambda { |search_text| where('word ~* :text OR trick ~* :text OR additional_info ~* :text', :text => search_text) } # Note: it works only in postgres
 
   # ACCESS
   protected :down_case_word, :remove_similar_flags_with_lower_level
 end
+

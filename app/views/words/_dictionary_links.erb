@@ -1,3 +1,5 @@
-<% dictionaries.each do |dict| %>
-  <%= link_to "#{dict.name}", dict.url_for_phrase(phrase), {:target => '_blank'} %>
-<% end %>
+<div class="dictionary_links">
+  <% dictionaries.each do |dict| %>
+    <div class="dictionary_link"><%= link_to "#{dict.name}", dict.url_for_phrase(phrase), {:target => '_blank'} %></div>
+  <% end %>
+</div>

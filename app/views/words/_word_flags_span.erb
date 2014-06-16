@@ -1,1 +1,6 @@
-<p><%= flags_name_value_array(word).join(', ') %></p>
+<!--<div><%= flags_name_value_array(word).join(', ') %></div>-->
+<div class="flags_name_value">
+  <% flags_name_value_array(word).each do |elem| %>
+    <div class="flag_name_value"><%= elem %></div>
+  <% end %>
+</div>

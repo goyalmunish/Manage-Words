@@ -108,10 +108,10 @@ class Word < ActiveRecord::Base
   scope :without_trick, -> { where('trick IS NULL') }
   scope :with_trick, -> { where('trick IS NOT NULL') }
   scope :with_flag_id, lambda { |flag_id| joins(:flags).merge(Flag.with_flag_id(flag_id)) }
-  scope :with_flag_id2, lambda { |flag_id| where("flags.id" => flag_id) } # for test
+  scope :with_flag_id2, lambda { |flag_id| where("flags.id" => flag_id) } # FOR TEST (NOT IN USE)
   scope :without_flag, -> { includes(:flags).where("flags.id IS NULL").references(:flags) }
+  scope :search_text, lambda { |search_text| where('word LIKE :text OR trick LIKE :text OR additional_info LIKE :text', :text => "%#{search_text}%") }
 
   # ACCESS
   protected :down_case_word, :remove_similar_flags_with_lower_level
 end
-

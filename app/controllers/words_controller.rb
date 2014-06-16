@@ -40,6 +40,11 @@ class WordsController < ApplicationController
       end
     end
 
+    # applying filter as per given search text
+    if params[:search_text]
+      @words = @words.search_text(params[:search_text])
+    end
+
     # checking orders
     if params[:sort_by]
       if params[:sort_by] == 'random'
@@ -160,7 +165,7 @@ class WordsController < ApplicationController
   def current_filters_and_orders
     filters_and_orders = Hash.new
     # existing filters or orders
-    [:flag_id, :sort_by, :filter_by].each do |elem|
+    [:flag_id, :sort_by, :filter_by, :search_text].each do |elem|
       if params[elem]
         filters_and_orders[elem] = params[elem]
       end

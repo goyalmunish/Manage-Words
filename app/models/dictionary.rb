@@ -25,6 +25,7 @@ class Dictionary < ActiveRecord::Base
   end
 
   # SCOPES
+  default_scope -> { order(:id => :asc) }
 
   # ACCESS
 end

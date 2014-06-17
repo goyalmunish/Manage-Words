@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   end
 
   # SCOPES
+  default_scope -> { order(:id => :asc) }
 
   # ACCESS
   protected :mark_user_as_general_by_default

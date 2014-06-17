@@ -3,6 +3,7 @@
 <table>
   <thead>
   <tr>
+    <th>Id</th>
     <th>Name</th>
     <th>Url</th>
     <th>Separator</th>
@@ -15,6 +16,7 @@
   <tbody>
   <% @dictionaries.each do |dictionary| %>
       <tr>
+        <td><%= dictionary.id %></td>
         <td><%= dictionary.name %></td>
         <td><%= dictionary.url %></td>
         <td><%= dictionary.separator %></td>

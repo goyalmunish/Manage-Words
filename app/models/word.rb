@@ -103,6 +103,43 @@ class Word < ActiveRecord::Base
     self.word = self.word.downcase
   end
 
+  def promote_flag(flag_name, dir)
+    # 'dir' is direction which can be 'up' or 'down'
+
+    # finding current index
+    flag_name = flag_name.to_s  # making sure the 'flag_name' is in string form
+    dir = dir.to_s.downcase  # making sure 'dir' is downcase
+    flag_hash = Flag.flag_hash
+    unless flag_hash.has_key?(flag_name.to_sym)
+      raise "IncorrectFlag:#{flag_name.to_s}"
+    end
+    flag_value = self.flags.where(:name => flag_name).first.value # assuming there can't exist multiple associated flag with same name
+    sorted_available_levels = flag_hash[flag_name.to_sym].sort
+    max_index = sorted_available_levels.size - 1
+    current_index = sorted_available_levels.index(flag_value)
+
+    # finding new index
+    new_index = current_index
+    case dir
+      when 'up'
+        new_index += 1 if new_index < max_index
+      when 'down'
+        new_index -= 1 if new_index > 0
+      else
+        raise "IncorrectDirection:#{dir}"
+    end
+
+    # replacing flag
+    unless current_index == new_index
+      current_flag_id = Flag.where(:name => flag_name, :value => flag_value).first.id
+      new_flag_id = Flag.where(:name => flag_name, :value => sorted_available_levels[new_index]).first.id
+      ids = self.flag_ids
+      ids.delete(current_flag_id)
+      ids << new_flag_id
+      self.flag_ids = ids
+    end
+  end
+
   def self.search(database, search_text, search_type)
     # search by default for word
     if search_type.blank?
@@ -143,4 +180,3 @@ class Word < ActiveRecord::Base
   # ACCESS
   protected :down_case_word, :remove_similar_flags_with_lower_level
 end
-

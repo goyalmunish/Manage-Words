@@ -1,0 +1,1 @@
+//$('table#table-list tbody tr td:first').filter(function() {return $.value == '11'}).parent()..html = "<%= j render(partial: 'words/word_flags_span', locals: { word: @word }) %>"

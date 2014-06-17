@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   # normal routes for AppSetting, Word, and Flag
   resources :app_settings
   resources :words do
+    member do
+      get 'ajax_promote_flag'
+    end
     collection do
       get 'backup_restore_form'
       post 'backup_restore'

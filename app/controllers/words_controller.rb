@@ -1,5 +1,5 @@
 class WordsController < ApplicationController
-  before_action :set_word, only: [:show, :edit, :update, :destroy]
+  before_action :set_word, only: [:show, :edit, :update, :destroy, :ajax_promote_flag]
   helper_method :current_filters_and_orders, :add_to_current_filters_and_orders
 
   # GET /words
@@ -147,6 +147,15 @@ class WordsController < ApplicationController
     redirect_to words_path and return
   end
 
+  def ajax_promote_flag
+    @word.promote_flag(params[:flag_name], params[:dir])
+    respond_to do |format|
+      format.html {redirect_to @word}
+      format.json {render :json => @word.flags}
+      format.js {}
+    end
+  end
+
   # note that this method should not attempt to add values to params directly
   def add_to_current_filters_and_orders(passed_hash = nil)
     filters_and_orders = current_filters_and_orders
@@ -160,6 +169,7 @@ class WordsController < ApplicationController
     return filters_and_orders
   end
 
+  # helper method
   def current_filters_and_orders
     filters_and_orders = Hash.new
     # existing filters or orders

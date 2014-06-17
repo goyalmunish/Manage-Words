@@ -3,16 +3,16 @@ require 'spec_helper'
 describe "words/index" do
   before(:each) do
     assign(:words, [
-      stub_model(Word,
-        :word => "Word",
-        :trick => "Trick",
-        :additional_info => "Additional Info"
-      ),
-      stub_model(Word,
-        :word => "Word",
-        :trick => "Trick",
-        :additional_info => "Additional Info"
-      )
+        stub_model(Word,
+                   :word => "Word",
+                   :trick => "Trick",
+                   :additional_info => "Additional Info"
+        ),
+        stub_model(Word,
+                   :word => "Word",
+                   :trick => "Trick",
+                   :additional_info => "Additional Info"
+        )
     ])
   end
 

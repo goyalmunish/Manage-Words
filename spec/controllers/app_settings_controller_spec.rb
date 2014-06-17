@@ -23,7 +23,7 @@ describe AppSettingsController do
   # This should return the minimal set of attributes required to create a valid
   # AppSetting. As you add validations to AppSetting, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "key" => "MyString" } }
+  let(:valid_attributes) { {"key" => "MyString"} }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -85,14 +85,14 @@ describe AppSettingsController do
       it "assigns a newly created but unsaved app_setting as @app_setting" do
         # Trigger the behavior that occurs when invalid params are submitted
         AppSetting.any_instance.stub(:save).and_return(false)
-        post :create, {:app_setting => { "key" => "invalid value" }}, valid_session
+        post :create, {:app_setting => {"key" => "invalid value"}}, valid_session
         assigns(:app_setting).should be_a_new(AppSetting)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         AppSetting.any_instance.stub(:save).and_return(false)
-        post :create, {:app_setting => { "key" => "invalid value" }}, valid_session
+        post :create, {:app_setting => {"key" => "invalid value"}}, valid_session
         response.should render_template("new")
       end
     end
@@ -106,8 +106,8 @@ describe AppSettingsController do
         # specifies that the AppSetting created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        AppSetting.any_instance.should_receive(:update).with({ "key" => "MyString" })
-        put :update, {:id => app_setting.to_param, :app_setting => { "key" => "MyString" }}, valid_session
+        AppSetting.any_instance.should_receive(:update).with({"key" => "MyString"})
+        put :update, {:id => app_setting.to_param, :app_setting => {"key" => "MyString"}}, valid_session
       end
 
       it "assigns the requested app_setting as @app_setting" do
@@ -128,7 +128,7 @@ describe AppSettingsController do
         app_setting = AppSetting.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         AppSetting.any_instance.stub(:save).and_return(false)
-        put :update, {:id => app_setting.to_param, :app_setting => { "key" => "invalid value" }}, valid_session
+        put :update, {:id => app_setting.to_param, :app_setting => {"key" => "invalid value"}}, valid_session
         assigns(:app_setting).should eq(app_setting)
       end
 
@@ -136,7 +136,7 @@ describe AppSettingsController do
         app_setting = AppSetting.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         AppSetting.any_instance.stub(:save).and_return(false)
-        put :update, {:id => app_setting.to_param, :app_setting => { "key" => "invalid value" }}, valid_session
+        put :update, {:id => app_setting.to_param, :app_setting => {"key" => "invalid value"}}, valid_session
         response.should render_template("edit")
       end
     end

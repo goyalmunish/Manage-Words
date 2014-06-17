@@ -16,7 +16,7 @@ class Word < ActiveRecord::Base
   after_save :remove_similar_flags_with_lower_level
 
   # VALIDATIONS
-  validates :user_id , presence: true
+  validates :user_id, presence: true
   validates :word, presence: true, uniqueness: {scope: :user_id}, length: {maximum: 25}
   validates :trick, length: {maximum: 100}
   validates :additional_info, length: {maximum: 2048}
@@ -78,7 +78,7 @@ class Word < ActiveRecord::Base
     elsif word_collection.class == Array
       relevant_ids = word_collection.map { |word| word.id }
     elsif word_collection.class == Word
-      relevant_ids =  word_collection.id
+      relevant_ids = word_collection.id
     else
       raise "InCorrectArgument; WordCollectionClass: #{word_collection.class}"
     end
@@ -124,7 +124,7 @@ class Word < ActiveRecord::Base
         end
       end
     else
-      all  # returning a chainable relation
+      all # returning a chainable relation
     end
   end
 
@@ -143,3 +143,4 @@ class Word < ActiveRecord::Base
   # ACCESS
   protected :down_case_word, :remove_similar_flags_with_lower_level
 end
+

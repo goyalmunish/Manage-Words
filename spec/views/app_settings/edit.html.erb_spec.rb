@@ -3,8 +3,8 @@ require 'spec_helper'
 describe "app_settings/edit" do
   before(:each) do
     @app_setting = assign(:app_setting, stub_model(AppSetting,
-      :key => "MyString",
-      :value => "MyString"
+                                                   :key => "MyString",
+                                                   :value => "MyString"
     ))
   end
 

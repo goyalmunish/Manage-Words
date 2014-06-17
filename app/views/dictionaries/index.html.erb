@@ -2,18 +2,18 @@
 
 <table>
   <thead>
-    <tr>
-      <th>Name</th>
-      <th>Url</th>
-      <th>Separator</th>
-      <th>Suffix</th>
-      <th>Additional info</th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th>Name</th>
+    <th>Url</th>
+    <th>Separator</th>
+    <th>Suffix</th>
+    <th>Additional info</th>
+    <th colspan="3"></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @dictionaries.each do |dictionary| %>
+  <% @dictionaries.each do |dictionary| %>
       <tr>
         <td><%= dictionary.name %></td>
         <td><%= dictionary.url %></td>
@@ -22,9 +22,9 @@
         <td><%= dictionary.additional_info %></td>
         <td><%= link_to 'Show', dictionary %></td>
         <td><%= link_to 'Edit', edit_dictionary_path(dictionary) %></td>
-        <td><%= link_to 'Destroy', dictionary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', dictionary, method: :delete, data: {confirm: 'Are you sure?'} %></td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 

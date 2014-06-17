@@ -3,9 +3,9 @@ require 'spec_helper'
 describe "words/edit" do
   before(:each) do
     @word = assign(:word, stub_model(Word,
-      :word => "MyString",
-      :trick => "MyString",
-      :additional_info => "MyString"
+                                     :word => "MyString",
+                                     :trick => "MyString",
+                                     :additional_info => "MyString"
     ))
   end
 

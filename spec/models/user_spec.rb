@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  subject {build(:user)}
+  subject { build(:user) }
   context "without specific type" do
     it "is created as General by default" do
       subject.save!
@@ -9,7 +9,7 @@ describe User do
     end
   end
   context "with Admin as type" do
-    subject {build(:admin_user)}
+    subject { build(:admin_user) }
     it "is created as Admin" do
       subject.save!
       subject.type.should == 'Admin'

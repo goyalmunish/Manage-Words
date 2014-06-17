@@ -1,44 +1,44 @@
 <%= form_for(@word, {:class => "form-horizontal"}) do |f| %>
-  <% if @word.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@word.errors.count, "error") %> prohibited this word from being saved:</h2>
+    <% if @word.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@word.errors.count, "error") %> prohibited this word from being saved:</h2>
 
-      <ul>
-        <% @word.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <h3>Word: </h3>
-  <div class="field form-group">
-    <%= f.label :word %>
-    <%= f.text_field :word, {:class => "form-control"} %>
-  </div>
-  <div class="field form-group">
-    <%= f.label :trick %>
-    <%= f.text_field :trick, {:class => "form-control"} %>
-  </div>
-  <div class="field form-group">
-    <%= f.label :additional_info %>
-    <%= f.text_area :additional_info, {:rows => 5, :cols => 50, :class => "form-control"} %>
-  </div>
-  <h3>Associated Flags: </h3>
-  <% if false %>
-    <% # this is how it can be done without using collection_check_box %>
-    <% Flag.all.each do |flag| %>
-      <div class="field form-group">
-        <%= check_box_tag 'word[flag_ids][]', flag.id, @word.flags.include?(flag), {:class => "form-control"} %>
-        <%= flag_name_and_value(flag) %>
-        <br/>
-        <br/>
-      </div>
+          <ul>
+            <% @word.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
     <% end %>
-  <% end %>
-  <% # this is how it can be done using collection_check_box %>
-  <%= f.collection_check_boxes(:flag_ids, Flag.all, :id, :flag_name_and_value, {}, {:class => "form-control"}) %>
-  <div class="actions">
-    <%= f.submit nil, {:class => "btn btn-primary"} %>
-  </div>
+
+    <h3>Word: </h3>
+    <div class="field form-group">
+      <%= f.label :word %>
+      <%= f.text_field :word, {:class => "form-control"} %>
+    </div>
+    <div class="field form-group">
+      <%= f.label :trick %>
+      <%= f.text_field :trick, {:class => "form-control"} %>
+    </div>
+    <div class="field form-group">
+      <%= f.label :additional_info %>
+      <%= f.text_area :additional_info, {:rows => 5, :cols => 50, :class => "form-control"} %>
+    </div>
+    <h3>Associated Flags: </h3>
+    <% if false %>
+        <% # this is how it can be done without using collection_check_box   %>
+        <% Flag.all.each do |flag| %>
+            <div class="field form-group">
+              <%= check_box_tag 'word[flag_ids][]', flag.id, @word.flags.include?(flag), {:class => "form-control"} %>
+              <%= flag_name_and_value(flag) %>
+              <br/>
+              <br/>
+            </div>
+        <% end %>
+    <% end %>
+    <% # this is how it can be done using collection_check_box   %>
+    <%= f.collection_check_boxes(:flag_ids, Flag.all, :id, :flag_name_and_value, {}, {:class => "form-control"}) %>
+    <div class="actions">
+      <%= f.submit nil, {:class => "btn btn-primary"} %>
+    </div>
 <% end %>

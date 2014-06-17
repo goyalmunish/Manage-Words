@@ -1,21 +1,26 @@
 <div class="div2">
   <h2>Word Details</h2>
+
   <p>
     <strong>User:</strong>
     <em><%= @word.user %></em>
   </p>
+
   <p>
     <strong>Word:</strong>
     <em><%= @word.word %></em>
   </p>
+
   <p>
     <strong>Meaning:</strong>
     <%= render :partial => 'dictionary_links', :locals => {:dictionaries => @dictionaries, :phrase => @word.word} %>
   </p>
+
   <p>
     <strong>Trick:</strong>
     <em><%= @word.trick %></em>
   </p>
+
   <p>
     <strong>Additional info:</strong>
   <pre><%= @word.additional_info %></pre>

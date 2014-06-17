@@ -3,8 +3,8 @@ require 'spec_helper'
 describe "flags/new" do
   before(:each) do
     assign(:flag, stub_model(Flag,
-      :name => "MyString",
-      :desc => "MyString"
+                             :name => "MyString",
+                             :desc => "MyString"
     ).as_new_record)
   end
 

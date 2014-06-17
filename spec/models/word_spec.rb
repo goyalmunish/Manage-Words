@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Word do
-  subject {build(:word)}
+  subject { build(:word) }
   it "strips string fields before validation" do
     word1 = Word.new(:word => '    new  ', :trick => ' some trick ')
     word2 = Word.new(word1.attributes)

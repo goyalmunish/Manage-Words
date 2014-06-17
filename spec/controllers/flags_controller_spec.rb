@@ -23,7 +23,7 @@ describe FlagsController do
   # This should return the minimal set of attributes required to create a valid
   # Flag. As you add validations to Flag, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "name" => "MyString" } }
+  let(:valid_attributes) { {"name" => "MyString"} }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -85,14 +85,14 @@ describe FlagsController do
       it "assigns a newly created but unsaved flag as @flag" do
         # Trigger the behavior that occurs when invalid params are submitted
         Flag.any_instance.stub(:save).and_return(false)
-        post :create, {:flag => { "name" => "invalid value" }}, valid_session
+        post :create, {:flag => {"name" => "invalid value"}}, valid_session
         assigns(:flag).should be_a_new(Flag)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Flag.any_instance.stub(:save).and_return(false)
-        post :create, {:flag => { "name" => "invalid value" }}, valid_session
+        post :create, {:flag => {"name" => "invalid value"}}, valid_session
         response.should render_template("new")
       end
     end
@@ -106,8 +106,8 @@ describe FlagsController do
         # specifies that the Flag created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Flag.any_instance.should_receive(:update).with({ "name" => "MyString" })
-        put :update, {:id => flag.to_param, :flag => { "name" => "MyString" }}, valid_session
+        Flag.any_instance.should_receive(:update).with({"name" => "MyString"})
+        put :update, {:id => flag.to_param, :flag => {"name" => "MyString"}}, valid_session
       end
 
       it "assigns the requested flag as @flag" do
@@ -128,7 +128,7 @@ describe FlagsController do
         flag = Flag.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Flag.any_instance.stub(:save).and_return(false)
-        put :update, {:id => flag.to_param, :flag => { "name" => "invalid value" }}, valid_session
+        put :update, {:id => flag.to_param, :flag => {"name" => "invalid value"}}, valid_session
         assigns(:flag).should eq(flag)
       end
 
@@ -136,7 +136,7 @@ describe FlagsController do
         flag = Flag.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Flag.any_instance.stub(:save).and_return(false)
-        put :update, {:id => flag.to_param, :flag => { "name" => "invalid value" }}, valid_session
+        put :update, {:id => flag.to_param, :flag => {"name" => "invalid value"}}, valid_session
         response.should render_template("edit")
       end
     end

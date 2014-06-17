@@ -5,6 +5,7 @@
 </div>
 <div class=div2>
   <h2> Listing Users</h2>
+
   <p class="text-info">Listing all users:</p>
   <table class="table table-bordered table-hover table-condensed">
     <thead>
@@ -22,18 +23,18 @@
 
     <tbody>
     <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to user.email, user, {:class => "btn btn-default"} %></td>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
-        <td><%= user.type %></td>
-        <!--<td><%= user.provider %></td>-->
-        <!--<td><%= user.uid %></td>-->
-        <!--<td><%= user.additional_info %></td>-->
-        <!--<td><%= link_to 'Show', user %></td>-->
-        <!--<td><%= link_to 'Edit', edit_user_path(user) %></td>-->
-        <!--<td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
-      </tr>
+        <tr>
+          <td><%= link_to user.email, user, {:class => "btn btn-default"} %></td>
+          <td><%= user.first_name %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.type %></td>
+          <!--<td><%= user.provider %></td>-->
+          <!--<td><%= user.uid %></td>-->
+          <!--<td><%= user.additional_info %></td>-->
+          <!--<td><%= link_to 'Show', user %></td>-->
+          <!--<td><%= link_to 'Edit', edit_user_path(user) %></td>-->
+          <!--<td><%= link_to 'Destroy', user, method: :delete, data: {confirm: 'Are you sure?'} %></td>-->
+        </tr>
     <% end %>
     </tbody>
   </table>

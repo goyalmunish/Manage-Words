@@ -51,16 +51,16 @@
       <div class="container-fluid nav-collapse">
         <ul class="nav">
           <% if user_signed_in? %>
-            <li> <%= link_to('Words', words_path) %> </li>
-            <li> <%= link_to('Flags', flags_path) %> </li>
-            <% if current_user.type == 'Admin' %>
-              <li> <%= link_to('Dictionaries', dictionaries_path) %> </li>
-              <li> <%= link_to('Users', users_path) %> </li>
-            <% end %>
-            <li> <%= link_to(current_user, '#') %> </li>
-            <li> <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> </li>
+              <li> <%= link_to('Words', words_path) %> </li>
+              <li> <%= link_to('Flags', flags_path) %> </li>
+              <% if current_user.type == 'Admin' %>
+                  <li> <%= link_to('Dictionaries', dictionaries_path) %> </li>
+                  <li> <%= link_to('Users', users_path) %> </li>
+              <% end %>
+              <li> <%= link_to(current_user, '#') %> </li>
+              <li> <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> </li>
           <% else %>
-            <li> <%= link_to('Login', new_user_session_path) %> </li>
+              <li> <%= link_to('Login', new_user_session_path) %> </li>
           <% end %>
         </ul>
       </div>
@@ -85,15 +85,15 @@
     <div class="span3 show">
       <div class="well sidebar-nav fixed_position">
         <% if user_signed_in? %>
-          <ul class="nav nav-list">
-            <li class="nav-header">Sidebar</li>
-            <li><%= link_to 'New Word', new_word_path, :target => '_blank' %></li>
-            <li><%= link_to 'Take Backup', words_path(:format => :download) %></li>
-            <li><%= link_to 'Restore Backup', backup_restore_form_words_path %></li>
-            <li><%= link_to 'Manage Your Dictionaries', edit_your_dictionaries_users_path, :target => '_blank' %></li>
-            <li> <%= link_to('Words', words_path) %> </li>
-            <li> <%= link_to('Flags', flags_path, :target => '_blank') %> </li>
-          </ul>
+            <ul class="nav nav-list">
+              <li class="nav-header">Sidebar</li>
+              <li><%= link_to 'New Word', new_word_path, :target => '_blank' %></li>
+              <li><%= link_to 'Take Backup', words_path(:format => :download) %></li>
+              <li><%= link_to 'Restore Backup', backup_restore_form_words_path %></li>
+              <li><%= link_to 'Manage Your Dictionaries', edit_your_dictionaries_users_path, :target => '_blank' %></li>
+              <li> <%= link_to('Words', words_path) %> </li>
+              <li> <%= link_to('Flags', flags_path, :target => '_blank') %> </li>
+            </ul>
         <% end %>
 
       </div>

@@ -3,8 +3,8 @@ require 'spec_helper'
 describe "flags/show" do
   before(:each) do
     @flag = assign(:flag, stub_model(Flag,
-      :name => "Name",
-      :desc => "Desc"
+                                     :name => "Name",
+                                     :desc => "Desc"
     ))
   end
 

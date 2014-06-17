@@ -3,14 +3,14 @@ require 'spec_helper'
 describe "app_settings/index" do
   before(:each) do
     assign(:app_settings, [
-      stub_model(AppSetting,
-        :key => "Key",
-        :value => "Value"
-      ),
-      stub_model(AppSetting,
-        :key => "Key",
-        :value => "Value"
-      )
+        stub_model(AppSetting,
+                   :key => "Key",
+                   :value => "Value"
+        ),
+        stub_model(AppSetting,
+                   :key => "Key",
+                   :value => "Value"
+        )
     ])
   end
 

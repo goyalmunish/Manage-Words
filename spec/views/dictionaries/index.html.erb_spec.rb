@@ -3,20 +3,20 @@ require 'spec_helper'
 describe "dictionaries/index" do
   before(:each) do
     assign(:dictionaries, [
-      stub_model(Dictionary,
-        :name => "Name",
-        :url => "Url",
-        :separator => "Separator",
-        :suffix => "Suffix",
-        :additional_info => "Additional Info"
-      ),
-      stub_model(Dictionary,
-        :name => "Name",
-        :url => "Url",
-        :separator => "Separator",
-        :suffix => "Suffix",
-        :additional_info => "Additional Info"
-      )
+        stub_model(Dictionary,
+                   :name => "Name",
+                   :url => "Url",
+                   :separator => "Separator",
+                   :suffix => "Suffix",
+                   :additional_info => "Additional Info"
+        ),
+        stub_model(Dictionary,
+                   :name => "Name",
+                   :url => "Url",
+                   :separator => "Separator",
+                   :suffix => "Suffix",
+                   :additional_info => "Additional Info"
+        )
     ])
   end
 

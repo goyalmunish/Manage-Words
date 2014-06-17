@@ -6,5 +6,5 @@ if ENV['RAILS_ENV']=='production'
   sleep(5.seconds.to_i)
 
   # SEEDING
-  
+
 end

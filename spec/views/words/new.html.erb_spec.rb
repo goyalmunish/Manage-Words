@@ -3,9 +3,9 @@ require 'spec_helper'
 describe "words/new" do
   before(:each) do
     assign(:word, stub_model(Word,
-      :word => "MyString",
-      :trick => "MyString",
-      :additional_info => "MyString"
+                             :word => "MyString",
+                             :trick => "MyString",
+                             :additional_info => "MyString"
     ).as_new_record)
   end
 

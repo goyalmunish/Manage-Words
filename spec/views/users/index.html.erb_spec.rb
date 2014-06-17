@@ -3,22 +3,22 @@ require 'spec_helper'
 describe "users/index" do
   before(:each) do
     assign(:users, [
-      stub_model(User,
-        :first_name => "First Name",
-        :last_name => "Last Name",
-        :type => "Type",
-        :provider => "Provider",
-        :uid => "Uid",
-        :additional_info => "Additional Info"
-      ),
-      stub_model(User,
-        :first_name => "First Name",
-        :last_name => "Last Name",
-        :type => "Type",
-        :provider => "Provider",
-        :uid => "Uid",
-        :additional_info => "Additional Info"
-      )
+        stub_model(User,
+                   :first_name => "First Name",
+                   :last_name => "Last Name",
+                   :type => "Type",
+                   :provider => "Provider",
+                   :uid => "Uid",
+                   :additional_info => "Additional Info"
+        ),
+        stub_model(User,
+                   :first_name => "First Name",
+                   :last_name => "Last Name",
+                   :type => "Type",
+                   :provider => "Provider",
+                   :uid => "Uid",
+                   :additional_info => "Additional Info"
+        )
     ])
   end
 

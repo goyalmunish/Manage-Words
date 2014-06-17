@@ -62,13 +62,13 @@ class AppSettingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_app_setting
-      @app_setting = AppSetting.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_app_setting
+    @app_setting = AppSetting.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def app_setting_params
-      params.require(:app_setting).permit(:key, :value)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def app_setting_params
+    params.require(:app_setting).permit(:key, :value)
+  end
 end

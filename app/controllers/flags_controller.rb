@@ -66,13 +66,13 @@ class FlagsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_flag
-      @flag = Flag.includes(:words).find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_flag
+    @flag = Flag.includes(:words).find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def flag_params
-      params.require(:flag).permit(:name, :value, :desc)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def flag_params
+    params.require(:flag).permit(:name, :value, :desc)
+  end
 end

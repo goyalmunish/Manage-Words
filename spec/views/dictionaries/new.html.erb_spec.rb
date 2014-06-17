@@ -3,11 +3,11 @@ require 'spec_helper'
 describe "dictionaries/new" do
   before(:each) do
     assign(:dictionary, stub_model(Dictionary,
-      :name => "MyString",
-      :url => "MyString",
-      :separator => "MyString",
-      :suffix => "MyString",
-      :additional_info => "MyString"
+                                   :name => "MyString",
+                                   :url => "MyString",
+                                   :separator => "MyString",
+                                   :suffix => "MyString",
+                                   :additional_info => "MyString"
     ).as_new_record)
   end
 

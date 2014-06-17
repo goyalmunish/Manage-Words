@@ -3,14 +3,14 @@ require 'spec_helper'
 describe "flags/index" do
   before(:each) do
     assign(:flags, [
-      stub_model(Flag,
-        :name => "Name",
-        :desc => "Desc"
-      ),
-      stub_model(Flag,
-        :name => "Name",
-        :desc => "Desc"
-      )
+        stub_model(Flag,
+                   :name => "Name",
+                   :desc => "Desc"
+        ),
+        stub_model(Flag,
+                   :name => "Name",
+                   :desc => "Desc"
+        )
     ])
   end
 

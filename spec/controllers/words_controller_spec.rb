@@ -23,7 +23,7 @@ describe WordsController do
   # This should return the minimal set of attributes required to create a valid
   # Word. As you add validations to Word, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "word" => "MyString" } }
+  let(:valid_attributes) { {"word" => "MyString"} }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -85,14 +85,14 @@ describe WordsController do
       it "assigns a newly created but unsaved word as @word" do
         # Trigger the behavior that occurs when invalid params are submitted
         Word.any_instance.stub(:save).and_return(false)
-        post :create, {:word => { "word" => "invalid value" }}, valid_session
+        post :create, {:word => {"word" => "invalid value"}}, valid_session
         assigns(:word).should be_a_new(Word)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Word.any_instance.stub(:save).and_return(false)
-        post :create, {:word => { "word" => "invalid value" }}, valid_session
+        post :create, {:word => {"word" => "invalid value"}}, valid_session
         response.should render_template("new")
       end
     end
@@ -106,8 +106,8 @@ describe WordsController do
         # specifies that the Word created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Word.any_instance.should_receive(:update).with({ "word" => "MyString" })
-        put :update, {:id => word.to_param, :word => { "word" => "MyString" }}, valid_session
+        Word.any_instance.should_receive(:update).with({"word" => "MyString"})
+        put :update, {:id => word.to_param, :word => {"word" => "MyString"}}, valid_session
       end
 
       it "assigns the requested word as @word" do
@@ -128,7 +128,7 @@ describe WordsController do
         word = Word.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Word.any_instance.stub(:save).and_return(false)
-        put :update, {:id => word.to_param, :word => { "word" => "invalid value" }}, valid_session
+        put :update, {:id => word.to_param, :word => {"word" => "invalid value"}}, valid_session
         assigns(:word).should eq(word)
       end
 
@@ -136,7 +136,7 @@ describe WordsController do
         word = Word.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Word.any_instance.stub(:save).and_return(false)
-        put :update, {:id => word.to_param, :word => { "word" => "invalid value" }}, valid_session
+        put :update, {:id => word.to_param, :word => {"word" => "invalid value"}}, valid_session
         response.should render_template("edit")
       end
     end

@@ -42,7 +42,7 @@ class Flag < ActiveRecord::Base
   end
 
   # SCOPES
-  default_scope ->{ order(:name => :asc, :value => :desc) }
+  default_scope -> { order(:name => :asc, :value => :desc) }
   scope :with_flag_id, lambda { |id| where(:id => id.to_i) }
 
   # ACCESS

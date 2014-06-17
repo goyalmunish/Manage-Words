@@ -3,11 +3,11 @@ require 'spec_helper'
 describe "dictionaries/show" do
   before(:each) do
     @dictionary = assign(:dictionary, stub_model(Dictionary,
-      :name => "Name",
-      :url => "Url",
-      :separator => "Separator",
-      :suffix => "Suffix",
-      :additional_info => "Additional Info"
+                                                 :name => "Name",
+                                                 :url => "Url",
+                                                 :separator => "Separator",
+                                                 :suffix => "Suffix",
+                                                 :additional_info => "Additional Info"
     ))
   end
 

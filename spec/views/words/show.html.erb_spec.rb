@@ -3,9 +3,9 @@ require 'spec_helper'
 describe "words/show" do
   before(:each) do
     @word = assign(:word, stub_model(Word,
-      :word => "Word",
-      :trick => "Trick",
-      :additional_info => "Additional Info"
+                                     :word => "Word",
+                                     :trick => "Trick",
+                                     :additional_info => "Additional Info"
     ))
   end
 

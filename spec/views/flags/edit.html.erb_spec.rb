@@ -3,8 +3,8 @@ require 'spec_helper'
 describe "flags/edit" do
   before(:each) do
     @flag = assign(:flag, stub_model(Flag,
-      :name => "MyString",
-      :desc => "MyString"
+                                     :name => "MyString",
+                                     :desc => "MyString"
     ))
   end
 

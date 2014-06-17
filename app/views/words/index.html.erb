@@ -11,6 +11,7 @@
 
   <div class="div3">
     <h3>Reset all ordering and filtering: </h3>
+
     <p><%= "Current Filters and Orders: #{humanized_hash(current_filters_and_orders)}" %></p>
     <%= link_to 'Reset', words_path(:reset => true), {:class => "btn btn-primary"} %>
     <!--<%= link_to('Expire My Caches', expire_my_word_caches_words_path, {:class => "btn btn-danger", "data-no-turbolink" => true}) %>-->
@@ -32,7 +33,9 @@
   <div class="div3">
     <% cache(words_index_fragment_name(current_user.id, current_filters_and_orders)) do %>
         <h3>Listing all words:</h3>
+
         <p>No. of words: <%= @words.size %> </p>
+
         <p>No. of associated flags: <%= @flag_size %> </p>
         <% if @words.empty? %>
             <p class="text-info"> Empty word list </p>
@@ -50,18 +53,18 @@
                 </thead>
                 <tbody>
                 <% @words.each do |word| %>
-                  <tr>
-                    <td><%= word.id %></td>
-                    <td><%= link_to word.word, word, {:class => "btn btn-default", :target => '_blank'} %></td>
-                    <td><%= render 'word_flags_span', :word => word %></td>
-                    <!--<td><%= link_to 'Show', word %></td>-->
-                    <!--<td><%= link_to 'Edit', edit_word_path(word) %></td>-->
-                    <!--<td><%= link_to 'Destroy', word, method: :delete, data: {confirm: 'Are you sure?'} %></td>-->
-                    <td>
-                      <%= render :partial => 'dictionary_links', :locals => {:dictionaries => @dictionaries, :phrase => word.word} %>
-                    </td>
-                    <td><%= word.trick %></td>
-                  </tr>
+                    <tr>
+                      <td><%= word.id %></td>
+                      <td><%= link_to word.word, word, {:class => "btn btn-default", :target => '_blank'} %></td>
+                      <td><%= render 'word_flags_span', :word => word %></td>
+                      <!--<td><%= link_to 'Show', word %></td>-->
+                      <!--<td><%= link_to 'Edit', edit_word_path(word) %></td>-->
+                      <!--<td><%= link_to 'Destroy', word, method: :delete, data: {confirm: 'Are you sure?'} %></td>-->
+                      <td>
+                        <%= render :partial => 'dictionary_links', :locals => {:dictionaries => @dictionaries, :phrase => word.word} %>
+                      </td>
+                      <td><%= word.trick %></td>
+                    </tr>
                 <% end %>
                 </tbody>
               </table>

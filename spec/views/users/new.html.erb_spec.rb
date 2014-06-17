@@ -3,12 +3,12 @@ require 'spec_helper'
 describe "users/new" do
   before(:each) do
     assign(:user, stub_model(User,
-      :first_name => "MyString",
-      :last_name => "MyString",
-      :type => "",
-      :provider => "MyString",
-      :uid => "MyString",
-      :additional_info => "MyString"
+                             :first_name => "MyString",
+                             :last_name => "MyString",
+                             :type => "",
+                             :provider => "MyString",
+                             :uid => "MyString",
+                             :additional_info => "MyString"
     ).as_new_record)
   end
 

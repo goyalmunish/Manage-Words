@@ -1,35 +1,42 @@
-<h1>Listing dictionaries</h1>
+<h1>Dictionaries</h1>
+<div class=div2>
+  <h2>Links </h2>
+  <%= link_to 'New Dictionary', new_dictionary_path, {:class => "btn btn-primary"} %>
+</div>
+<div class=div2>
+  <h2> Listing Dictionaries</h2>
 
-<table>
-  <thead>
-  <tr>
-    <th>Id</th>
-    <th>Name</th>
-    <th>Url</th>
-    <th>Separator</th>
-    <th>Suffix</th>
-    <th>Additional info</th>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
+  <p class="text-info">Listing all dictionaries:</p>
+  <table class="table table-bordered table-hover table-condensed">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Url</th>
+      <th>Separator</th>
+      <th>Suffix</th>
+      <!--<th>Additional info</th>-->
+      <!--<th colspan="3"></th>-->
+    </tr>
+    </thead>
 
-  <tbody>
-  <% @dictionaries.each do |dictionary| %>
-      <tr>
-        <td><%= dictionary.id %></td>
-        <td><%= dictionary.name %></td>
-        <td><%= dictionary.url %></td>
-        <td><%= dictionary.separator %></td>
-        <td><%= dictionary.suffix %></td>
-        <td><%= dictionary.additional_info %></td>
-        <td><%= link_to 'Show', dictionary %></td>
-        <td><%= link_to 'Edit', edit_dictionary_path(dictionary) %></td>
-        <td><%= link_to 'Destroy', dictionary, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+    <tbody>
+    <% @dictionaries.each do |dictionary| %>
+        <tr>
+          <td><%= link_to dictionary.id, dictionary, {:class => "btn btn-default"} %></td>
+          <td><%= dictionary.name %></td>
+          <td><%= dictionary.url %></td>
+          <td><%= dictionary.separator %></td>
+          <td><%= dictionary.suffix %></td>
+          <!--<td><%= dictionary.additional_info %></td>-->
+          <!--<td><%= link_to 'Show', dictionary %></td>-->
+          <!--<td><%= link_to 'Edit', edit_dictionary_path(dictionary) %></td>-->
+          <!--<td><%= link_to 'Destroy', dictionary, method: :delete, data: {confirm: 'Are you sure?'} %></td>-->
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
-<%= link_to 'New Dictionary', new_dictionary_path %>

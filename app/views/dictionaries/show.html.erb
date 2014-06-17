@@ -1,29 +1,27 @@
+<h2>Dictionary Details</h2>
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @dictionary.name %>
 </p>
-
 <p>
   <strong>Url:</strong>
   <%= @dictionary.url %>
 </p>
-
 <p>
   <strong>Separator:</strong>
   <%= @dictionary.separator %>
 </p>
-
 <p>
   <strong>Suffix:</strong>
   <%= @dictionary.suffix %>
 </p>
-
 <p>
   <strong>Additional info:</strong>
   <%= @dictionary.additional_info %>
 </p>
 
-<%= link_to 'Edit', edit_dictionary_path(@dictionary) %> |
-<%= link_to 'Back', dictionaries_path %>
+<h2>Navigation</h2>
+<%= link_to 'Edit', edit_dictionary_path(@dictionary), {:class => "btn btn-primary"} %> |
+<%= link_to 'Destroy', @dictionary, {method: :delete, data: {confirm: 'Are you sure?'}, :class => "btn btn-danger"} %> |
+<%= link_to 'Back', dictionaries_path, {:class => "btn btn-default"} %>

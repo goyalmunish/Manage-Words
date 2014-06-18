@@ -1,0 +1,3 @@
+var word_id = <%= @word.id %>;
+var content = "<%= escape_javascript(render(partial: 'words/word_flags_span', locals: { word: @word })) %>"
+$('table tr td:first-child').filter(function () {return $(this).text() == word_id}).parent().children().eq(2).html(content)

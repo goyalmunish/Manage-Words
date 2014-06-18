@@ -49,6 +49,7 @@
                   <th>Flags</th>
                   <th colspan="1">Dictionaries</th>
                   <th class="success">Trick</th>
+                  <td></td>
                 </tr>
                 </thead>
                 <tbody>
@@ -64,6 +65,7 @@
                         <%= render :partial => 'dictionary_links', :locals => {:dictionaries => @dictionaries, :phrase => word.word} %>
                       </td>
                       <td><%= word.trick %></td>
+                      <td><%= render 'promote_flag_form', :word => word %></td>
                     </tr>
                 <% end %>
                 </tbody>

@@ -144,7 +144,7 @@ class WordsController < ApplicationController
     count = Word.restore_backup(current_user.id, json_content)
     # responding to user
     flash[:notice] = "Number of records added: #{count}"
-    redirect_to words_path and return
+    redirect_to root_path and return
   end
 
   def ajax_promote_flag

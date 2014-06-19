@@ -45,3 +45,9 @@
     position: fixed;
     z-index: 1;
 }
+
+td div.promotion_flags:hover {
+    /*background-color: #d9534f;*/
+    background-color: #5cb85c;
+}
+

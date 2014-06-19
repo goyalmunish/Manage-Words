@@ -1,2 +1,4 @@
-<%= render 'promote_flag', :id => word.id, :flag_name => 'CL' %>
-<%= render 'promote_flag', :id => word.id, :flag_name => 'CP' %>
+<div class="promotion_flags">
+  <%= render 'promote_flag', :word => word, :flag_name => 'CL' %>
+  <%= render 'promote_flag', :word => word, :flag_name => 'CP' %>
+</div>

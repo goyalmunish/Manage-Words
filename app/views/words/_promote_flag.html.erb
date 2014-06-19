@@ -1,4 +1,4 @@
-<div class="flag_promote_pair">
-  <%= link_to flag_name, ajax_promote_flag_word_path(:id => id, :flag_name => flag_name, :dir => 'up'), {:remote => true, :class => "icon-arrow-up"} %>
-  <%= link_to flag_name, ajax_promote_flag_word_path(:id => id, :flag_name => flag_name, :dir => 'down'), {:remote => true, :class => "icon-arrow-down"} %>
+<div class="promotion_flag_pair">
+  <%= link_to flag_name, ajax_promote_flag_word_path(:id => word.id, :flag_name => flag_name, :dir => 'up'), {:remote => true, data: {confirm: "Upgrading #{flag_name} for #{word.word}"}, :class => "icon-arrow-up"} %>
+  <%= link_to flag_name, ajax_promote_flag_word_path(:id => word.id, :flag_name => flag_name, :dir => 'down'), {:remote => true, data: {confirm: "Downgrading #{flag_name} for #{word.word}"}, :class => "icon-arrow-down"} %>
 </div>

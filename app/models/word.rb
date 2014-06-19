@@ -198,4 +198,3 @@ class Word < ActiveRecord::Base
   # ACCESS
   protected :down_case_word, :remove_similar_flags_with_lower_level
 end
-

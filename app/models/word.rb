@@ -113,25 +113,41 @@ class Word < ActiveRecord::Base
     unless flag_hash.has_key?(flag_name.to_sym)
       raise "IncorrectFlag:#{flag_name.to_s}"
     end
-    flag_value = self.flags.where(:name => flag_name).first.value # assuming there can't exist multiple associated flag with same name
     sorted_available_levels = flag_hash[flag_name.to_sym].sort
     max_index = sorted_available_levels.size - 1
-    current_index = sorted_available_levels.index(flag_value)
+    flag = self.flags.where(:name => flag_name).first
+    if flag
+      flag_value = flag.value # assuming there can't exist multiple associated flags with same name
+      current_index = sorted_available_levels.index(flag_value)
+    else
+      flag_value = nil
+      current_index = nil
+    end
 
     # finding new index
-    new_index = current_index
-    case dir
-      when 'up'
-        new_index += 1 if new_index < max_index
-      when 'down'
-        new_index -= 1 if new_index > 0
-      else
-        raise "IncorrectDirection:#{dir}"
+    if current_index
+      new_index = current_index
+      case dir
+        when 'up'
+          new_index += 1 if new_index < max_index
+        when 'down'
+          new_index -= 1 if new_index > 0
+        else
+          raise "IncorrectDirection:#{dir}"
+      end
+    else
+      case dir
+        when 'up'
+          new_index = 0
+        when 'down'
+          # incorrect user input 
+          return nil
+      end
     end
 
     # replacing flag
     unless current_index == new_index
-      current_flag_id = Flag.where(:name => flag_name, :value => flag_value).first.id
+      current_flag_id = current_index ? Flag.where(:name => flag_name, :value => flag_value).first.id : nil
       new_flag_id = Flag.where(:name => flag_name, :value => sorted_available_levels[new_index]).first.id
       ids = self.flag_ids
       ids.delete(current_flag_id)

@@ -3,6 +3,7 @@ module WordsHelper
     name_value_array = word.flags.map do |flag|
       "#{flag.name}-#{flag.value}"
     end
+    name_value_array.sort
   end
 
   def words_index_fragment_name(user_id, filters_and_orders)

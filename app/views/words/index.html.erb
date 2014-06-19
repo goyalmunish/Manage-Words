@@ -65,7 +65,7 @@
                         <%= render :partial => 'dictionary_links', :locals => {:dictionaries => @dictionaries, :phrase => word.word} %>
                       </td>
                       <td><%= word.trick %></td>
-                      <td><%= render 'promote_flag_form', :word => word %></td>
+                      <td><%= render 'promote_flags', :word => word %></td>
                     </tr>
                 <% end %>
                 </tbody>

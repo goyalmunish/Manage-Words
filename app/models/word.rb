@@ -140,7 +140,7 @@ class Word < ActiveRecord::Base
         when 'up'
           new_index = 0
         when 'down'
-          # incorrect user input 
+          # incorrect user input
           return nil
       end
     end

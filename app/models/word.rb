@@ -54,15 +54,17 @@ class Word < ActiveRecord::Base
       # extracting flag_attributes
       flags_attributes = hash_data['flags_attributes']
       hash_data.except!('flags_attributes')
-      # saving word
-      word = user.words.create(hash_data)
-      if word && word.id
-        count += 1
-        # now associating flags
-        flags_attributes.each do |flag_hash|
-          flag = Flag.where(flag_hash).first
-          if flag
-            word.flags << flag
+      # saving word and its flag associations
+      ActiveRecord::Base.transaction do
+        word = user.words.create(hash_data)
+        if word && word.id
+          count += 1
+          # now associating flags
+          flags_attributes.each do |flag_hash|
+            flag = Flag.where(flag_hash).first
+            if flag
+              word.flags << flag
+            end
           end
         end
       end

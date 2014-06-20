@@ -46,8 +46,13 @@
     z-index: 1;
 }
 
+td div.promotion_flags {
+    text-align: center;
+}
+
 td div.promotion_flags:hover {
-    /*background-color: #d9534f;*/
-    background-color: #5cb85c;
+    background-color: #FFFFFF;
+    color: white;
+    border: 1px red solid;
 }
 

@@ -8,6 +8,20 @@ class UsersController < ApplicationController
     @users = User.includes(:words => :flags).all
   end
 
+  def words
+    @users = User.includes(:words => :flags).all
+
+    # responding
+    if stale?(etag: [@users])
+      respond_to do |format|
+        # format.html # index.html.erb
+        format.xml { render :xml => User.data_backup_for_all_users(@users) }
+        format.json { render :json => User.data_backup_for_all_users(@users) }
+        format.download { send_data User.data_backup_for_all_users(@users).to_json, {:filename => "words_for_all_users #{Time.now.getutc}.json".split(' ').join('-')} }
+      end
+    end
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show
@@ -89,13 +103,20 @@ class UsersController < ApplicationController
     end
   end
 
-  # def backup_restore_for_all_users_form
-  #   # TODO
-  # end
-  #
-  # def backup_restore_for_all_users
-  #   # TODO
-  # end
+  def backup_restore_for_all_users_form
+
+  end
+
+  def backup_restore_for_all_users
+    # getting json content
+    file = params[:file]
+    json_content = JSON.parse(file.read)
+    # passing it to model to process
+    count = User.restore_backup_for_all_users(json_content)
+    # responding to user
+    flash[:notice] = "Number of records added: #{count}"
+    redirect_to root_path and return
+  end
 
   private
   # Use callbacks to share common setup or constraints between actions.

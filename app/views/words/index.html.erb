@@ -5,6 +5,14 @@
   <%= link_to 'Take Backup', words_path(:format => :download), {:class => "btn btn-info"} %>
   <%= link_to 'Restore Backup', backup_restore_form_words_path, {:class => "btn btn-info"} %>
   <%= link_to 'Manage Your Dictionaries', edit_your_dictionaries_user_path(current_user.id), :class => 'btn btn-success', :target => '_blank' %>
+  <% if current_user.type == 'Admin' %>
+      <br/>
+      <br/>
+      <div>
+        <%= link_to 'Take FULL Backup', words_admins_path(:format => :download), {:class => "btn btn-warning"} %>
+        <%= link_to 'Restore FULL Backup', backup_restore_for_all_users_form_admins_path, {:class => "btn btn-warning"} %>
+      </div>
+  <% end %>
 </div>
 <div class="div2">
   <h2>Listing Words</h2>

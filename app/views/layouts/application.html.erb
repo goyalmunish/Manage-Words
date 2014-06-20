@@ -93,6 +93,10 @@
               <li><%= link_to 'Manage Your Dictionaries', edit_your_dictionaries_user_path(current_user.id), :target => '_blank' %></li>
               <li> <%= link_to('Words', words_path) %> </li>
               <li> <%= link_to('Flags', flags_path, :target => '_blank') %> </li>
+              <% if current_user.type == 'Admin' %>
+                  <li><%= link_to 'Take FULL Backup', words_admins_path(:format => :download) %></li>
+                  <li><%= link_to 'Restore FULL Backup', backup_restore_for_all_users_form_admins_path %></li>
+              <% end %>
             </ul>
         <% end %>
 

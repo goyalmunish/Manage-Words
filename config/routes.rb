@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # user routes
   devise_for :users
   resources :users do
-    collection do
+    member do
       get 'edit_your_dictionaries'
       post 'update_your_dictionaries'
     end

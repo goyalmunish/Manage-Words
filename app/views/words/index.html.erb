@@ -4,7 +4,7 @@
   <%= link_to 'New Word', new_word_path, {:class => "btn btn-primary", :target => '_blank'} %>
   <%= link_to 'Take Backup', words_path(:format => :download), {:class => "btn btn-info"} %>
   <%= link_to 'Restore Backup', backup_restore_form_words_path, {:class => "btn btn-info"} %>
-  <%= link_to 'Manage Your Dictionaries', edit_your_dictionaries_users_path, :class => 'btn btn-success', :target => '_blank' %>
+  <%= link_to 'Manage Your Dictionaries', edit_your_dictionaries_user_path(current_user.id), :class => 'btn btn-success', :target => '_blank' %>
 </div>
 <div class="div2">
   <h2>Listing Words</h2>

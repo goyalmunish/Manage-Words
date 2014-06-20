@@ -1,4 +1,4 @@
-<%= form_for(:user, :url => update_your_dictionaries_users_path, :html => {:class => "form-horizontal"}) do |f| %>
+<%= form_for(:user, :url => update_your_dictionaries_user_path(user), :html => {:class => "form-horizontal"}) do |f| %>
     <h3>Associated Dictionaries: </h3>
     <%= f.collection_check_boxes(:dictionary_ids, Dictionary.all, :id, :humanized_name, {}, {:class => "form-control"}) %>
     <div class="actions">

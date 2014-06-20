@@ -63,10 +63,22 @@ class UsersController < ApplicationController
   end
 
   def edit_your_dictionaries
+    # checking if user is trying to hack
+    passed_user_id = params[:id].to_i
+    unless passed_user_id == current_user.id
+      raise 'TryingToHack'
+    end
+    # generating instance variable for view
     @user = User.includes(:dictionaries).find(current_user.id)
   end
 
   def update_your_dictionaries
+    # checking if user is trying to hack
+    passed_user_id = params[:id].to_i
+    unless passed_user_id == current_user.id
+      raise 'TryingToHack'
+    end
+    # updating
     @user = User.includes(:dictionaries).find(current_user.id)
     respond_to do |format|
       if @user.update(dictionary_ids_params)

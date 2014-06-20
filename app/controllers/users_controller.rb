@@ -89,6 +89,14 @@ class UsersController < ApplicationController
     end
   end
 
+  # def backup_restore_for_all_users_form
+  #   # TODO
+  # end
+  #
+  # def backup_restore_for_all_users
+  #   # TODO
+  # end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user

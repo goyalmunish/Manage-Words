@@ -9,8 +9,14 @@ Rails.application.routes.draw do
       post 'update_your_dictionaries'
     end
   end
-  resources :admin, controller: 'users'
-  resources :general, controller: 'users'
+  resources :admins, controller: 'users'
+  # resources :admins, controller: 'users' do
+  #   collection do
+  #     get 'backup_restore_for_all_users_form'
+  #     post 'backup_restore_for_all_users'
+  #   end
+  # end
+  resources :generals, controller: 'users'
 
   # normal routes for AppSetting, Word, and Flag
   resources :app_settings

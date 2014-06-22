@@ -42,6 +42,7 @@ class Word < ActiveRecord::Base
       end
       data << temp_hash
     end
+    logger.info "Data Backup for #{words.count} words"
     return data
   end
 
@@ -55,9 +56,11 @@ class Word < ActiveRecord::Base
       flags_attributes = hash_data['flags_attributes']
       hash_data.except!('flags_attributes')
       # saving word and its flag associations
+      logger.info "Start Backup: #{hash_data['word']}"
       ActiveRecord::Base.transaction do
         word = user.words.create(hash_data)
         if word && word.id
+          logger.info "\tDONE WORD"
           word_count += 1
           # now associating flags
           flags_attributes.each do |flag_hash|
@@ -69,6 +72,7 @@ class Word < ActiveRecord::Base
         end
       end
     end
+    logger.info "Restored #{word_count} words for user_id #{user_id}\n"
     return word_count
   end
 
@@ -198,3 +202,4 @@ class Word < ActiveRecord::Base
   # ACCESS
   protected :down_case_word, :remove_similar_flags_with_lower_level
 end
+

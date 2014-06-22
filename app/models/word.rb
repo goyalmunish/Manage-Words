@@ -162,7 +162,7 @@ class Word < ActiveRecord::Base
     end
   end
 
-  def self.search(database, search_text, search_type)
+  def self.search(database, search_text, search_type, search_negative=false)
     # search by default for word
     if search_type.blank?
       search_type = 'word'
@@ -171,15 +171,31 @@ class Word < ActiveRecord::Base
     if search_text && !search_text.blank?
       if database == 'pg'
         if search_type == 'word'
-          search_word_pg_regex(search_text)
+          if search_negative
+            search_word_pg_regex_not(search_text)
+          else
+            search_word_pg_regex(search_text)
+          end
         elsif search_type == 'record'
-          search_full_pg_regex(search_text)
+          if search_negative
+            search_full_pg_regex_not(search_text)
+          else
+            search_full_pg_regex(search_text)
+          end
         end
       else
         if search_type == 'word'
-          search_word_text(search_text)
+          if search_negative
+            search_word_text_not(search_text)
+          else
+            search_word_text(search_text)
+          end
         elsif search_type == 'record'
-          search_full_text(search_text)
+          if search_negative
+            search_full_text_not(search_text)
+          else
+            search_full_text(search_text)
+          end
         end
       end
     else
@@ -195,11 +211,14 @@ class Word < ActiveRecord::Base
   scope :with_flag_id2, lambda { |flag_id| where("flags.id" => flag_id) } # FOR TEST (NOT IN USE)
   scope :without_flag, -> { includes(:flags).where("flags.id IS NULL").references(:flags) }
   scope :search_word_text, lambda { |search_text| where('word LIKE :text', :text => "%#{search_text}%") }
+  scope :search_word_text_not, lambda { |search_text| where.not('word LIKE :text', :text => "%#{search_text}%") }
   scope :search_full_text, lambda { |search_text| where('word LIKE :text OR trick LIKE :text OR additional_info LIKE :text', :text => "%#{search_text}%") }
+  scope :search_full_text_not, lambda { |search_text| where.not('word LIKE :text OR trick LIKE :text OR additional_info LIKE :text', :text => "%#{search_text}%") }
   scope :search_word_pg_regex, lambda { |search_text| where('word ~* :text', :text => search_text) } # Note: it works only in postgres
+  scope :search_word_pg_regex_not, lambda { |search_text| where.not('word ~* :text', :text => search_text) } # Note: it works only in postgres
   scope :search_full_pg_regex, lambda { |search_text| where('word ~* :text OR trick ~* :text OR additional_info ~* :text', :text => search_text) } # Note: it works only in postgres
+  scope :search_full_pg_regex_not, lambda { |search_text| where.not('word ~* :text OR trick ~* :text OR additional_info ~* :text', :text => search_text) } # Note: it works only in postgres
 
   # ACCESS
   protected :down_case_word, :remove_similar_flags_with_lower_level
 end
-

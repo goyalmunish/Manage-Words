@@ -40,7 +40,12 @@ class WordsController < ApplicationController
       end
     end
     if params[:search_text]
-      @words = @words.search(AppSetting.get('database'), params[:search_text], params[:search_type])
+      if params[:search_negative] == '1'
+        search_negative = true
+      else
+        search_negative = false
+      end
+      @words = @words.search(AppSetting.get('database'), params[:search_text], params[:search_type], search_negative)
     end
 
     # checking orders
@@ -173,7 +178,7 @@ class WordsController < ApplicationController
   def current_filters_and_orders
     filters_and_orders = Hash.new
     # existing filters or orders
-    [:flag_id, :sort_by, :filter_by, :search_text, :search_type].each do |elem|
+    [:flag_id, :sort_by, :filter_by, :search_text, :search_type, :search_negative].each do |elem|
       if params[elem]
         filters_and_orders[elem] = params[elem]
       end

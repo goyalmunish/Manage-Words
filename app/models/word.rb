@@ -87,6 +87,7 @@ class Word < ActiveRecord::Base
       relevant_ids = word_collection.id
     else
       raise "InCorrectArgument; WordCollectionClass: #{word_collection.class}"
+      logger.info "Error: InCorrectArgument; WordCollectionClass: #{word_collection.class}"
     end
     # calculating associated number of flags
     words = Word.where(:id => relevant_ids).includes(:flags)
@@ -160,6 +161,9 @@ class Word < ActiveRecord::Base
       ids << new_flag_id
       self.flag_ids = ids
     end
+
+    # logging
+    logger.info "PromoteFlag request for Word: #{self.word}, for Flag: #{flag_name}, in Dir: #{dir}"
   end
 
   def self.search(database, search_text, search_type, search_negative=false)
@@ -222,3 +226,4 @@ class Word < ActiveRecord::Base
   # ACCESS
   protected :down_case_word, :remove_similar_flags_with_lower_level
 end
+

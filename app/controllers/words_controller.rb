@@ -69,7 +69,7 @@ class WordsController < ApplicationController
         format.html # index.html.erb
         format.json # index.json.jbuilder
         format.xml { render :xml => @words.to_xml(:include => {:flags => {:only => [:name, :value]}}, :only => [:word, :trick, :additional_info]) }
-        format.download { send_data Word.data_backup(@words).to_json, {:filename => "words #{Time.now.getutc}.json".split(' ').join('-')} }
+        format.download { send_data WordDataElement.word_data_backup(@words).to_json, {:filename => "words #{Time.now.getutc}.json".split(' ').join('-')} }
       end
     end
 
@@ -146,7 +146,7 @@ class WordsController < ApplicationController
     file = params[:file]
     json_content = JSON.parse(file.read)
     # passing it to model to process
-    count = Word.restore_backup(current_user.id, json_content)
+    count = WordDataElement.restore_word_data_backup(current_user.id, json_content)
     # responding to user
     flash[:notice] = "Number of records added: #{count}"
     redirect_to root_path and return

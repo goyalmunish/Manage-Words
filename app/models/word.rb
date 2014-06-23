@@ -27,55 +27,6 @@ class Word < ActiveRecord::Base
     last_updated_record.touch
   end
 
-  # for backup
-  # Note: the 'restore_backup' method depends on JSON format created by this method
-  def self.data_backup(words = Word.includes(:flags).all)
-    data = Array.new
-    words.each do |word|
-      temp_hash = {
-          :word => word.word,
-          :trick => word.trick,
-          :additional_info => word.additional_info,
-          :flags_attributes => Array.new}
-      word.flags.each do |flag|
-        temp_hash[:flags_attributes] << {:name => flag.name, :value => flag.value}
-      end
-      data << temp_hash
-    end
-    logger.info "Data Backup for #{words.count} words"
-    return data
-  end
-
-  # for backup restore from given JSON file
-  # Note: format of given backup file should be same as generated backup file
-  def self.restore_backup(user_id, array_data)
-    user = User.find(user_id)
-    word_count = 0
-    array_data.each do |hash_data|
-      # extracting flag_attributes
-      flags_attributes = hash_data['flags_attributes']
-      hash_data.except!('flags_attributes')
-      # saving word and its flag associations
-      logger.info "Start Backup: #{hash_data['word']}"
-      ActiveRecord::Base.transaction do
-        word = user.words.create(hash_data)
-        if word && word.id
-          logger.info "\tDONE WORD"
-          word_count += 1
-          # now associating flags
-          flags_attributes.each do |flag_hash|
-            flag = Flag.where(flag_hash).first
-            if flag
-              word.flags << flag
-            end
-          end
-        end
-      end
-    end
-    logger.info "Restored #{word_count} words for user_id #{user_id}\n"
-    return word_count
-  end
-
   # it returns number of associated flags for given passed word collection 
   def self.number_of_flag_associations(word_collection)
     # checking nature of the collection
@@ -226,3 +177,4 @@ class Word < ActiveRecord::Base
   # ACCESS
   protected :down_case_word, :remove_similar_flags_with_lower_level
 end
+

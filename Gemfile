@@ -51,7 +51,7 @@ group :development, :test do
 end
 
 group :production do
-  gem 'rails_12factor'
+  gem 'rails_12factor'  # it enables serving assets (which is not enabled by default in Rails 4)
 end
 
 # Authentication related gems

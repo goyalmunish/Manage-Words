@@ -138,20 +138,6 @@ class WordsController < ApplicationController
     end
   end
 
-  def backup_restore_form
-  end
-
-  def backup_restore
-    # getting json content
-    file = params[:file]
-    json_content = JSON.parse(file.read)
-    # passing it to model to process
-    count = WordDataElement.restore_word_data_backup(current_user.id, json_content)
-    # responding to user
-    flash[:notice] = "Number of records added: #{count}"
-    redirect_to root_path and return
-  end
-
   def ajax_promote_flag
     @word.promote_flag(params[:flag_name], params[:dir])
     respond_to do |format|
@@ -215,4 +201,3 @@ class WordsController < ApplicationController
   end
 
 end
-

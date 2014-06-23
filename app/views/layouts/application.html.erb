@@ -89,7 +89,7 @@
               <li class="nav-header">Sidebar</li>
               <li><%= link_to 'New Word', new_word_path, :target => '_blank' %></li>
               <li><%= link_to 'Take Backup', words_path(:format => :download) %></li>
-              <li><%= link_to 'Restore Backup', backup_restore_form_words_path %></li>
+              <li><%= link_to 'Restore Backup', backup_restore_form_users_path %></li>
               <li><%= link_to 'Manage Your Dictionaries', edit_your_dictionaries_user_path(current_user.id), :target => '_blank' %></li>
               <li> <%= link_to('Words', words_path) %> </li>
               <li> <%= link_to('Flags', flags_path, :target => '_blank') %> </li>

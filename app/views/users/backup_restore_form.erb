@@ -3,7 +3,7 @@
 <h2>Upload File</h2>
 <p class="text-info">Please upload a backup file: </p>
 
-<%= form_tag backup_restore_words_path, {:multipart => true, :method => :post, :class => "form-horizontal"} do %>
+<%= form_tag backup_restore_users_path, {:multipart => true, :method => :post, :class => "form-horizontal"} do %>
     <div class="field form-group">
       <%= label_tag 'file', 'File' %>
       <%= file_field_tag 'file', {:class => "form-control"} %>

@@ -8,6 +8,10 @@ Rails.application.routes.draw do
       get 'edit_your_dictionaries'
       post 'update_your_dictionaries'
     end
+    collection do
+      get 'backup_restore_form'
+      post 'backup_restore'
+    end
   end
   resources :admins, controller: 'users' do
     collection do
@@ -25,8 +29,6 @@ Rails.application.routes.draw do
       get 'ajax_promote_flag'
     end
     collection do
-      get 'backup_restore_form'
-      post 'backup_restore'
       get 'expire_my_word_caches'
     end
   end

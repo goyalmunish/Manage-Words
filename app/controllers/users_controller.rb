@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_filter :admin_only, except: [:edit_your_dictionaries, :update_your_dictionaries]
+  before_filter :admin_only, except: [:edit_your_dictionaries, :update_your_dictionaries, :backup_restore_form, :backup_restore]
 
   # GET /users
   # GET /users.json
@@ -101,6 +101,20 @@ class UsersController < ApplicationController
         format.html { redirect_to flags_path, alert: 'Error in updating your dictionaries' }
       end
     end
+  end
+
+  def backup_restore_form
+  end
+
+  def backup_restore
+    # getting json content
+    file = params[:file]
+    json_content = JSON.parse(file.read)
+    # passing it to model to process
+    count = WordDataElement.restore_word_data_backup(current_user.id, json_content)
+    # responding to user
+    flash[:notice] = "Number of records added: #{count}"
+    redirect_to root_path and return
   end
 
   def backup_restore_for_all_users_form

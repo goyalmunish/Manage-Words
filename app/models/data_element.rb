@@ -19,16 +19,29 @@ class DataElement
     self.words << word_data_element
   end
 
-  # has external dependencies
-  def self.all_users_with_eager_loaded_words_and_flags
+  # wrapper for external dependencies
+  def self.all_users_with_eager_loaded_words_and_flags_wrapper
     User.includes(:words => :flags).all
   end
 
+  # wrapper for external dependencies
+  def self.get_user_from_email_wrapper(email)
+    user = User.where(:email => email).first
+  end
+
+  # wrapper for external dependencies
+  def self.restore_word_data_backup_for_user_wrapper(args)
+    user = args[:user]
+    array_data = args[:array_data]
+    count = WordDataElement.restore_word_data_backup(
+        :user => user,
+        :array_data => array_data)
+    return count
+  end
+
   # for backup
-  # expects passed users argument to respond to words
-  # expects each word to respond to flags
-  # uses WordDataElement class directly
-  def self.data_backup(users = self.all_users_with_eager_loaded_words_and_flags)
+  # knows User instance, its relation with Word, Word instance, its relation with Flag, and Flag instance
+  def self.data_backup(users = self.all_users_with_eager_loaded_words_and_flags_wrapper)
     data_elements = Array.new
     users.each do |user|
       data_elements << DataElement.new(
@@ -39,14 +52,14 @@ class DataElement
   end
 
   # for backup restore
-  # uses User class directly
-  # uses WordDataElement class directly
   def self.restore_data_backup(array_data)
     word_count = 0
     array_data.each do |hash_data|
-      user = User.where(:email => hash_data['email']).first
+      user = self.get_user_from_email_wrapper(hash_data['email'])
       if user
-        temp_count = WordDataElement.restore_word_data_backup(user, hash_data['words'])
+        temp_count = self.restore_word_data_backup_for_user_wrapper(
+            :user => user,
+            :array_data => hash_data['words'])
         word_count += temp_count
       end
     end

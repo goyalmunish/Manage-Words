@@ -21,15 +21,14 @@ class WordDataElement
     self.flags_attributes << args.select{ |key, value| [:name, :value].include? key}
   end
 
-  # has external dependencies
-  def self.all_words_with_eager_loaded_flags
+  # wrapper for external dependencies
+  def self.all_words_with_eager_loaded_flags_wrapper
     Word.includes(:flags).all
   end
 
   # for backup
-  # expects passed words argument to responds to flags
-  # expects each flag to respond to name and value
-  def self.word_data_backup(words = self.all_words_with_eager_loaded_flags)
+  # knows about Word instances, its relation with Flag, and Flag instance
+  def self.word_data_backup(words = self.all_words_with_eager_loaded_flags_wrapper)
     word_data_elements = Array.new
     words.each do |word|
       temp_word_data_element = WordDataElement.new(
@@ -46,9 +45,10 @@ class WordDataElement
   end
 
   # for backup restore
-  # expects passed user argument to respond to words and email
-  # uses Flag class directly
-  def self.restore_word_data_backup(user, array_data)
+  # knows User instance, its relation with Word, Word instance, its relation with Flag
+  def self.restore_word_data_backup(args)
+    user = args[:user]
+    array_data = args[:array_data]
     word_count = 0
     array_data.each do |hash_data|
       # extracting flag_attributes

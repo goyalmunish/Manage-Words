@@ -64,6 +64,9 @@ class Word < ActiveRecord::Base
   def promote_flag(flag_name, dir)
     # 'dir' is direction which can be 'up' or 'down'
 
+    # logging
+    logger.info "PromoteFlag request for Word: #{self.word}, for Flag: #{flag_name}, in Dir: #{dir}"
+
     # setting up required variables
     flag_name = flag_name.to_s  # making sure the 'flag_name' is in string form
     dir = dir.to_s.downcase  # making sure 'dir' is downcase
@@ -71,49 +74,37 @@ class Word < ActiveRecord::Base
     max_index = Flag.max_index_for_flag_name(flag_name)
     sorted_available_levels = flag_hash[flag_name.to_sym]
 
-    # finding current index
+    # finding flag
     flag = self.flags.where(:name => flag_name).first
+
+    # finding flag value
     if flag
       flag_value = flag.value # assuming there can't exist multiple associated flags with same name
-      current_index = Flag.current_index_for_flag(flag)
     else
       flag_value = nil
-      current_index = nil
     end
 
-    # finding new index
-    if current_index
-      new_index = current_index
-      case dir
-        when 'up'
-          new_index += 1 if new_index < max_index
-        when 'down'
-          new_index -= 1 if new_index > 0
-        else
-          raise "IncorrectDirection:#{dir}"
-      end
-    else
-      case dir
-        when 'up'
-          new_index = 0
-        when 'down'
-          # incorrect user input
-          return nil
-      end
-    end
+    # finding current and next index
+    indices = Flag.current_and_next_index_for_flag_name_value_dir(
+        :name => flag_name,
+        :value => flag_value,
+        :dir => dir
+    )
+    current_index = indices[:current_index]
+    next_index = indices[:next_index]
 
     # replacing flag
-    unless current_index == new_index
+    if next_index && (current_index != next_index)
       current_flag_id = current_index ? Flag.where(:name => flag_name, :value => flag_value).first.id : nil
-      new_flag_id = Flag.where(:name => flag_name, :value => sorted_available_levels[new_index]).first.id
+      new_flag_id = Flag.where(:name => flag_name, :value => sorted_available_levels[next_index]).first.id
       ids = self.flag_ids
       ids.delete(current_flag_id)
       ids << new_flag_id
+      logger.info 'PromoteFlag request processed'
       self.flag_ids = ids
+    else
+      logger.info 'PromoteFlag request COULD NOT BE processed'
     end
-
-    # logging
-    logger.info "PromoteFlag request for Word: #{self.word}, for Flag: #{flag_name}, in Dir: #{dir}"
   end
 
   def self.search(database, search_text, search_type, search_negative=false)

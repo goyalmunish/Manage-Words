@@ -29,6 +29,24 @@ class Flag < ActiveRecord::Base
     return flag_hash
   end
 
+  # raises error is flag_name is not valid
+  def self.is_flag_name_valid(flag_name)
+    flag_hash = Flag.flag_hash_with_sorted_array_values
+    unless flag_hash.has_key?(flag_name.to_sym)
+      raise "IncorrectFlag:#{flag_name.to_s}"
+    end
+    return true
+  end
+
+  # index is based on return value of flag_hash_with_sorted_array_values
+  def self.max_index_for_flag_name(flag_name)
+    # making sure flag_name exists
+    is_flag_name_valid(flag_name)
+    # finding max index for given flag_name
+    flag_hash = Flag.flag_hash_with_sorted_array_values
+    max_index = flag_hash[flag_name.to_s.to_sym].size - 1
+  end
+
   # index is based on return value of flag_hash_with_sorted_array_values
   def self.current_index_for_flag(flag)
     flag_hash = Flag.flag_hash_with_sorted_array_values
@@ -36,14 +54,59 @@ class Flag < ActiveRecord::Base
   end
 
   # index is based on return value of flag_hash_with_sorted_array_values
-  def self.max_index_for_flag_name(flag_name)
-    flag_hash = Flag.flag_hash_with_sorted_array_values
+  # raises error for incorrect programming input
+  # returns nil for incorrect user input
+  def self.current_and_next_index_for_flag_name_value_dir(args)
+    # 'dir' can be 'up', or 'down'
+    flag_name = args[:name].to_s
+    flag_value = args[:value]
+    dir = args[:dir].to_s.downcase
+
     # making sure flag_name exists
-    unless flag_hash.has_key?(flag_name.to_sym)
-      raise "IncorrectFlag:#{flag_name.to_s}"
+    is_flag_name_valid(flag_name)
+
+    # finding flag and validating flag_value
+    if flag_value
+      flag = Flag.where(:name => flag_name, :value => flag_value).first
+      unless flag
+        raise "Flag with name #{flag_name} and value #{flag_value} could not be found"
+      end
+    else
+      # flag_value is nil
+      # so next index is 0 for 'up', and incorrect user input in case of 'down'
     end
-    # finding max index for given flag_name
-    max_index = flag_hash[flag_name.to_s.to_sym].size - 1
+
+    # finding current index
+    if flag
+      current_index = Flag.current_index_for_flag(flag)
+    else
+      current_index = nil
+    end
+
+    # finding new index
+    max_index = Flag.max_index_for_flag_name(flag_name)
+    if current_index
+      next_index = current_index
+      case dir
+        when 'up'
+          next_index += 1 if next_index < max_index
+        when 'down'
+          next_index -= 1 if next_index > 0
+        else
+          raise "IncorrectDirection:#{dir}"
+      end
+    else
+      case dir
+        when 'up'
+          next_index = 0
+        when 'down'
+          # flag can't be downgraded further
+          next_index = nil
+      end
+    end
+    return_value = {:current_index => current_index, :next_index => next_index}
+    logger.info return_value.inspect
+    return return_value
   end
 
   # returns array of only relevant flag ids

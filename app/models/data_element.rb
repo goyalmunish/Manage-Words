@@ -7,36 +7,12 @@ class DataElement
     @words = args[:words]
   end
 
-  def defaults
-    {:words => Array.new}
-  end
-
   def to_h
     {:email => email, :words => words}
   end
 
   def append_to_words(word_data_element)
     self.words << word_data_element
-  end
-
-  # wrapper for external dependencies
-  def self.all_users_with_eager_loaded_words_and_flags_wrapper
-    User.includes(:words => :flags).all
-  end
-
-  # wrapper for external dependencies
-  def self.get_user_from_email_wrapper(email)
-    user = User.where(:email => email).first
-  end
-
-  # wrapper for external dependencies
-  def self.restore_word_data_backup_for_user_wrapper(args)
-    user = args[:user]
-    array_data = args[:array_data]
-    count = WordDataElement.restore_word_data_backup(
-        :user => user,
-        :array_data => array_data)
-    return count
   end
 
   # for backup
@@ -69,4 +45,29 @@ class DataElement
   protected
 
   attr_writer :words
+
+  def defaults
+    {:words => Array.new}
+  end
+
+  # wrapper for external dependencies
+  def self.all_users_with_eager_loaded_words_and_flags_wrapper
+    User.includes(:words => :flags).all
+  end
+
+  # wrapper for external dependencies
+  def self.get_user_from_email_wrapper(email)
+    user = User.where(:email => email).first
+  end
+
+  # wrapper for external dependencies
+  def self.restore_word_data_backup_for_user_wrapper(args)
+    user = args[:user]
+    array_data = args[:array_data]
+    count = WordDataElement.restore_word_data_backup(
+        :user => user,
+        :array_data => array_data)
+    return count
+  end
+
 end

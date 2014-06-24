@@ -9,21 +9,12 @@ class WordDataElement
     @flags_attributes = args[:flags_attributes]
   end
 
-  def defaults
-    {:flags_attributes => Array.new}
-  end
-
   def to_h
     {:word => word, :trick => trick, :additional_info => additional_info, :flags_attributes => flags_attributes}
   end
 
   def append_to_flags_attributes(args)
     self.flags_attributes << args.select{ |key, value| [:name, :value].include? key}
-  end
-
-  # wrapper for external dependencies
-  def self.all_words_with_eager_loaded_flags_wrapper
-    Word.includes(:flags).all
   end
 
   # for backup
@@ -78,4 +69,14 @@ class WordDataElement
   protected
 
   attr_writer :flags_attributes
+
+  def defaults
+    {:flags_attributes => Array.new}
+  end
+
+  # wrapper for external dependencies
+  def self.all_words_with_eager_loaded_flags_wrapper
+    Word.includes(:flags).all
+  end
+
 end

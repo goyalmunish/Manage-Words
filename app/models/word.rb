@@ -64,19 +64,18 @@ class Word < ActiveRecord::Base
   def promote_flag(flag_name, dir)
     # 'dir' is direction which can be 'up' or 'down'
 
-    # finding current index
+    # setting up required variables
     flag_name = flag_name.to_s  # making sure the 'flag_name' is in string form
     dir = dir.to_s.downcase  # making sure 'dir' is downcase
-    flag_hash = Flag.flag_hash
-    unless flag_hash.has_key?(flag_name.to_sym)
-      raise "IncorrectFlag:#{flag_name.to_s}"
-    end
-    sorted_available_levels = flag_hash[flag_name.to_sym].sort
-    max_index = sorted_available_levels.size - 1
+    flag_hash = Flag.flag_hash_with_sorted_array_values
+    max_index = Flag.max_index_for_flag_name(flag_name)
+    sorted_available_levels = flag_hash[flag_name.to_sym]
+
+    # finding current index
     flag = self.flags.where(:name => flag_name).first
     if flag
       flag_value = flag.value # assuming there can't exist multiple associated flags with same name
-      current_index = sorted_available_levels.index(flag_value)
+      current_index = Flag.current_index_for_flag(flag)
     else
       flag_value = nil
       current_index = nil
@@ -177,3 +176,4 @@ class Word < ActiveRecord::Base
   # ACCESS
   protected :down_case_word, :remove_similar_flags_with_lower_level
 end
+

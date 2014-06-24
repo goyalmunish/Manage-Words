@@ -1,6 +1,6 @@
 module ApplicationHelper
   def get_flag_hash
-    Flag.flag_hash
+    Flag.flag_hash_with_sorted_array_values
   end
 
   def get_flag(name, value)

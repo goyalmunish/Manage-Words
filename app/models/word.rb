@@ -21,13 +21,14 @@ class Word < ActiveRecord::Base
   validates :trick, length: {maximum: 100}
   validates :additional_info, length: {maximum: 2048}
 
-  # CUSTOM METHODS
+  # PUBLIC INTERFACE
   def self.touch_latest_updated_at_word_record_for_user(user)
     last_updated_record = user.words.reorder(:updated_at => :desc).first
     last_updated_record.touch
   end
 
-  # it returns number of associated flags for given passed word collection 
+  # it returns number of associated flags for given passed word collection
+  # knows a word has_many flags
   def self.number_of_flag_associations(word_collection)
     # checking nature of the collection
     if [Word::ActiveRecord_Associations_CollectionProxy, Word::ActiveRecord_Relation, Word::ActiveRecord_AssociationRelation].include?(word_collection.class)
@@ -50,6 +51,8 @@ class Word < ActiveRecord::Base
   end
 
   # it promotes flag with given 'flag_name' and 'dir' for current word instance
+  # knows a word has_many flags
+  # knows Flag class name and current_and_next_flag_id_for_flag_name_value_dir method
   def promote_flag(args)
     flag_name = args[:flag_name].to_s  # making sure the 'flag_name' is in string form
     dir = args[:dir].to_s.downcase  # making sure 'dir' is downcase
@@ -163,3 +166,4 @@ class Word < ActiveRecord::Base
     return flag_value
   end
 end
+

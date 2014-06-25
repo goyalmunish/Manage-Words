@@ -1,6 +1,7 @@
 require 'common_model'
 class Flag < ActiveRecord::Base
   include CommonModel # custom library placed in lib directory, containing methods common to all models
+
   # ASSOCIATIONS
   # has_and_belongs_to_many :words
   has_many :flags_words
@@ -14,7 +15,7 @@ class Flag < ActiveRecord::Base
   validates :value, presence: true, numericality: :only_integer
   validates :desc, length: {maximum: 100}
 
-  # CUSTOM METHODS
+  # PUBLIC INTERFACE
   # it return current and next flag_id for given flag_name, flag_value and direction of promotion
   def self.current_and_next_flag_id_for_flag_name_value_dir(args)
     # 'dir' can be 'up', or 'down'

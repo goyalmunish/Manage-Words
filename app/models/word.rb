@@ -49,18 +49,6 @@ class Word < ActiveRecord::Base
     return num
   end
 
-  def remove_similar_flags_with_lower_level
-    # finding required ids
-    ids = Flag.flag_ids_with_available_max_level(self.flags)
-    # deleting appropriate ids from association so that only required ids are present
-    # records will automatically be handled in JOIN table
-    self.flag_ids = ids
-  end
-
-  def down_case_word
-    self.word = self.word.downcase
-  end
-
   def promote_flag(flag_name, dir)
     # 'dir' is direction which can be 'up' or 'down'
 
@@ -164,6 +152,19 @@ class Word < ActiveRecord::Base
   scope :search_full_pg_regex, lambda { |search_text| where('word ~* :text OR trick ~* :text OR additional_info ~* :text', :text => search_text) } # Note: it works only in postgres
   scope :search_full_pg_regex_not, lambda { |search_text| where.not('word ~* :text OR trick ~* :text OR additional_info ~* :text', :text => search_text) } # Note: it works only in postgres
 
-  # ACCESS
-  protected :down_case_word, :remove_similar_flags_with_lower_level
+  protected
+  # protected methods
+
+  def remove_similar_flags_with_lower_level
+    # finding required ids
+    ids = Flag.flag_ids_with_available_max_level(self.flags)
+    # deleting appropriate ids from association so that only required ids are present
+    # records will automatically be handled in JOIN table
+    self.flag_ids = ids
+  end
+
+  def down_case_word
+    self.word = self.word.downcase
+  end
+
 end

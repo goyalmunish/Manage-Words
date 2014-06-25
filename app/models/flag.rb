@@ -128,5 +128,6 @@ class Flag < ActiveRecord::Base
   default_scope -> { order(:name => :asc, :value => :desc) }
   scope :with_flag_id, lambda { |id| where(:id => id.to_i) }
 
-  # ACCESS
+  protected
+  # protected methods
 end

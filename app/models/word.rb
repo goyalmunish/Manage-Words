@@ -49,7 +49,7 @@ class Word < ActiveRecord::Base
     return num
   end
 
-
+  # it promotes flag with given 'flag_name' and 'dir' for current word instance
   def promote_flag(args)
     flag_name = args[:flag_name].to_s  # making sure the 'flag_name' is in string form
     dir = args[:dir].to_s.downcase  # making sure 'dir' is downcase
@@ -57,15 +57,8 @@ class Word < ActiveRecord::Base
     # logging
     logger.info "PromoteFlag request for Word: #{self.word}, for Flag: #{flag_name}, in Dir: #{dir}"
 
-    # finding flag
-    flag = self.flags.where(:name => flag_name).first
-
-    # finding flag value
-    if flag
-      flag_value = flag.value # assuming there can't exist multiple associated flags with same name
-    else
-      flag_value = nil
-    end
+    # find flag_value
+    flag_value = flag_value_for_flag_name(flag_name)
 
     # finding current and next flag ids
     indices = Flag.current_and_next_flag_id_for_flag_name_value_dir(
@@ -73,13 +66,11 @@ class Word < ActiveRecord::Base
         :value => flag_value,
         :dir => dir
     )
-    current_flag_id = indices[:current_flag_id]
-    next_flag_id = indices[:next_flag_id]
 
     # making changes
     ids = self.flag_ids
-    ids.delete(current_flag_id)
-    ids << next_flag_id
+    ids.delete(indices[:current_flag_id])
+    ids << indices[:next_flag_id]
     self.flag_ids = ids
   end
 
@@ -155,5 +146,20 @@ class Word < ActiveRecord::Base
   def down_case_word
     self.word = self.word.downcase
   end
-end
 
+  # it return flag_value for given flag_name and current word instance
+  # it returns nil if flag with flag_name is not associated with current word instance
+  def flag_value_for_flag_name(flag_name)
+    # finding flag
+    flag = self.flags.where(:name => flag_name).first # assuming only single flag can be associated with any given name with a word instance
+
+    # finding flag value
+    if flag
+      flag_value = flag.value # assuming there can't exist multiple associated flags with same name
+    else
+      flag_value = nil
+    end
+
+    return flag_value
+  end
+end

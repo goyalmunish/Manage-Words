@@ -15,6 +15,7 @@ class Flag < ActiveRecord::Base
   validates :desc, length: {maximum: 100}
 
   # CUSTOM METHODS
+  # it return current and next flag_id for given flag_name, flag_value and direction of promotion
   def self.current_and_next_flag_id_for_flag_name_value_dir(args)
     # 'dir' can be 'up', or 'down'
     flag_name = args[:name].to_s

@@ -139,7 +139,7 @@ class WordsController < ApplicationController
   end
 
   def ajax_promote_flag
-    @word.promote_flag(params[:flag_name], params[:dir])
+    @word.promote_flag(:flag_name => params[:flag_name], :dir => params[:dir])
     respond_to do |format|
       format.html {redirect_to @word}
       format.json {render :json => @word.flags}
@@ -201,3 +201,4 @@ class WordsController < ApplicationController
   end
 
 end
+

@@ -49,18 +49,13 @@ class Word < ActiveRecord::Base
     return num
   end
 
-  def promote_flag(flag_name, dir)
-    # 'dir' is direction which can be 'up' or 'down'
+
+  def promote_flag(args)
+    flag_name = args[:flag_name].to_s  # making sure the 'flag_name' is in string form
+    dir = args[:dir].to_s.downcase  # making sure 'dir' is downcase
 
     # logging
     logger.info "PromoteFlag request for Word: #{self.word}, for Flag: #{flag_name}, in Dir: #{dir}"
-
-    # setting up required variables
-    flag_name = flag_name.to_s  # making sure the 'flag_name' is in string form
-    dir = dir.to_s.downcase  # making sure 'dir' is downcase
-    flag_hash = Flag.flag_hash_with_sorted_array_values
-    max_index = Flag.max_index_for_flag_name(flag_name)
-    sorted_available_levels = flag_hash[flag_name.to_sym]
 
     # finding flag
     flag = self.flags.where(:name => flag_name).first
@@ -72,27 +67,20 @@ class Word < ActiveRecord::Base
       flag_value = nil
     end
 
-    # finding current and next index
-    indices = Flag.current_and_next_index_for_flag_name_value_dir(
+    # finding current and next flag ids
+    indices = Flag.current_and_next_flag_id_for_flag_name_value_dir(
         :name => flag_name,
         :value => flag_value,
         :dir => dir
     )
-    current_index = indices[:current_index]
-    next_index = indices[:next_index]
+    current_flag_id = indices[:current_flag_id]
+    next_flag_id = indices[:next_flag_id]
 
-    # replacing flag
-    if next_index && (current_index != next_index)
-      current_flag_id = current_index ? Flag.where(:name => flag_name, :value => flag_value).first.id : nil
-      new_flag_id = Flag.where(:name => flag_name, :value => sorted_available_levels[next_index]).first.id
-      ids = self.flag_ids
-      ids.delete(current_flag_id)
-      ids << new_flag_id
-      logger.info 'PromoteFlag request processed'
-      self.flag_ids = ids
-    else
-      logger.info 'PromoteFlag request COULD NOT BE processed'
-    end
+    # making changes
+    ids = self.flag_ids
+    ids.delete(current_flag_id)
+    ids << next_flag_id
+    self.flag_ids = ids
   end
 
   def self.search(database, search_text, search_type, search_negative=false)
@@ -152,8 +140,9 @@ class Word < ActiveRecord::Base
   scope :search_full_pg_regex, lambda { |search_text| where('word ~* :text OR trick ~* :text OR additional_info ~* :text', :text => search_text) } # Note: it works only in postgres
   scope :search_full_pg_regex_not, lambda { |search_text| where.not('word ~* :text OR trick ~* :text OR additional_info ~* :text', :text => search_text) } # Note: it works only in postgres
 
+
   protected
-  # protected methods
+
 
   def remove_similar_flags_with_lower_level
     # finding required ids
@@ -166,5 +155,5 @@ class Word < ActiveRecord::Base
   def down_case_word
     self.word = self.word.downcase
   end
-
 end
+

@@ -20,7 +20,7 @@ class DataElement
   def self.data_backup(users = self.all_users_with_eager_loaded_words_and_flags_wrapper)
     data_elements = Array.new
     users.each do |user|
-      data_elements << DataElement.new(
+      data_elements << self.new(
           :email => user.email,
           :words => WordDataElement.word_data_backup(user.words.includes(:flags)))
     end

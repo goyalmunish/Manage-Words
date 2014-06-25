@@ -24,7 +24,7 @@ class Flag < ActiveRecord::Base
     dir = args[:dir].to_s.downcase
 
     # finding current and next index
-    indices = Flag.current_and_next_index_for_flag_name_value_dir(
+    indices = self.current_and_next_index_for_flag_name_value_dir(
         :name => flag_name,
         :value => flag_value,
         :dir => dir
@@ -33,9 +33,9 @@ class Flag < ActiveRecord::Base
     next_index = indices[:next_index]
 
     # finding current_flag_id and next_flag_id
-    current_flag_id = current_index ? Flag.where(:name => flag_name, :value => flag_value).first.id : nil
-    sorted_available_levels = Flag.flag_hash_with_sorted_array_values[flag_name.to_sym]
-    new_flag_id = next_index ? Flag.where(:name => flag_name, :value => sorted_available_levels[next_index]).first.id : nil
+    current_flag_id = current_index ? self.where(:name => flag_name, :value => flag_value).first.id : nil
+    sorted_available_levels = self.flag_hash_with_sorted_array_values[flag_name.to_sym]
+    new_flag_id = next_index ? self.where(:name => flag_name, :value => sorted_available_levels[next_index]).first.id : nil
 
     # returning
     return_value = {:current_flag_id => current_flag_id, :next_flag_id => new_flag_id}
@@ -44,11 +44,11 @@ class Flag < ActiveRecord::Base
   end
 
   # returns array of only relevant flag ids
-  def self.flag_ids_with_available_max_level(flags = Flag.all)
+  def self.flag_ids_with_available_max_level(flags = self.all)
     flag_hash = self.flag_hash_with_sorted_array_values(flags)
     ids = Array.new
     flag_hash.each do |key, values|
-      ids << Flag.where(:name => key.to_s, :value => values.max).first.id
+      ids << self.where(:name => key.to_s, :value => values.max).first.id
     end
     return ids
   end
@@ -79,7 +79,7 @@ class Flag < ActiveRecord::Base
 
     # finding flag and validating flag_value
     if flag_value
-      flag = Flag.where(:name => flag_name, :value => flag_value).first
+      flag = self.where(:name => flag_name, :value => flag_value).first
       unless flag
         raise "Flag with name #{flag_name} and value #{flag_value} could not be found"
       end
@@ -90,13 +90,13 @@ class Flag < ActiveRecord::Base
 
     # finding current index
     if flag
-      current_index = Flag.current_index_for_flag(flag)
+      current_index = self.current_index_for_flag(flag)
     else
       current_index = nil
     end
 
     # finding new index
-    max_index = Flag.max_index_for_flag_name(flag_name)
+    max_index = self.max_index_for_flag_name(flag_name)
     if current_index
       next_index = current_index
       case dir
@@ -123,7 +123,7 @@ class Flag < ActiveRecord::Base
 
   # it DRIes up given flags hash and makes it more understandable to humans and programs
   # example {:CL=>[0, 1, 2, 5], :CP=>[1]}
-  def self.flag_hash_with_sorted_array_values(flags = Flag.all)
+  def self.flag_hash_with_sorted_array_values(flags = self.all)
     # creating hash with unsorted values
     flag_hash = Hash.new
     flags.each do |flag|
@@ -137,7 +137,7 @@ class Flag < ActiveRecord::Base
 
   # raises error is flag_name is not valid
   def self.is_flag_name_valid(flag_name)
-    flag_hash = Flag.flag_hash_with_sorted_array_values
+    flag_hash = self.flag_hash_with_sorted_array_values
     unless flag_hash.has_key?(flag_name.to_sym)
       raise "IncorrectFlag:#{flag_name.to_s}"
     end
@@ -149,13 +149,13 @@ class Flag < ActiveRecord::Base
     # making sure flag_name exists
     is_flag_name_valid(flag_name)
     # finding max index for given flag_name
-    flag_hash = Flag.flag_hash_with_sorted_array_values
+    flag_hash = self.flag_hash_with_sorted_array_values
     max_index = flag_hash[flag_name.to_s.to_sym].size - 1
   end
 
   # index is based on return value of flag_hash_with_sorted_array_values
   def self.current_index_for_flag(flag)
-    flag_hash = Flag.flag_hash_with_sorted_array_values
+    flag_hash = self.flag_hash_with_sorted_array_values
     current_index = flag_hash[flag.name.to_sym].index(flag.value)
   end
 

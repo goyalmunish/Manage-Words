@@ -31,18 +31,18 @@ class Word < ActiveRecord::Base
   # knows a word has_many flags
   def self.number_of_flag_associations(word_collection)
     # checking nature of the collection
-    if [Word::ActiveRecord_Associations_CollectionProxy, Word::ActiveRecord_Relation, Word::ActiveRecord_AssociationRelation].include?(word_collection.class)
+    if [self::ActiveRecord_Associations_CollectionProxy, self::ActiveRecord_Relation, self::ActiveRecord_AssociationRelation].include?(word_collection.class)
       relevant_ids = word_collection.pluck(:id)
     elsif word_collection.class == Array
       relevant_ids = word_collection.map { |word| word.id }
-    elsif word_collection.class == Word
+    elsif word_collection.class == self
       relevant_ids = word_collection.id
     else
       raise "InCorrectArgument; WordCollectionClass: #{word_collection.class}"
       logger.info "Error: InCorrectArgument; WordCollectionClass: #{word_collection.class}"
     end
     # calculating associated number of flags
-    words = Word.where(:id => relevant_ids).includes(:flags)
+    words = self.where(:id => relevant_ids).includes(:flags)
     num = 0
     words.each do |word|
       num += word.flags.size

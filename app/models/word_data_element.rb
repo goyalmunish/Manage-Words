@@ -22,7 +22,7 @@ class WordDataElement
   def self.word_data_backup(words = self.all_words_with_eager_loaded_flags_wrapper)
     word_data_elements = Array.new
     words.each do |word|
-      temp_word_data_element = WordDataElement.new(
+      temp_word_data_element = self.new(
           :word => word.word,
           :trick => word.trick,
           :additional_info => word.additional_info)
@@ -36,7 +36,7 @@ class WordDataElement
   end
 
   # for backup restore
-  # knows User instance, its relation with Word, Word instance, its relation with Flag
+  # knows User instance, its relation with Word, Word instance, its relation with Flag, and Flag class
   def self.restore_word_data_backup(args)
     user = args[:user]
     array_data = args[:array_data]

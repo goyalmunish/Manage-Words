@@ -1,8 +1,6 @@
 require 'common_model'
-require 'my_dictionary'
 class Word < ActiveRecord::Base
   include CommonModel # custom library placed in lib directory, containing methods common to all models
-  include MyDictionary
 
   # ASSOCIATIONS
   belongs_to :user
@@ -166,4 +164,3 @@ class Word < ActiveRecord::Base
     return flag_value
   end
 end
-

@@ -12,6 +12,8 @@ module WordsHelper
     name << "FILTERS-AND-ORDERS-#{filters_and_orders.inspect}"
     name << "COUNT-#{Word.count}"
     name << "MAX-UPDATED-AT-#{Word.maximum(:updated_at).try(:getutc)}"
-    return name.join('__')
+    return_value = name.join('__')
+    Rails.logger.info "Cache Name: #{return_value}"
+    return return_value
   end
 end

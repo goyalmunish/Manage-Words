@@ -57,6 +57,7 @@ if Dictionary.count == 0
   Dictionary.create!(name: 'longman', url: 'http://www.ldoceonline.com/search/?q=', separator: '%20', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'oxford_learner', url: 'http://www.oxfordlearnersdictionaries.com/definition/english/', separator: '-', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'dictionary_dot_com', url: 'http://dictionary.reference.com/browse/', separator: '+', suffix: nil, additional_info: nil)
+  Dictionary.create!(name: 'Wordnick', url: 'https://www.wordnik.com/words/', separator: '%20', suffix: nil, additional_info: nil)
 end
 
 # Seeding Important Users

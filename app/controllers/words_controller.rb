@@ -138,6 +138,30 @@ class WordsController < ApplicationController
     end
   end
 
+  def my_statistics
+    require 'rinruby'
+
+    words = current_user.words
+    @words_hash = Hash.new
+    all_characters = ('a'..'z').to_a
+    all_characters.each do |char|
+      temp_words = words.search(AppSetting.get('database'), "^#{char}", 'word', false)
+      temp_words_count = temp_words.count
+      @words_hash[char.to_s] = temp_words_count
+    end
+    R.eval %Q{
+      freq <- vector(mode='integer', length = 26)
+      names(freq) <- letters
+    }
+    @words_hash.each do |key, value|
+      R.eval %Q{freq["#{key}"] <- as.numeric("#{value}")}
+      end
+    R.eval %Q{
+      png(filename="public/images/graphs/word_statistics_for_id_#{current_user.id}.png")
+      barplot(freq, ylim=c(0,200), main='Words Distribution', xlab='Words starting with character', ylab='Frequency', width=2, cex.axis=1.2, col = heat.colors(12))
+      dev.off()}
+  end
+
   def ajax_promote_flag
     @word.promote_flag(:flag_name => params[:flag_name], :dir => params[:dir])
     respond_to do |format|

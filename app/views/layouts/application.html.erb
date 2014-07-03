@@ -96,6 +96,7 @@
               <% if current_user.type == 'Admin' %>
                   <li><%= link_to 'Take FULL Backup', words_admins_path(:format => :download) %></li>
                   <li><%= link_to 'Restore FULL Backup', backup_restore_for_all_users_form_admins_path %></li>
+                  <li><%= link_to 'My Word Statistics', my_statistics_words_path, :target => '_blank' %></li>
               <% end %>
             </ul>
         <% end %>

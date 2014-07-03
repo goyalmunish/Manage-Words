@@ -66,3 +66,8 @@ gem 'awesome_print'
 # Server related and Application Start related gems
 gem 'puma'
 gem 'foreman'
+
+# RinRuby for development
+group :development, :test do
+  gem 'rinruby'
+end

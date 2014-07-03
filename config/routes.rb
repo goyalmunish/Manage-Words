@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     end
     collection do
       get 'expire_my_word_caches'
+      get 'my_statistics'
     end
   end
   resources :flags

@@ -3,6 +3,7 @@ class Word < ActiveRecord::Base
   include CommonModel # custom library placed in lib directory, containing methods common to all models
 
   # ASSOCIATIONS
+  # Note: below associations are basically messages that this model responds to and hence the design allows it to be directly called within this model  
   belongs_to :user
   # has_and_belongs_to_many :flags
   has_many :flags_words
@@ -20,10 +21,10 @@ class Word < ActiveRecord::Base
   validates :additional_info, length: {maximum: 2048}
 
   # PUBLIC INTERFACE
-  def self.touch_latest_updated_at_word_record_for_user(user)
-    last_updated_record = user.words.reorder(:updated_at => :desc).first
-    last_updated_record.touch
-  end
+  # def self.touch_latest_updated_at_word_record_for_user(user)
+  #   last_updated_record = user.words.reorder(:updated_at => :desc).first
+  #   last_updated_record.touch
+  # end
 
   # it returns number of associated flags for given passed word collection
   # knows a word has_many flags
@@ -54,7 +55,6 @@ class Word < ActiveRecord::Base
   def promote_flag(args)
     flag_name = args[:flag_name].to_s  # making sure the 'flag_name' is in string form
     dir = args[:dir].to_s.downcase  # making sure 'dir' is downcase
-
     # logging
     logger.info "PromoteFlag request for Word: #{self.word}, for Flag: #{flag_name}, in Dir: #{dir}"
 
@@ -75,7 +75,13 @@ class Word < ActiveRecord::Base
     self.flag_ids = ids
   end
 
-  def self.search(database, search_text, search_type, search_negative=false)
+  def self.search(args)
+    # getting arguments
+    database = args[:database]
+    search_type = args[:search_type]
+    search_text = args[:search_text]
+    search_negative = args.fetch(:search_negative, false)
+
     # search by default for word
     if search_type.blank?
       search_type = 'word'
@@ -135,7 +141,6 @@ class Word < ActiveRecord::Base
 
   protected
 
-
   def remove_similar_flags_with_lower_level
     # finding required ids
     ids = Flag.flag_ids_with_available_max_level(self.flags)
@@ -145,7 +150,9 @@ class Word < ActiveRecord::Base
   end
 
   def down_case_word
-    self.word = self.word.downcase
+    unless self.word.nil?
+      self.word = self.word.downcase
+    end
   end
 
   # it return flag_value for given flag_name and current word instance

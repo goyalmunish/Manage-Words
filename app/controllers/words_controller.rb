@@ -45,7 +45,7 @@ class WordsController < ApplicationController
       else
         search_negative = false
       end
-      @words = @words.search(AppSetting.get('database'), params[:search_text], params[:search_type], search_negative)
+      @words = @words.search(database: AppSetting.get('database'), search_text: params[:search_text], search_type: params[:search_type], search_negative: search_negative)
     end
 
     # checking orders
@@ -76,10 +76,10 @@ class WordsController < ApplicationController
   end
 
   # this action is no longer used as now cache is being expired on 'touch' on association 
-  def expire_my_word_caches
-    Word.touch_latest_updated_at_word_record_for_user(current_user)
-    redirect_to words_path and return
-  end
+  # def expire_my_word_caches
+  #   Word.touch_latest_updated_at_word_record_for_user(current_user)
+  #   redirect_to words_path and return
+  # end
 
   # GET /words/1
   # GET /words/1.json
@@ -145,7 +145,7 @@ class WordsController < ApplicationController
     @words_hash = Hash.new
     all_characters = ('a'..'z').to_a
     all_characters.each do |char|
-      temp_words = words.search(AppSetting.get('database'), "^#{char}", 'word', false)
+      temp_words = words.search(database: AppSetting.get('database'), search_text: "^#{char}", search_type: 'word', search_negative: false)
       temp_words_count = temp_words.count
       @words_hash[char.to_s] = temp_words_count
     end
@@ -225,3 +225,4 @@ class WordsController < ApplicationController
   end
 
 end
+

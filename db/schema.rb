@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 20140604094655) do
   enable_extension "plpgsql"
 
   create_table "app_settings", force: true do |t|
-    t.string "key", null: false
-    t.string "value", limit: 1024, null: false
+    t.string   "key",                     null: false
+    t.string   "value",      limit: 1024, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -26,11 +26,11 @@ ActiveRecord::Schema.define(version: 20140604094655) do
   add_index "app_settings", ["key"], name: "index_app_settings_on_key", unique: true, using: :btree
 
   create_table "dictionaries", force: true do |t|
-    t.string "name", limit: 25, null: false
-    t.string "url", limit: 150, null: false
-    t.string "separator", limit: 5, null: false
-    t.string "suffix", limit: 25
-    t.string "additional_info", limit: 250
+    t.string   "name",            limit: 25,  null: false
+    t.string   "url",             limit: 150, null: false
+    t.string   "separator",       limit: 5,   null: false
+    t.string   "suffix",          limit: 25
+    t.string   "additional_info", limit: 250
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 20140604094655) do
   add_index "dictionaries", ["name"], name: "index_dictionaries_on_name", unique: true, using: :btree
 
   create_table "dictionaries_users", force: true do |t|
-    t.integer "user_id"
-    t.integer "dictionary_id"
+    t.integer  "user_id"
+    t.integer  "dictionary_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -47,9 +47,9 @@ ActiveRecord::Schema.define(version: 20140604094655) do
   add_index "dictionaries_users", ["user_id", "dictionary_id"], name: "index_dictionaries_users_on_user_id_and_dictionary_id", unique: true, using: :btree
 
   create_table "flags", force: true do |t|
-    t.string "name", limit: 5, null: false
-    t.integer "value", null: false
-    t.string "desc", limit: 100
+    t.string   "name",       limit: 5,   null: false
+    t.integer  "value",                  null: false
+    t.string   "desc",       limit: 100
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 20140604094655) do
   add_index "flags", ["name", "value"], name: "index_flags_on_name_and_value", unique: true, using: :btree
 
   create_table "flags_words", force: true do |t|
-    t.integer "word_id"
-    t.integer "flag_id"
+    t.integer  "word_id"
+    t.integer  "flag_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -66,34 +66,34 @@ ActiveRecord::Schema.define(version: 20140604094655) do
   add_index "flags_words", ["word_id", "flag_id"], name: "index_flags_words_on_word_id_and_flag_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
-    t.string "first_name", limit: 15, null: false
-    t.string "last_name", limit: 15, null: false
-    t.string "type"
-    t.string "provider"
-    t.string "uid"
-    t.string "additional_info", limit: 100
+    t.string   "first_name",             limit: 15,               null: false
+    t.string   "last_name",              limit: 15,               null: false
+    t.string   "type"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "additional_info",        limit: 100
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
+    t.string   "email",                              default: "", null: false
+    t.string   "encrypted_password",                 default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "words", force: true do |t|
-    t.string "word", limit: 25, null: false
-    t.string "trick", limit: 100
-    t.integer "user_id", null: false
-    t.string "additional_info", limit: 2048
+    t.string   "word",            limit: 25,   null: false
+    t.string   "trick",           limit: 100
+    t.integer  "user_id",                      null: false
+    t.string   "additional_info", limit: 2048
     t.datetime "created_at"
     t.datetime "updated_at"
   end

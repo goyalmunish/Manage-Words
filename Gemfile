@@ -42,6 +42,7 @@ gem 'spring', group: :development
 # Test related gems
 group :development, :test do
   gem 'rspec-rails'
+  gem 'shoulda-matchers', require: false
   gem 'autotest-rails'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'

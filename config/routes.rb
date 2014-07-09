@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       get 'ajax_promote_flag'
     end
     collection do
-      get 'expire_my_word_caches'
+      # get 'expire_my_word_caches'
       get 'my_statistics'
     end
   end

@@ -22,3 +22,7 @@
 # Other files to be ignored
 /public/assets
 /public/images
+
+# Ignore Coverage
+/coverage
+

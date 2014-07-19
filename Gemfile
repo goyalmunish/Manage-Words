@@ -44,8 +44,9 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers', require: false
   gem 'autotest-rails'
-  gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
+  gem 'simplecov'
+  gem 'cucumber-rails', :require => false
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'launchy'

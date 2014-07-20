@@ -46,6 +46,15 @@ describe Flag do
         expected_value = {:current_flag_id => @flag_cl_4.id, :next_flag_id => @flag_cl_4.id}
         expect(return_value).to eq(expected_value)
       end
+      it "for non-existing flag name, raises error" do
+        expect{Flag.current_and_next_flag_id_for_flag_name_value_dir(:dir => 'up', :name => 'incorrect-value', :value => 1000)}.to raise_error
+      end
+      it "for non-existing flag with given name and value pair, raises error" do
+        expect{Flag.current_and_next_flag_id_for_flag_name_value_dir(:dir => 'up', :name => 'CL', :value => 1000)}.to raise_error
+      end
+      it "for value of dir other than 'up' and 'down', raises error" do
+        expect{Flag.current_and_next_flag_id_for_flag_name_value_dir(:dir => 'incorrect-value', :name => 'CL', :value => 0)}.to raise_error
+      end
     end
     context "for dir='down'" do
       it "for flag_value and with non-lowest possible flag_value for that flag_name, current flag_id gives flag_id for currently associated flag and next_flag_id gives flag_id fo flag with samae name but with next lower level" do

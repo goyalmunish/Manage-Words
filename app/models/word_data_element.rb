@@ -6,7 +6,7 @@ class WordDataElement
     @word = args[:word]
     @trick = args[:trick]
     @additional_info = args[:additional_info]
-    @flags_attributes = args[:flags_attributes]
+    @flags_attributes = args[:flags_attributes] || Array.new
   end
 
   def to_h
@@ -43,8 +43,8 @@ class WordDataElement
     word_count = 0
     array_data.each do |hash_data|
       # extracting flag_attributes
-      flags_attributes = hash_data['flags_attributes']
-      hash_data.except!('flags_attributes')
+      flags_attributes = hash_data['flags_attributes'] || hash_data[:flags_attributes]
+      hash_data.except!('flags_attributes', :flags_attributes)
       # saving word and its flag associations
       Rails.logger.info "Start Backup: #{hash_data['word']}"
       ActiveRecord::Base.transaction do

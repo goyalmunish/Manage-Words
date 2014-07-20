@@ -16,3 +16,4 @@ class DictionariesUser < ActiveRecord::Base
 
   # ACCESS
 end
+

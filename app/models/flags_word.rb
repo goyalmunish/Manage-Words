@@ -16,3 +16,4 @@ class FlagsWord < ActiveRecord::Base
 
   # ACCESS
 end
+

@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20140604094655) do
 
   create_table "app_settings", force: true do |t|
     t.string   "key",                     null: false
-    t.string   "value",      limit: 1024, null: false
+    t.string   "value",      limit: 1024
     t.datetime "created_at"
     t.datetime "updated_at"
   end

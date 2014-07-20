@@ -1,13 +1,22 @@
 class AppSetting < ActiveRecord::Base
 
+  # CALLBACKS
+  before_validation :underscore_the_key
+
+  # VALIDATIONS
+  validates :key, presence: true, uniqueness: true
+
   # CUSTOM SINGLETON METHODS
   # finds a record for the passed key, returns nil if doesn't exist
   def self.find_by_key(k)
-    self.where(:key => k).first
+    self.where(:key => k.underscore).first
   end
 
   # gets a record for passed key, returns nil if key doesn't exist or it's value is nil
   def self.get(k)
+    if k.blank?
+      raise 'NonBlankKeyRequired'
+    end
     record = self.find_by_key(k)
     if record
       record.value
@@ -27,8 +36,9 @@ class AppSetting < ActiveRecord::Base
         s.save!
       else
         # lower_case the key and create
-        self.create!(:key => k.downcase, :value => v)
+        s = self.create!(:key => k, :value => v)
       end
+      return s
     end
   end
 
@@ -54,15 +64,17 @@ class AppSetting < ActiveRecord::Base
 
   # CUSTOM INSTANCE METHODS
   def to_s
-    if self.value.nil?
-      ":#{self.key} IS NIL"
-    else
-      ":#{self.key} => '#{self.value}'"
-    end
+    ":#{self.key} => '#{self.value}'"
   end
 
 
   # SCOPES
 
-  # ACCESS
+  protected
+
+  def underscore_the_key
+    unless key.blank?
+      self.key = self.key.underscore
+    end
+  end
 end

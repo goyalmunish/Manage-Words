@@ -2,10 +2,10 @@
 
 FactoryGirl.define do
   factory :dictionary do
-    name "MyString"
-    url "MyString"
-    separator "MyString"
-    suffix "MyString"
+    name "dict_name"
+    url "dic_url"
+    separator "-"
+    suffix "some_suffix"
     additional_info "MyString"
   end
 end

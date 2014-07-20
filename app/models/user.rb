@@ -30,13 +30,12 @@ class User < ActiveRecord::Base
     self.email
   end
 
-  def mark_user_as_general_by_default
-    self.type ||= General.to_s
-  end
-
   # SCOPES
   default_scope -> { order(:id => :asc) }
 
-  # ACCESS
-  protected :mark_user_as_general_by_default
+  protected
+
+  def mark_user_as_general_by_default
+    self.type ||= General.to_s
+  end
 end

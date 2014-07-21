@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SiteHomeController do
+RSpec.describe SiteHomeController, :type => :controller do
 
   describe "GET 'home'" do
     it "returns http success" do

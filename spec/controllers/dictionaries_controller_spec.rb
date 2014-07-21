@@ -18,7 +18,7 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe DictionariesController do
+RSpec.describe DictionariesController, :type => :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # Dictionary. As you add validations to Dictionary, be sure to

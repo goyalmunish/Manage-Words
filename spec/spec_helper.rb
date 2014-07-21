@@ -2,6 +2,8 @@
 require 'simplecov'
 SimpleCov.start
 
+# require 'support/controller_helpers'
+
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
@@ -46,5 +48,9 @@ RSpec.configure do |config|
 
   # other manual settings
   config.include FactoryGirl::Syntax::Methods
+
+  # including controller_helper and Devise::TestHelpers in all controller specs
+  config.include Devise::TestHelpers, :type => :controller
+  config.include ControllerHelpers, :type => :controller
 
 end

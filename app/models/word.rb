@@ -37,8 +37,8 @@ class Word < ActiveRecord::Base
     elsif word_collection.class == self
       relevant_ids = word_collection.id
     else
-      raise "InCorrectArgument; WordCollectionClass: #{word_collection.class}"
       logger.info "Error: InCorrectArgument; WordCollectionClass: #{word_collection.class}"
+      raise "InCorrectArgument; WordCollectionClass: #{word_collection.class}"
     end
     # calculating associated number of flags
     words = self.where(:id => relevant_ids).includes(:flags)

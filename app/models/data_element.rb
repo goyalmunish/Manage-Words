@@ -22,7 +22,7 @@ class DataElement
     users.each do |user|
       data_elements << self.new(
           :email => user.email,
-          :words => WordDataElement.word_data_backup(user.words.includes(:flags)))
+          :words => WordDataElement.word_data_backup(user.words.includes(:flags))).to_h
     end
     return data_elements
   end
@@ -31,11 +31,11 @@ class DataElement
   def self.restore_data_backup(array_data)
     word_count = 0
     array_data.each do |hash_data|
-      user = self.get_user_from_email_wrapper(hash_data['email'])
+      user = self.get_user_from_email_wrapper(hash_data['email'] || hash_data[:email])
       if user
         temp_count = self.restore_word_data_backup_for_user_wrapper(
             :user => user,
-            :array_data => hash_data['words'])
+            :array_data => hash_data['words'] || hash_data[:words])
         word_count += temp_count
       end
     end

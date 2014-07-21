@@ -48,6 +48,15 @@ describe Word do
       it "searches records (FULL TEXT) for string 'abc'" do
         expect(Word.search(database: 'pg', search_type: 'record', search_text: 'abc').count).to be 8
       end
+      it "searches for words containing 'abc' with default search_type" do
+        expect(Word.search(database: 'pg', search_text: 'abc').count).to be 6
+      end
+      it "searches for words containing 'abc' with search_negative" do
+        expect(Word.search(database: 'pg', search_text: 'abc', search_negative: true).count).to be 3
+      end
+      it "searches records (FULL TEXT) containing 'abc' with search_negative" do
+        expect(Word.search(database: 'pg', search_type: 'record', search_text: 'abc', search_negative: true).count).to be 1
+      end
     end
     context "if database is NOT 'pg'" do
       it "searches for words containing 'abc'" do
@@ -56,6 +65,18 @@ describe Word do
       it "searches records (FULL TEXT) for string 'abc'" do
         expect(Word.search(database: 'mysql', search_type: 'record', search_text: 'abc').count).to be 8
       end
+      it "searches for words containing 'abc' with search_negative" do
+        expect(Word.search(database: 'mysql', search_type: 'word', search_text: 'abc', search_negative: true).count).to be 3
+      end
+      it "searches records (FULL TEXT) for string 'abc' with search_negative" do
+        expect(Word.search(database: 'mysql', search_type: 'record', search_text: 'abc', search_negative: true).count).to be 1
+      end
+    end
+    it "returns all records with search_text as nil" do
+      expect(Word.search(database: 'pg', search_type: 'record', search_text: nil, search_negative: true).count).to be 9
+    end
+    it "returns all records with search_text as blank" do
+      expect(Word.search(database: 'mysql', search_type: 'record', search_text: ' ', search_negative: true).count).to be 9
     end
   end
 
@@ -93,6 +114,11 @@ describe Word do
     context "on an association of words" do
       it "works on Word association contaning 3 words" do
         expect(Word.number_of_flag_associations(@u.words)).to be 5
+      end
+    end
+    context "passed collection is different form Word::ActiveRecord_Associations_CollectionProxy, Word::ActiveRecord_Relation, Word::ActiveRecord_AssociationRelation, Array, Word" do
+      it "raises error for instance of Hash as argument" do
+        expect{Word.number_of_flag_associations(instance_of(Hash))}.to raise_error
       end
     end
   end

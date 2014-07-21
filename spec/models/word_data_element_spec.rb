@@ -44,7 +44,6 @@ describe WordDataElement do
       flag1 = create(:flag, name: 'CL', value: 1)
       flag2 = create(:flag, name: 'CP', value: 2)
       flag3 = create(:flag, name: 'K', value: 3)
-      flag4 = create(:flag, name: 'A', value: 4)
       word1.flags << flag1; word1.flags << flag2
       word2.flags << flag3
       @words = user.words.includes(:flags)
@@ -74,8 +73,8 @@ describe WordDataElement do
     describe ".restore_word_data_backup(:user => test_user@word_list.com, :array_data => backup_data)" do
       it "works with backup data containing 3 words and associated flag_attributes" do
         backup_data = WordDataElement.word_data_backup(@words)
-        Word.destroy_all
         User.destroy_all
+        Word.destroy_all
         user = create(:user, :email => 'test_user@word_list.com')
         WordDataElement.restore_word_data_backup(:user => user, :array_data => backup_data)
         expect(Word.all.size).to be 3

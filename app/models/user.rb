@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   # CONSTANTS
 
   # ASSOCIATIONS
-  has_many :words, dependent: :nullify
+  has_many :words, dependent: :destroy
   # has_and_belongs_to_many :dictionaries
   has_many :dictionaries_users
   has_many :dictionaries, through: :dictionaries_users

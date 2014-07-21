@@ -111,7 +111,7 @@ class UsersController < ApplicationController
     file = params[:file]
     json_content = JSON.parse(file.read)
     # passing it to model to process
-    count = WordDataElement.restore_word_data_backup(current_user, json_content)
+    count = WordDataElement.restore_word_data_backup(:user => current_user, :array_data => json_content)
     # responding to user
     flash[:notice] = "Number of records added: #{count}"
     redirect_to root_path and return

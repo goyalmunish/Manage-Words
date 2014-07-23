@@ -23,7 +23,7 @@ RSpec.describe AppSettingsController, :type => :controller do
   # This should return the minimal set of attributes required to create a valid
   # AppSetting. As you add validations to AppSetting, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { {"key" => "MyString"} }
+  let(:valid_attributes) { {:key => 'MyKey', :value => 'MyValue'} }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -106,95 +106,78 @@ RSpec.describe AppSettingsController, :type => :controller do
   describe "POST create" do
     describe "with valid params" do
       it "creates a new AppSetting with valid attributes and redirects to created app_setting" do
-        new_app_setting = AppSetting.new  # Note: we had to use it instead of mock as otherwise we will get undefined 'model_name' method error because of redirect_to @app_setting
+        passed_attributes = {:app_setting => {:key => 'MyKey', :value => 'MyValue'}}
+        new_app_setting = AppSetting.new(passed_attributes[:app_setting])
+        allow(AppSetting).to receive(:new).with(passed_attributes[:app_setting]).and_return(new_app_setting)
         allow(new_app_setting).to receive(:save).and_return(true)
-        allow(AppSetting).to receive(:new).and_return(new_app_setting)
-        allow_any_instance_of(AppSettingsController).to receive(:app_setting_params).and_return(new_app_setting.attributes)  # Note: here we used 'allow_any_instance_of' method
-        expect(AppSetting).to receive(:new)
+        expect(AppSetting).to receive(:new).with(passed_attributes[:app_setting])
         expect(new_app_setting).to receive(:save)
-        post :create, {:app_setting => new_app_setting.attributes}
+        post :create, passed_attributes
         expect(response).to redirect_to(new_app_setting)
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved app_setting as @app_setting and renders 'new' template" do
-        new_app_setting = AppSetting.new
-        allow(new_app_setting).to receive(:save).and_return(false)
+        passed_attributes = {:app_setting => {:key => 'InvalidMyKey', :value => 'InvalidMyValue'}}
+        new_app_setting = AppSetting.new(passed_attributes[:app_setting])
         allow(AppSetting).to receive(:new).and_return(new_app_setting)
-        allow_any_instance_of(AppSettingsController).to receive(:app_setting_params).and_return(new_app_setting.attributes)  # Note: here we used 'allow_any_instance_of' method
-        expect(AppSetting).to receive(:new)
+        allow(new_app_setting).to receive(:save).and_return(false)
+        expect(AppSetting).to receive(:new).with(passed_attributes[:app_setting])
         expect(new_app_setting).to receive(:save)
-        post :create, {:app_setting => new_app_setting.attributes}
+        post :create, passed_attributes
         expect(response).to render_template('new')
+      end
+    end
+
+    describe "with missing params" do
+      it "raises ActionController::ParameterMissing error" do
+        passed_attributes = {:app_setting_another => {:key => 'InvalidMyKey', :value => 'InvalidMyValue'}}
+        expect{post :create, passed_attributes_missing}.to raise_error
       end
     end
   end
 
   describe "PUT update" do
     describe "with valid params" do
-      it "updates the requested app_setting" do
-
-        pending
-        app_setting = AppSetting.create! valid_attributes
-        # Assuming there are no other app_settings in the database, this
-        # specifies that the AppSetting created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        AppSetting.any_instance.should_receive(:update).with({"key" => "MyString"})
-        put :update, {:id => app_setting.to_param, :app_setting => {"key" => "MyString"}}, valid_session
-      end
-
-      it "assigns the requested app_setting as @app_setting" do
-        pending
-        app_setting = AppSetting.create! valid_attributes
-        put :update, {:id => app_setting.to_param, :app_setting => valid_attributes}, valid_session
-        assigns(:app_setting).should eq(app_setting)
-      end
-
-      it "redirects to the app_setting" do
-        pending
-        app_setting = AppSetting.create! valid_attributes
-        put :update, {:id => app_setting.to_param, :app_setting => valid_attributes}, valid_session
-        response.should redirect_to(app_setting)
+      it "assigns requested app_setting as @app_setting, updated it and redirects to app_setting" do
+        passed_attributes = {:id => 123, :app_setting => {:key => 'MyKey', :value => 'MyValue'}}
+        app_setting = mock_model(AppSetting)
+        allow(AppSetting).to receive(:find).with(instance_of(String)).and_return(app_setting)
+        allow(app_setting).to receive(:update).with(any_args).and_return(true)
+        expect(AppSetting).to receive(:find).ordered.with(instance_of(String))
+        expect(app_setting).to receive(:update).ordered.with(any_args)
+        put :update, passed_attributes
+        expect(assigns(:app_setting)).to equal(app_setting)
+        expect(response).to redirect_to(app_setting)
       end
     end
 
     describe "with invalid params" do
-      it "assigns the app_setting as @app_setting" do
-        pending
-        app_setting = AppSetting.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        AppSetting.any_instance.stub(:save).and_return(false)
-        put :update, {:id => app_setting.to_param, :app_setting => {"key" => "invalid value"}}, valid_session
-        assigns(:app_setting).should eq(app_setting)
-      end
-
-      it "re-renders the 'edit' template" do
-        pending
-        app_setting = AppSetting.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        AppSetting.any_instance.stub(:save).and_return(false)
-        put :update, {:id => app_setting.to_param, :app_setting => {"key" => "invalid value"}}, valid_session
-        response.should render_template("edit")
+      it "assigns requested app_setting as @app_setting, as update fails, renders the 'edit' template" do
+        passed_attributes = {:id => 123, :app_setting => {:key => 'MyKeyInvalid', :value => 'MyValueInvalid'}}
+        app_setting = mock_model(AppSetting)
+        allow(AppSetting).to receive(:find).with(instance_of(String)).and_return(app_setting)
+        allow(app_setting).to receive(:update).with(any_args).and_return(false)
+        expect(AppSetting).to receive(:find).ordered.with(instance_of(String))
+        expect(app_setting).to receive(:update).ordered.with(any_args)
+        put :update, passed_attributes
+        expect(assigns(:app_setting)).to equal(app_setting)
+        expect(response).to render_template('edit')
       end
     end
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested app_setting" do
-      pending
-      app_setting = AppSetting.create! valid_attributes
-      expect {
-        delete :destroy, {:id => app_setting.to_param}, valid_session
-      }.to change(AppSetting, :count).by(-1)
-    end
-
-    it "redirects to the app_settings list" do
-      pending
-      app_setting = AppSetting.create! valid_attributes
-      delete :destroy, {:id => app_setting.to_param}, valid_session
-      response.should redirect_to(app_settings_url)
+    it "destroys the requested app_setting and redirects to the app_settings list" do
+      passed_attributes = {:id => 123}
+      app_setting = mock_model(AppSetting)
+      allow(AppSetting).to receive(:find).with(instance_of(String)).and_return(app_setting)
+      allow(app_setting).to receive(:destroy)
+      expect(AppSetting).to receive(:find).ordered.with(instance_of(String))
+      expect(app_setting).to receive(:destroy).ordered
+      delete :destroy, passed_attributes
+      expect(response).to redirect_to(app_settings_url)
     end
   end
 

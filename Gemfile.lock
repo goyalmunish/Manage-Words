@@ -139,6 +139,10 @@ GEM
       json (~> 1.4)
     ref (1.0.5)
     rinruby (2.0.3)
+    rspec-activemodel-mocks (1.0.1)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      rspec-mocks (>= 2.99, < 4.0)
     rspec-core (3.0.3)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.3)
@@ -228,6 +232,7 @@ DEPENDENCIES
   rails (= 4.1.1)
   rails_12factor
   rinruby
+  rspec-activemodel-mocks
   rspec-rails (~> 3.0.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

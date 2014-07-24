@@ -182,3 +182,4 @@ RSpec.describe AppSettingsController, :type => :controller do
   end
 
 end
+

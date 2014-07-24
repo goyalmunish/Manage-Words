@@ -46,11 +46,11 @@ group :development, :test do
   gem 'shoulda-matchers', require: false
   gem 'autotest-rails'
   gem 'database_cleaner'
-  gem 'simplecov'
-  gem 'cucumber-rails', :require => false
   gem 'factory_girl_rails'
-  gem 'capybara'
-  gem 'launchy'
+  gem 'simplecov'
+  # gem 'cucumber-rails', :require => false
+  # gem 'capybara'
+  # gem 'launchy'
 end
 
 group :production do

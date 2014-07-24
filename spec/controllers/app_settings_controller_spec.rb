@@ -133,7 +133,7 @@ RSpec.describe AppSettingsController, :type => :controller do
     describe "with missing params" do
       it "raises ActionController::ParameterMissing error" do
         passed_attributes = {:app_setting_another => {:key => 'InvalidMyKey', :value => 'InvalidMyValue'}}
-        expect{post :create, passed_attributes_missing}.to raise_error
+        expect { post :create, passed_attributes_missing }.to raise_error
       end
     end
   end

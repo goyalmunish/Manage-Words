@@ -13,6 +13,7 @@ describe "the signin process",:type => :feature do
       end
       click_on 'Sign in'
       expect(page).to have_content(@user.email)
+      # page.save_screenshot('tmp/login_success.png')
     end
   end
   context "with incorrect credentials" do
@@ -24,6 +25,7 @@ describe "the signin process",:type => :feature do
       end
       click_on 'Sign in'
       expect(page).to have_content('Invalid email or password')
+      # page.save_screenshot('tmp/login_failure.png')
     end
   end
 end

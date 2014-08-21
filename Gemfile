@@ -50,6 +50,7 @@ group :development, :test do
   gem 'simplecov'
   # gem 'cucumber-rails', :require => false
   gem 'capybara'
+  gem 'selenium-webdriver'
   # gem 'launchy'
 end
 

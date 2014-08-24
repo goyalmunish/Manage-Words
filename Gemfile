@@ -62,7 +62,7 @@ end
 gem 'devise'
 
 # Style related gems
-gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails', '~> 2.2.8'
 
 # Console related
 gem 'awesome_print'

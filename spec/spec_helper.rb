@@ -68,5 +68,5 @@ RSpec.configure do |config|
   # including controller_helper and Devise::TestHelpers in all controller specs
   config.include Devise::TestHelpers, :type => :controller
   config.include ControllerHelpers, :type => :controller
-
+  config.include FeatureHelper, :type => :feature
 end

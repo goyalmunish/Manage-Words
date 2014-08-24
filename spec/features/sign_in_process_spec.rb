@@ -35,12 +35,7 @@ describe "the signin process",:type => :feature do
     end
     context "with correct credentials at /users/sign_in" do
       it "signs me in" do
-        visit new_user_session_path
-        within('#new_user') do
-          fill_in 'user_email', :with => @user.email
-          fill_in 'user_password', :with => 'password'
-        end
-        click_on 'Sign in'
+        log_in(@user.email, 'password')
         expect(page).to have_content(@user.email)
         expect(current_path).to eq(root_path)
         # page.save_screenshot('tmp/login_success.png')
@@ -48,12 +43,7 @@ describe "the signin process",:type => :feature do
     end
     context "with incorrect credentials at /users/sign_in" do
       it "displays 'Invalid email or password' error" do
-        visit new_user_session_path
-        within('#new_user') do
-          fill_in 'user_email', :with => @user.email
-          fill_in 'user_password', :with => 'wrong_password'
-        end
-        click_on 'Sign in'
+        log_in(@user.email, 'wrong_password')
         expect(page).to have_content('Invalid email or password')
         expect(current_path).to eq(new_user_session_path)
         # page.save_screenshot('tmp/login_failure.png')
@@ -61,4 +51,3 @@ describe "the signin process",:type => :feature do
     end
   end
 end
-

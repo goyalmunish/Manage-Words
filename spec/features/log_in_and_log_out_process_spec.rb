@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "the signin process",:type => :feature do
+describe "the login and logout process",:type => :feature do
   before(:each) do
     @user = create(:user, :password => 'password', :password_confirmation => 'password')
   end
@@ -47,6 +47,37 @@ describe "the signin process",:type => :feature do
         expect(page).to have_content('Invalid email or password')
         expect(current_path).to eq(new_user_session_path)
         # page.save_screenshot('tmp/login_failure.png')
+      end
+    end
+    context "redirects the user back to requested valid URL after successful log in" do
+      it "checked with /words" do
+        visit words_path
+        log_in(@user.email, 'password')
+        expect(current_path).to eq(words_path)
+      end
+      it "checked with /flags" do
+        visit flags_path
+        log_in(@user.email, 'password')
+        expect(current_path).to eq(flags_path)
+      end
+      it "checked with /dictionaries" do
+        visit dictionaries_path
+        log_in(@user.email, 'password')
+        expect(current_path).to eq(dictionaries_path)
+      end
+    end
+    context "Testing Logout Behavior" do
+      it "the Logout link in header logs me out (Simulated Test)" do
+        log_in(@user.email, 'password')
+        expect(current_path).to eq(root_path)
+        click_on 'Logout'
+        expect(page).to have_content('Signed out successfully.')
+      end
+      it "the Logout link in header logs me out (Automated Test)", :js => true do
+        log_in(@user.email, 'password')
+        expect(current_path).to eq(root_path)
+        click_on 'Logout'
+        expect(page).to have_content('Signed out successfully.')
       end
     end
   end

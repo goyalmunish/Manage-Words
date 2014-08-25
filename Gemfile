@@ -43,7 +43,7 @@ gem 'spring', group: :development
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'rspec-activemodel-mocks'
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda-matchers', '2.6.1', require: false # TODO: when updated to latest version (2.6.2 at that time, validate_uniqueness_of started failing
   gem 'autotest-rails'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
@@ -62,7 +62,7 @@ end
 gem 'devise'
 
 # Style related gems
-gem 'twitter-bootstrap-rails', '~> 2.2.8'
+gem 'twitter-bootstrap-rails', '~> 2.2.8' # TODO: when updated to version > 3, UI started behaving weird 
 
 # Console related
 gem 'awesome_print'

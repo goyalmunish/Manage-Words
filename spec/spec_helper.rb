@@ -70,4 +70,3 @@ RSpec.configure do |config|
   config.include ControllerHelpers, :type => :controller
   config.include FeatureHelper, :type => :feature
 end
-

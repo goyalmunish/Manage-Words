@@ -26,3 +26,11 @@
 # Ignore Coverage
 /coverage
 
+# Ignore Vagrant related file/directories
+/.vagrant
+/vagrant_support/external_resources
+
+# Ignoring all .DS_Store (Mac) directories
+**/.DS_Store
+
+

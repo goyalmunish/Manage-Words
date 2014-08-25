@@ -82,3 +82,4 @@ describe "the login and logout process",:type => :feature do
     end
   end
 end
+

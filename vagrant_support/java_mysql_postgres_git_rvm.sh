@@ -173,3 +173,4 @@ sudo usermod -a -G rvm vagrant
 
 
 echo "<--- End of 'java_mysql_postgres_git_rvm' Script --->"
+

@@ -171,6 +171,8 @@ rvm list
 echo "Adding 'vagrant' user to 'rvm' group"
 sudo usermod -a -G rvm vagrant
 
+echo "Creating 'vagrant' role for postgres"
+sudo -u postgres createuser vagrant
 
 echo "<--- End of 'java_mysql_postgres_git_rvm' Script --->"
 

@@ -176,3 +176,4 @@ sudo -u postgres createuser vagrant
 
 echo "<--- End of 'java_mysql_postgres_git_rvm' Script --->"
 
+

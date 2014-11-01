@@ -75,3 +75,6 @@ gem 'foreman'
 group :development, :test do
   gem 'rinruby'
 end
+
+gem 'dalli'
+gem 'connection_pool'

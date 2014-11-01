@@ -81,8 +81,8 @@ test: &test
 production:
   <<: *default
   database: word_list_production
-  username: word_list
-  password: <%= ENV['WORD_LIST_DATABASE_PASSWORD'] %>
+  # username: word_list
+  # password: <%= ENV['WORD_LIST_DATABASE_PASSWORD'] %>
 
 cucumber:
   <<: *test

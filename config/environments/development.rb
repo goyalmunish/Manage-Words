@@ -11,11 +11,11 @@ Rails.application.configure do
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local = true
-  # config.action_controller.perform_caching = false
-  config.action_controller.perform_caching = true
+  config.action_controller.perform_caching = false
+  # config.action_controller.perform_caching = true
 
   # Configuring cache store
-  config.cache_store = :dalli_store, {pool_size: 12}
+  # config.cache_store = :dalli_store, {pool_size: 12}
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

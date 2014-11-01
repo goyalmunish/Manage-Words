@@ -67,7 +67,7 @@
                 </thead>
                 <tbody>
                 <% @words.each do |word| %>
-                    <% # cache(word_fragment_name(current_user.id, word)) do %>
+                    <% cache(word_fragment_name(current_user.id, word)) do %>
                     <tr>
                       <td><%= word.id %></td>
                       <td><%= link_to word.word, word, {:class => "btn btn-default", :target => '_blank'} %></td>
@@ -78,7 +78,7 @@
                       <td><%= word.trick %></td>
                       <td><%= render 'promote_flags', :word => word %></td>
                     </tr>
-                    <% # end %>
+                    <% end %>
                 <% end %>
                 </tbody>
               </table>

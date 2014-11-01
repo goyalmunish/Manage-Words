@@ -16,4 +16,15 @@ module WordsHelper
     Rails.logger.info "Cache Name: #{return_value}"
     return return_value
   end
+
+  def word_fragment_name(user_id, word)
+    name = Array.new
+    name << "USERID-#{user_id}"
+    name << "WORDID-#{word.id}"
+    name << "FLAGIDS-#{word.flag_ids.inspect}"
+    name << "WORD-UPDATED-AT-#{word.updated_at.try(:getutc)}"
+    return_value = name.join('__')
+    Rails.logger.info "Cache Name: #{return_value}"
+    return return_value
+  end
 end

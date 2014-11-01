@@ -179,5 +179,3 @@ echo "local   all   vagrant   trust" | sudo tee --append /etc/postgresql/*/main/
 
 echo "<--- End of 'java_mysql_postgres_git_rvm' Script --->"
 
-
-

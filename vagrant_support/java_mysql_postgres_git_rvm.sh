@@ -104,7 +104,7 @@ else
     sudo su postgres
     postgres_postgres_passwd_quoted="'$postgres_postgres_passwd'"
     psql -d template1 -c "ALTER USER postgres with encrypted password $postgres_postgres_passwd_quoted;" -a # TODO: Note: executing single command in postgres
-    exit 
+    exit
     sudo /etc/init.d/postgresql restart
 fi
 # checking installation details
@@ -171,9 +171,13 @@ rvm list
 echo "Adding 'vagrant' user to 'rvm' group"
 sudo usermod -a -G rvm vagrant
 
-echo "Creating 'vagrant' role for postgres"
+echo "Creating 'vagrant' role for postgres, giving it superuser permissions, and trusting vagrant"
 sudo -u postgres createuser vagrant
+sudo su postgres
+psql -d template1 -c "ALTER USER vagrant with SUPERUSER;"
+echo "local   all   vagrant   trust" | sudo tee --append /etc/postgresql/*/main/postgresql.conf
 
 echo "<--- End of 'java_mysql_postgres_git_rvm' Script --->"
+
 
 

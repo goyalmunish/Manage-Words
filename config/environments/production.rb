@@ -15,7 +15,7 @@ Rails.application.configure do
   # config.action_controller.perform_caching = false
   config.action_controller.perform_caching = true
   if ENV.keys.any? {|var_name| var_name.match(/heroku/i) }
-    # not caching on heroku 
+    # not caching on heroku
     config.action_controller.perform_caching = false
   end
 
@@ -88,4 +88,3 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
-

@@ -46,6 +46,7 @@ if Flag.count == 0
   Flag.create!(name: 'CP', value: 1, desc: 'Getting Comfortable with Pronunciation')
   Flag.create!(name: 'CP', value: 0, desc: 'Check Pronunciation')
   Flag.create!(name: 'GMAT', value: 0, desc: 'Relevant to GMAT')
+  Flag.create!(name: 'GRMR', value: 0, desc: 'Relevant to GRAMMAR')
 end
 
 # Seeding dictionaries
@@ -72,3 +73,4 @@ end
 
 # LAST LINE: 
 puts "\n"+'!!!!!!!!!!Check your app_settings table and look for nil and "XXX" values, and update them.'+"\n"
+

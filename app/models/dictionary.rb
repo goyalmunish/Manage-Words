@@ -17,7 +17,7 @@ class Dictionary < ActiveRecord::Base
 
   # CUSTOM METHODS
   def url_for_phrase(phrase)
-    "#{self.url}#{phrase.split.join('-')} #{self.suffix}"
+    "#{self.url}#{phrase.split.join(self.separator)}#{self.suffix}"
   end
 
   def humanized_name

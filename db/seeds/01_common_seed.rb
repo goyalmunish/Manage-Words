@@ -73,4 +73,3 @@ end
 
 # LAST LINE: 
 puts "\n"+'!!!!!!!!!!Check your app_settings table and look for nil and "XXX" values, and update them.'+"\n"
-

@@ -41,6 +41,7 @@
   <div class="div3">
     <h3>Orders: </h3>
     <%= link_to 'Random Order', words_path(add_to_current_filters_and_orders(:sort_by => 'random')), {:class => "btn btn-warning"} %>
+    <%= link_to 'Creation Order', words_path(add_to_current_filters_and_orders(:sort_by => 'id')), {:class => "btn btn-warning"} %>
     <%= link_to 'Recent First', words_path(add_to_current_filters_and_orders(:sort_by => 'recent')), {:class => "btn btn-warning"} %>
   </div>
   <div class="div3">

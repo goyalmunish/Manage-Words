@@ -54,6 +54,8 @@ class WordsController < ApplicationController
         @words = @words.sort_by { rand }
       elsif params[:sort_by] == 'recent'
         @words = @words.reorder(:updated_at => :desc)
+      elsif params[:sort_by] == 'id'
+        @words = @words.reorder(:id => :asc)
       end
     end
 

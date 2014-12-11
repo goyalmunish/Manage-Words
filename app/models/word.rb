@@ -122,6 +122,22 @@ class Word < ActiveRecord::Base
     end
   end
 
+  # TODO: this method is not yet automated tested
+  def self.limit_records(args)
+    # getting arguments
+    record_limit = args[:record_limit]
+    collection = args[:collection]
+    unless record_limit.blank?
+      record_limit = record_limit.to_i
+      if collection.class.to_s == 'Array'
+        collection = collection[0...record_limit]
+      else
+        collection = collection.limit(record_limit)
+      end
+    end
+    collection
+  end
+
   # SCOPES
   default_scope -> { order(:word => :asc) }
   scope :without_trick, -> { where('trick IS NULL') }

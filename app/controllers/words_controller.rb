@@ -16,6 +16,12 @@ class WordsController < ApplicationController
       clear_all_filters_and_orders
     end
 
+    # Quick test filters 10 random words from given filters
+    if params[:quick_test]
+      params[:sort_by] = 'random'; params[:sort_by.to_s] = 'random'
+      params[:record_limit] = 10; params[:record_limit.to_s] = 10
+    end
+
     # words collection with eager loaded flags, this collection can be modified going forward
     @words = current_user.words.includes(:flags)
     # user dictionaries
@@ -51,13 +57,16 @@ class WordsController < ApplicationController
     # checking orders
     if params[:sort_by]
       if params[:sort_by] == 'random'
-        @words = @words.sort_by { rand }
+        @words = @words.sort_by { rand }  # Note that @words is an Array now
       elsif params[:sort_by] == 'recent'
         @words = @words.reorder(:updated_at => :desc)
       elsif params[:sort_by] == 'id'
         @words = @words.reorder(:id => :asc)
       end
     end
+
+    # limiting records
+    @words = Word.limit_records(:record_limit => params[:record_limit], :collection => @words)
 
     # generating additions required instance variables
     @flag_size = Word.number_of_flag_associations(@words)
@@ -66,7 +75,11 @@ class WordsController < ApplicationController
     # fresh_when([@words, @filters, @order])
 
     # responding
-    if stale?(etag: [current_user.id, current_filters_and_orders, @words])
+    current_etag = [current_user.id, current_filters_and_orders, @words]
+    if ENV['RAILS_ENV'] == 'development'
+      current_etag << Time.now  # adding time as parameter to disable etags in development mode
+    end
+    if stale?(etag: current_etag)
       respond_to do |format|
         format.html # index.html.erb
         format.json # index.json.jbuilder
@@ -190,7 +203,7 @@ class WordsController < ApplicationController
   def current_filters_and_orders
     filters_and_orders = Hash.new
     # existing filters or orders
-    [:flag_id, :sort_by, :filter_by, :search_text, :search_type, :search_negative].each do |elem|
+    [:flag_id, :sort_by, :filter_by, :search_text, :search_type, :search_negative, :record_limit].each do |elem|
       if params[elem]
         filters_and_orders[elem] = params[elem]
       end

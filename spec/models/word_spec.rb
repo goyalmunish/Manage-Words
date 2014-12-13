@@ -80,6 +80,65 @@ describe Word do
     end
   end
 
+  describe ".limit_records" do
+    before(:each) do
+      @u = create(:user)
+      @w1 = create(:word_without_user, user: @u, word: 'abc1')
+      @w2 = create(:word_without_user, user: @u, word: 'abc2')
+      @w3 = create(:word_without_user, user: @u, word: '1abc')
+      @w4 = create(:word_without_user, user: @u, word: '2abc')
+      @w5 = create(:word_without_user, user: @u, word: '1abc1')
+      @w6 = create(:word_without_user, user: @u, word: '2abc2')
+      @w7 = create(:word_without_user, user: @u, word: 'xyz1', trick: 'XabcX', additional_info: '')
+      @w8 = create(:word_without_user, user: @u, word: 'xyz2', trick: 'XX XX', additional_info: 'XabcX')
+      @w9 = create(:word_without_user, user: @u, word: 'xyz3', trick: 'XX X', additional_info: 'X X X')
+      # ap User.all
+      # ap Word.all
+    end
+    context "common use cases irrespective of collection type" do
+      it "passes the collection as it is if record_limit is blank" do
+        collection = double(:collection)
+        expect(Word.limit_records(:collection => collection, :record_limit => nil)).to eq(collection)
+      end
+    end
+    context "if passed collection is Array" do
+      it "returns first N number of records" do
+        collection = [@w1, @w2, @w3, @w4, @w5, @w6, @w7, @w8, @w9]
+        expect(Word.limit_records(:collection => collection, :record_limit => 0).count).to be 0
+        expect(Word.limit_records(:collection => collection, :record_limit => 3).count).to be 3
+        expect(Word.limit_records(:collection => collection, :record_limit => 9).count).to be 9
+      end
+      it "automatically converts 'record_limit' to integer" do
+        collection = [@w1, @w2, @w3, @w4, @w5, @w6, @w7, @w8, @w9]
+        expect(Word.limit_records(:collection => collection, :record_limit => '3').count).to be 3
+      end
+    end
+    context "if passed collection is ActiveRecord Word class" do
+      it "returns first N number of records" do
+        collection = Word
+        expect(Word.limit_records(:collection => collection, :record_limit => 0).count).to be 0
+        expect(Word.limit_records(:collection => collection, :record_limit => 3).count).to be 3
+        expect(Word.limit_records(:collection => collection, :record_limit => 9).count).to be 9
+      end
+      it "automatically converts 'record_limit' to integer" do
+        collection = Word
+        expect(Word.limit_records(:collection => collection, :record_limit => '3').count).to be 3
+      end
+    end
+    context "if passed collection is ActiveRelation of words" do
+      it "returns first N number of records" do
+        collection = @u.words
+        expect(Word.limit_records(:collection => collection, :record_limit => 0).count).to be 0
+        expect(Word.limit_records(:collection => collection, :record_limit => 3).count).to be 3
+        expect(Word.limit_records(:collection => collection, :record_limit => 9).count).to be 9
+      end
+      it "automatically converts 'record_limit' to integer" do
+        collection = @u.words
+        expect(Word.limit_records(:collection => collection, :record_limit => '3').count).to be 3
+      end
+    end
+  end
+
   describe ".number_of_flag_associations" do
     before(:each) do
       @u = create(:user)

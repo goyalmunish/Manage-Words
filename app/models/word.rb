@@ -122,7 +122,6 @@ class Word < ActiveRecord::Base
     end
   end
 
-  # TODO: this method is not yet automated tested 
   def self.limit_records(args)
     # getting arguments
     record_limit = args[:record_limit]

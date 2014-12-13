@@ -79,6 +79,9 @@ class WordsController < ApplicationController
     if ENV['RAILS_ENV'] == 'development'
       current_etag << Time.now  # adding time as parameter to disable etags in development mode
     end
+    if params[:sort_by] == 'random'
+      current_etag = Time.now # skipping caching in case of random sort
+    end
     if stale?(etag: current_etag)
       respond_to do |format|
         format.html # index.html.erb

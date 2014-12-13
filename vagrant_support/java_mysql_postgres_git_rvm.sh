@@ -175,7 +175,7 @@ echo "Creating 'vagrant' role for postgres, giving it superuser permissions, and
 sudo -u postgres createuser vagrant
 sudo su postgres
 psql -d template1 -c "ALTER USER vagrant with SUPERUSER;"
-echo "local   all   vagrant   trust" | sudo tee --append /etc/postgresql/*/main/postgresql.conf
+echo "local   all   vagrant   trust" | sudo tee --append /etc/postgresql/*/main/postgresql.conf	# TODO: this operation is not idempotent
 
 echo "<--- End of 'java_mysql_postgres_git_rvm' Script --->"
 

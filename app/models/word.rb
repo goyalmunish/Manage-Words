@@ -186,4 +186,3 @@ class Word < ActiveRecord::Base
     return flag_value
   end
 end
-

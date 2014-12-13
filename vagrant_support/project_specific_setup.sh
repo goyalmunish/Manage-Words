@@ -20,6 +20,16 @@ fi
 # checking installation details
 rvm list
 
+###### Installing Memcache Server ######
+echo "<--- Installing Memcached Server --->"
+if which memcached > /dev/null ; then
+    echo 'Memcached Server is already installed'
+else
+    sudo apt-get install build-essential
+    sudo apt-get install memcached
+fi
+which memcached 
 
+###### THE END ######
 echo "<--- End of 'project_specific_setup' Script --->"
 

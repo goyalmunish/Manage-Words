@@ -101,6 +101,7 @@ else
     . /etc/profile
     # setting password
     echo "listen_addresses = 'localhost'" | sudo tee --append /etc/postgresql/*/main/postgresql.conf    # TODO: Note: use of 'tee' command
+    echo "# local   all   vagrant   trust" | sudo tee --append /etc/postgresql/*/main/postgresql.conf    # permissions for vagrant user 
     sudo su postgres
     postgres_postgres_passwd_quoted="'$postgres_postgres_passwd'"
     psql -d template1 -c "ALTER USER postgres with encrypted password $postgres_postgres_passwd_quoted;" -a # TODO: Note: executing single command in postgres
@@ -175,7 +176,12 @@ echo "Creating 'vagrant' role for postgres, giving it superuser permissions, and
 sudo -u postgres createuser vagrant
 sudo su postgres
 psql -d template1 -c "ALTER USER vagrant with SUPERUSER;"
-echo "local   all   vagrant   trust" | sudo tee --append /etc/postgresql/*/main/postgresql.conf	# TODO: this operation is not idempotent
+exit
+# Note that following operation is not idempotent 
+# echo "local   all   vagrant   trust" | sudo tee --append /etc/postgresql/*/main/postgresql.conf    # permissions for vagrant user 
 
+
+###### THE END ######
 echo "<--- End of 'java_mysql_postgres_git_rvm' Script --->"
+
 

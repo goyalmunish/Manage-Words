@@ -30,6 +30,10 @@ else
 fi
 which memcached 
 
+###### Installing R Base ######
+echo "<--- Installing R Base MANUALLY --->"
+# sudo apt-get install r-base
+
 ###### THE END ######
 echo "<--- End of 'project_specific_setup' Script --->"
 

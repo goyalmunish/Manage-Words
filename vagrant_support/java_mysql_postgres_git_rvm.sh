@@ -184,4 +184,3 @@ exit
 ###### THE END ######
 echo "<--- End of 'java_mysql_postgres_git_rvm' Script --->"
 
-

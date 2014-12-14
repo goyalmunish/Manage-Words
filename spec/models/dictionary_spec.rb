@@ -16,12 +16,12 @@ describe Dictionary do
     it "works with 1 word phrase" do
       dictionary = create(:dictionary, :url => 'url', :separator => '-', :suffix => 'suffix')
       phrase = 'word'
-      expect(dictionary.url_for_phrase(phrase)).to eq("urlword suffix")
+      expect(dictionary.url_for_phrase(phrase)).to eq("urlwordsuffix")
     end
     it "works with 2 word phrase" do
       dictionary = create(:dictionary, :url => 'url', :separator => '-', :suffix => 'suffix')
       phrase = 'my word'
-      expect(dictionary.url_for_phrase(phrase)).to eq("urlmy-word suffix")
+      expect(dictionary.url_for_phrase(phrase)).to eq("urlmy-wordsuffix")
     end
   end
   describe "#humanized_name" do

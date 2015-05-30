@@ -33,5 +33,7 @@
 # Ignoring all .DS_Store (Mac) directories
 **/.DS_Store
 
+# Ignoring all .swp files
+**/*.swp
 
 

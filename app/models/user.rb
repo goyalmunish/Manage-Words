@@ -1,6 +1,7 @@
 require 'common_model'
 class User < ActiveRecord::Base
   include CommonModel # custom library placed in lib directory, containing methods common to all models
+  acts_as_token_authenticatable
 
   # include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

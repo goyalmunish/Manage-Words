@@ -60,6 +60,7 @@ end
 
 # Authentication related gems
 gem 'devise'
+gem 'simple_token_authentication'
 
 # Style related gems
 gem 'twitter-bootstrap-rails', '~> 2.2.8' # TODO: when updated to version > 3, UI started behaving weird 

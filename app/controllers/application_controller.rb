@@ -1,10 +1,15 @@
 class ApplicationController < ActionController::Base
-  # I want to run below code only in case of production
+  # Handling unhandled exceptions 
   if %w(production).include? Rails.env
     rescue_from Exception do |ex|
-      # displaying error
-      flash[:alert] = 'Error: ' + ex.message
-      redirect_to display_error_path
+      respond_to do |format|
+        format.json {render :json => {:error => ex.message}}
+        format.html do
+          # displaying error
+          flash[:alert] = "Error: #{ex.message}"
+          redirect_to display_error_path
+        end
+      end
     end
   end
 
@@ -23,5 +28,4 @@ class ApplicationController < ActionController::Base
       raise 'RequireAdminPrivileges'
     end
   end
-
 end

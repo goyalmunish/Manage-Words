@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   # handling any left unhandled exception
-  protect_from_forgery with: :exception
-  # protect_from_forgery with: :null_session
+  # protect_from_forgery with: :exception # default behavior
+  protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format == 'application/json' }
 
   acts_as_token_authentication_handler_for User
   before_filter :authenticate_user!

@@ -17,9 +17,24 @@ describe User do
   end
 
   describe "#to_s" do
-    it "returns email of the user " do
+    it "returns email of the user" do
       user = create(:user, :email => 'user@user.com')
       expect(user.to_s).to eq('user@user.com')
+    end
+  end
+
+  describe ".get_authentication_token" do
+    it "returns authentication_token on successful authentication" do
+      user = create(:user, :email => 'user@user.com', :password => 'some_password', :password_confirmation => 'some_password')
+      expect(User.get_authentication_token('user@user.com', 'some_password')).to eq(user.authentication_token)
+    end
+    it "returns false if user not found" do
+      user = create(:user, :email => 'user@user.com', :password => 'some_password', :password_confirmation => 'some_password')
+      expect(User.get_authentication_token('nonexistinguser@user.com', 'some_password')).to eq(false)
+    end
+    it "returns false if authentication fails" do
+      user = create(:user, :email => 'user@user.com', :password => 'some_password', :password_confirmation => 'some_password')
+      expect(User.get_authentication_token('user@user.com', 'wrong_password')).to eq(false)
     end
   end
 

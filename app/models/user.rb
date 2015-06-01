@@ -31,6 +31,15 @@ class User < ActiveRecord::Base
     self.email
   end
 
+  def self.get_authentication_token(email, password)
+    user = User.where(:email => email.strip).first
+    if user && user.valid_password?(password)
+      user.authentication_token
+    else
+      false
+    end
+  end
+
   # SCOPES
   default_scope -> { order(:id => :asc) }
 

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   # Handling unhandled exceptions 
-  if %w(production).include? Rails.env
+  if %w(production development test).include? Rails.env
     rescue_from Exception do |ex|
       respond_to do |format|
         format.json {render :json => {:error => ex.message}}

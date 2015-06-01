@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :dictionaries
 
   # user routes
-  devise_for :users
+  devise_for :users, :controllers => {sessions: 'sessions', registrations: 'registrations'}
   resources :users do
     member do
       get 'edit_your_dictionaries'

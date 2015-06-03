@@ -96,6 +96,7 @@ GEM
     puma (2.11.3)
       rack (>= 1.1, < 2.0)
     rack (1.5.3)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.1.1)
@@ -226,6 +227,7 @@ DEPENDENCIES
   libv8 (= 3.16.14.3)
   pg
   puma
+  rack-cors
   rails (= 4.1.1)
   rails_12factor
   rinruby

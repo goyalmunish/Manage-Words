@@ -28,6 +28,7 @@
 
 # Ignore Vagrant related file/directories
 /.vagrant
+/.vagrant_*
 /vagrant_support/external_resources
 
 # Ignoring all .DS_Store (Mac) directories

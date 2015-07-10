@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-
+echo "<--- Start of 'root_java_mysql_postgres_git_memcached_R' Script --->"
 ###### Initial check ######
 if [ "$EUID" -ne "0" ] ; then
         echo "Script must be run as root." >&2
@@ -12,18 +12,22 @@ echo 'this script works on Ubuntu 14.04 - 64 bit'
 
 ###### Setting up Variables ######
 echo "<--- Setting up Variables --->"
+echo User: $USER
 # Java
 java_file=jdk-6u37-linux-x64
 java_dir=jdk1.6.0_37
 java_resource=/vagrant/vagrant_support/external_resources
 # Mysql
 mysql_root_passwd=root
+export mysql_root_passwd  # making the variable available to subshells
 # Postgres
-postgres_postgres_passwd=postgres
+postgres_postgres_passwd=postgres  # TODO: it is duplicated in the below script, to correct it
+export postgres_postgres_passwd # making the variable available to subshells
 
 
 ###### Installing Oracle Java 6 ######
 echo "<--- Installing Oracle Java 6 --->"
+echo User: $USER
 if which java > /dev/null ; then
     echo 'Java is already installed'
 else
@@ -59,8 +63,51 @@ javac -version
 javaws -version | grep 'Web Start'
 
 
+###### Installing GIT ######
+echo "<--- Installing GIT --->"
+echo User: $USER
+if which git > /dev/null ; then
+    echo 'GIT is already installed'
+else
+    # install GIV and RVM dependencies
+    sudo apt-get -y install libcurl4-gnutls-dev libexpat1-dev gettext zlib1g-dev libssl-dev libreadline-dev libssl-dev libxml2-dev
+    # install non-latest GIT
+    sudo apt-get -y install git-core
+    # install latest GIT
+    git clone http://github.com/git/git.git ~/git_cloned
+    cd ~/git_cloned
+    make prefix=/usr/local all
+    sudo make prefix=/usr/local install
+    # check installed GIT version
+    . ~/.profile
+    . ~/.bashrc
+fi
+# checking installation details
+which git
+git --version
+
+
+###### Installing Memcache Server ######
+echo "<--- Installing Memcached Server --->"
+echo User: $USER
+if which memcached > /dev/null ; then
+    echo 'Memcached Server is already installed'
+else
+    sudo apt-get install build-essential
+    sudo apt-get install memcached
+fi
+which memcached 
+
+
+###### Installing R Base ######
+echo "<--- Installing R Base MANUALLY --->"
+echo User: $USER
+# sudo apt-get install r-base
+
+
 ###### Installing MySQL Server and MySQL Workbench ######
 echo "<--- Installing MySQL --->"
+echo User: $USER
 if which mysql > /dev/null ; then
     echo 'Mysql is already installed'
 else
@@ -86,6 +133,7 @@ mysql -V
 
 ###### Installing PostgreSQL Server and pgAdminIII ######
 echo "<--- Installing Postgres --->"
+echo User: $USER
 if which psql > /dev/null ; then
     echo 'Postgres is already installed'
 else
@@ -102,10 +150,11 @@ else
     # setting password
     echo "listen_addresses = 'localhost'" | sudo tee --append /etc/postgresql/*/main/postgresql.conf    # TODO: Note: use of 'tee' command
     echo "# local   all   vagrant   trust" | sudo tee --append /etc/postgresql/*/main/postgresql.conf    # permissions for vagrant user 
-    sudo su postgres
-    postgres_postgres_passwd_quoted="'$postgres_postgres_passwd'"
-    psql -d template1 -c "ALTER USER postgres with encrypted password $postgres_postgres_passwd_quoted;" -a # TODO: Note: executing single command in postgres
-    exit
+    sudo su - postgres <<EOF
+      postgres_postgres_passwd_quoted="'$postgres_postgres_passwd'"
+      psql -d template1 -c "ALTER USER postgres with encrypted password $postgres_postgres_passwd_quoted;" -a # TODO: Note: executing single command in postgres
+EOF
+    # exit
     sudo /etc/init.d/postgresql restart
 fi
 # checking installation details
@@ -113,74 +162,18 @@ which psql
 psql -V
 
 
-###### Installing GIT ######
-echo "<--- Installing GIT --->"
-if which git > /dev/null ; then
-    echo 'GIT is already installed'
-else
-    # install GIV and RVM dependencies
-    sudo apt-get -y install libcurl4-gnutls-dev libexpat1-dev gettext zlib1g-dev libssl-dev libreadline-dev libssl-dev libxml2-dev
-    # install non-latest GIT
-    sudo apt-get -y install git-core
-    # install latest GIT
-    git clone http://github.com/git/git.git ~/git_cloned
-    cd ~/git_cloned
-    make prefix=/usr/local all
-    sudo make prefix=/usr/local install
-    # check installed GIT version
-    . ~/.profile
-    . ~/.bashrc
-fi
-# checking installation details
-which git
-git --version
-
-
-###### Installing RVM ######
-echo "<--- Installing RVM --->"
-if which rvm > /dev/null ; then
-    echo 'RVM is already installed'
-else
-    # install RVM stable
-    \curl -sSL https://get.rvm.io | bash -s stable
-    # adding a line to ~/.bashrc to load RVM everytime you open the terminal
-    echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"' >> ~/.bashrc
-    # reloading bash
-    exec bash   # TODO: Note: it reloads bashrc
-fi
-# checking installation details
-which rvm
-rvm --version
-
-###### Installing Ruby ######
-echo "<--- Installing Rubies (if desired) --->"
-# checking all installed rubies
-rvm list
-# installing ruby 1.9.3
-if [[ `rvm list` == *'ruby-1.9.3'* ]] ; then
-  echo "ruby-1.9.3 is already installed"
-else
-  # uncomment the following line if ruby 1.9.3 is required
-  # rvm install 1.9.3 --with-openssl-dir=$rvm_path/usr
-  echo 'installation of Ruby 1.9.3 skipped'
-fi
-# checking installation details
-rvm list
-
-
-###### Some Other Settings ######
-echo "Adding 'vagrant' user to 'rvm' group"
-sudo usermod -a -G rvm vagrant
-
+###### Some Settings ######
 echo "Creating 'vagrant' role for postgres, giving it superuser permissions, and trusting vagrant"
-sudo -u postgres createuser vagrant
-sudo su postgres
-psql -d template1 -c "ALTER USER vagrant with SUPERUSER;"
-exit
+echo User: $USER
+sudo -u postgres createuser vagrant --no-superuser --no-createdb --no-createrole
+sudo su - postgres <<EOF
+  psql -d template1 -c "ALTER USER vagrant with SUPERUSER;" -a
+EOF
+# exit
 # Note that following operation is not idempotent 
 # echo "local   all   vagrant   trust" | sudo tee --append /etc/postgresql/*/main/postgresql.conf    # permissions for vagrant user 
 
 
 ###### THE END ######
-echo "<--- End of 'java_mysql_postgres_git_rvm' Script --->"
+echo "<--- End of 'root_java_mysql_postgres_git_memcached_R' Script --->"
 

@@ -23,6 +23,25 @@ export mysql_root_passwd  # making the variable available to subshells
 # Postgres
 postgres_postgres_passwd=postgres  # TODO: it is duplicated in the below script, to correct it
 export postgres_postgres_passwd # making the variable available to subshells
+# Setting locale (required for PG)
+sudo cat - > /etc/default/locale <<EOF
+ LANG=en_US.UTF-8
+ LANGUAGE=en_US.UTF-8
+ LC_CTYPE=en_US.UTF-8
+ LC_NUMERIC=en_US.UTF-8
+ LC_TIME=en_US.UTF-8
+ LC_COLLATE=en_US.UTF-8
+ LC_MONETARY=en_US.UTF-8
+ LC_MESSAGES=en_US.UTF-8
+ LC_PAPER=en_US.UTF-8
+ LC_NAME=en_US.UTF-8
+ LC_ADDRESS=en_US.UTF-8
+ LC_TELEPHONE=en_US.UTF-8
+ LC_MEASUREMENT=en_US.UTF-8
+ LC_IDENTIFICATION=en_US.UTF-8
+ LC_ALL=en_US.UTF-8
+EOF
+locale  # printing the locale
 
 
 ###### Installing Oracle Java 6 ######
@@ -150,11 +169,19 @@ else
     # setting password
     echo "listen_addresses = 'localhost'" | sudo tee --append /etc/postgresql/*/main/postgresql.conf    # TODO: Note: use of 'tee' command
     echo "# local   all   vagrant   trust" | sudo tee --append /etc/postgresql/*/main/postgresql.conf    # permissions for vagrant user 
+    # Note: Still the BELOW COMMAND is not running successfully and had to run it manually
     sudo su - postgres <<EOF
       postgres_postgres_passwd_quoted="'$postgres_postgres_passwd'"
       psql -d template1 -c "ALTER USER postgres with encrypted password $postgres_postgres_passwd_quoted;" -a # TODO: Note: executing single command in postgres
 EOF
-    # exit
+    # following is required for Ubuntu 14.04 (trusty)
+    sudo su - postgres <<EOF
+      psql -c "update pg_database set datistemplate=false where datname='template1';" -a
+      psql -c "drop database Template1;" -a
+      psql -c "create database template1 with owner=postgres encoding='UTF-8' lc_collate='en_US.utf8' lc_ctype='en_US.utf8' template template0;" -a
+      psql -c "update pg_database set datistemplate=true where datname='template1';" -a
+EOF
+    # now restarting the postgres
     sudo /etc/init.d/postgresql restart
 fi
 # checking installation details
@@ -169,7 +196,6 @@ sudo -u postgres createuser vagrant --no-superuser --no-createdb --no-createrole
 sudo su - postgres <<EOF
   psql -d template1 -c "ALTER USER vagrant with SUPERUSER;" -a
 EOF
-# exit
 # Note that following operation is not idempotent 
 # echo "local   all   vagrant   trust" | sudo tee --append /etc/postgresql/*/main/postgresql.conf    # permissions for vagrant user 
 

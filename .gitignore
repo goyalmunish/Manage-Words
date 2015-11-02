@@ -30,6 +30,7 @@
 /.vagrant
 /.vagrant_*
 /vagrant_support/external_resources
+**/*.box
 
 # Ignoring all .DS_Store (Mac) directories
 **/.DS_Store
@@ -37,4 +38,6 @@
 # Ignoring all .swp files
 **/*.swp
 
+# Ignoring tags file (CTAGS)
+/tags
 

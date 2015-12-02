@@ -63,6 +63,9 @@ gem 'devise'
 gem 'simple_token_authentication'
 gem 'rack-cors', :require => 'rack/cors'
 
+# HTTP, REST client
+gem 'rest-client'
+
 # Style related gems
 gem 'twitter-bootstrap-rails', '~> 2.2.8' # TODO: when updated to version > 3, UI started behaving weird 
 

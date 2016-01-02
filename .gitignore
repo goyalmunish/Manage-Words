@@ -41,3 +41,5 @@
 # Ignoring tags file (CTAGS)
 /tags
 
+# Ignore public/generated_data/
+/public/generated_data/

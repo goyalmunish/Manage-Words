@@ -122,6 +122,8 @@ which memcached
 echo "<--- Installing R Base MANUALLY --->"
 echo User: $USER
 # sudo apt-get install r-base
+# R
+# > install.packages("ggplot2")
 
 
 ###### Installing MySQL Server and MySQL Workbench ######
@@ -168,7 +170,7 @@ else
     . /etc/profile
     # setting password
     echo "listen_addresses = 'localhost'" | sudo tee --append /etc/postgresql/*/main/postgresql.conf    # TODO: Note: use of 'tee' command
-    echo "# local   all   vagrant   trust" | sudo tee --append /etc/postgresql/*/main/postgresql.conf    # permissions for vagrant user 
+    echo "# local   all   vagrant   trust" | sudo tee --append /etc/postgresql/*/main/pb_hba.conf    # permissions for vagrant user 
     # Note: Still the BELOW COMMAND is not running successfully and had to run it manually
     sudo su - postgres <<EOF
       postgres_postgres_passwd_quoted="'$postgres_postgres_passwd'"
@@ -181,6 +183,8 @@ EOF
       psql -c "create database template1 with owner=postgres encoding='UTF-8' lc_collate='en_US.utf8' lc_ctype='en_US.utf8' template template0;" -a
       psql -c "update pg_database set datistemplate=true where datname='template1';" -a
 EOF
+    # TODO: This is also requred in case of Ubuntu 14.04
+    # sudo -u postgres createuser mgoyal -s
     # now restarting the postgres
     sudo /etc/init.d/postgresql restart
 fi

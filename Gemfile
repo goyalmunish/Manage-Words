@@ -36,9 +36,6 @@ gem 'spring', group: :development
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
 # Test related gems
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
@@ -69,8 +66,12 @@ gem 'rest-client'
 # Style related gems
 gem 'twitter-bootstrap-rails', '~> 2.2.8' # TODO: when updated to version > 3, UI started behaving weird 
 
-# Console related
+# Console and Debugging related gems
 gem 'awesome_print'
+gem 'byebug', group: [:development, :test]
+gem 'pry-rails'
+gem 'pry-doc', group: [:development, :test]
+gem 'pry-byebug', group: [:development, :test]
 
 # Server related and Application Start related gems
 gem 'puma'
@@ -83,3 +84,4 @@ end
 
 gem 'dalli'
 gem 'connection_pool'
+

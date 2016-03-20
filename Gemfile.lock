@@ -74,7 +74,12 @@ GEM
     factory_girl_rails (4.6.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    fast_stack (0.1.0)
+      rake
+      rake-compiler
     ffi (1.9.10)
+    flamegraph (0.1.0)
+      fast_stack
     foreman (0.78.0)
       thor (~> 0.19.1)
     hike (1.2.3)
@@ -96,6 +101,7 @@ GEM
     mime-types (1.25.1)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
+    msgpack (0.7.4)
     multi_json (1.11.2)
     netrc (0.11.0)
     nokogiri (1.6.7.2)
@@ -118,6 +124,8 @@ GEM
     puma (3.1.1)
     rack (1.5.5)
     rack-cors (0.4.0)
+    rack-mini-profiler (0.9.9.2)
+      rack (>= 1.2.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.1.1)
@@ -141,6 +149,12 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (11.1.1)
+    rake-compiler (0.9.7)
+      rake
+    rbtrace (0.4.8)
+      ffi (>= 1.0.6)
+      msgpack (>= 0.4.3)
+      trollop (>= 1.16.2)
     rdoc (4.2.2)
       json (~> 1.4)
     ref (2.0.0)
@@ -216,6 +230,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    trollop (2.1.2)
     turbolinks (2.5.3)
       coffee-rails
     twitter-bootstrap-rails (2.2.8)
@@ -251,6 +266,7 @@ DEPENDENCIES
   database_cleaner
   devise
   factory_girl_rails
+  flamegraph
   foreman
   jbuilder (~> 2.0)
   jquery-rails
@@ -261,8 +277,10 @@ DEPENDENCIES
   pry-rails
   puma
   rack-cors
+  rack-mini-profiler
   rails (= 4.1.1)
   rails_12factor
+  rbtrace
   rest-client
   rinruby
   rspec-activemodel-mocks

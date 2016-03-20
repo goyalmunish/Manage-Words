@@ -73,6 +73,11 @@ gem 'pry-rails'
 gem 'pry-doc', group: [:development, :test]
 gem 'pry-byebug', group: [:development, :test]
 
+# Performance, profiling, and benchmarking
+gem 'rbtrace'
+gem 'rack-mini-profiler'
+gem 'flamegraph'
+
 # Server related and Application Start related gems
 gem 'puma'
 gem 'foreman'

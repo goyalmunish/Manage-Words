@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  mount_ember_app :frontend, to: "/frontend"  # mounting ember app
+
   resources :dictionaries
 
   # user routes

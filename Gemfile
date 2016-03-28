@@ -90,3 +90,5 @@ end
 gem 'dalli'
 gem 'connection_pool'
 gem 'ember-cli-rails'
+
+gem "rails_12factor", group: [:staging, :production]

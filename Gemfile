@@ -89,4 +89,4 @@ end
 
 gem 'dalli'
 gem 'connection_pool'
-
+gem 'ember-cli-rails'

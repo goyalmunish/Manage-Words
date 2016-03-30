@@ -6,6 +6,11 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('user');
+  this.route('words');
+  this.route('dictionaries');
+  this.route('flags');
+  this.route('backup');
 });
 
 export default Router;

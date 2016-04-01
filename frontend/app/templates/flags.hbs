@@ -1,1 +1,12 @@
+<h2>Listing Flags:</h2>
+<table>
+  {{#each model as |flag|}}
+    <tr>
+      <td>{{flag.id}}</td>
+      <td>{{flag.name}} - {{flag.value}}</td>
+      <td>{{flag.createdAt}}</td>
+      <td>{{flag.updatedAt}}</td>
+    </tr>
+  {{/each}}
+</table>
 {{outlet}}

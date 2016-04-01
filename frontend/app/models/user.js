@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -10,6 +11,6 @@ export default DS.Model.extend({
   dictionaries:   DS.hasMany('dictionary'),
 
   fullName: Ember.computed('firstName', 'lastName', function() {
-    return `${this.get('firstName') this.get('lastName')}`;
+    return `${this.get('firstName')} ${this.get('lastName')}`;
   })
 });

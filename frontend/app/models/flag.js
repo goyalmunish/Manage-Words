@@ -6,5 +6,5 @@ export default DS.Model.extend({
   desc:           DS.attr('string'),
   createdAt:      DS.attr('date'),
   updatedAt:      DS.attr('date'),
-  words:          DS.hasMany('word')
+  // words:          DS.hasMany('word')
 });

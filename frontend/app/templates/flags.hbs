@@ -1,11 +1,17 @@
 <h2>Listing Flags:</h2>
 <table>
+  <tr>
+    <th>Id</th>
+    <th>Flag</th>
+  </tr>
   {{#each model as |flag|}}
     <tr>
       <td>{{flag.id}}</td>
-      <td>{{flag.name}} - {{flag.value}}</td>
-      <td>{{flag.createdAt}}</td>
-      <td>{{flag.updatedAt}}</td>
+      <td>
+        {{#link-to 'flags.flag' flag}}
+          {{flag.name}}-{{flag.value}}
+        {{/link-to}}
+      </td>
     </tr>
   {{/each}}
 </table>

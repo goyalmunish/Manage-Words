@@ -9,7 +9,9 @@ Router.map(function() {
   this.route('user');
   this.route('words');
   this.route('dictionaries');
-  this.route('flags');
+  this.route('flags', function() {
+    this.route('flag', { path: '/:flag_id' });
+  });
   this.route('backup');
 });
 

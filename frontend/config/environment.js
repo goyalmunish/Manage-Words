@@ -1,5 +1,7 @@
 /* jshint node: true */
 
+// import Configuration from 'ember-simple-auth/configuration';
+
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'frontend',
@@ -17,6 +19,21 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     }
+  };
+
+  ENV['ember-simple-auth'] = {
+    authenticationRoute: 'login',          // default value
+    routeAfterAuthentication: 'index',     // default value
+    routeIfAlreadyAuthenticated: 'index',  // default value
+  };
+  ENV['ember-simple-auth-token'] = {
+    // serverTokenEndpoint: '/api/token-auth/',
+    // identificationField: 'username',
+    // passwordField: 'password',
+    // tokenPropertyName: 'token',
+    // authorizationPrefix: 'Bearer ',
+    // authorizationHeaderName: 'Authorization',
+    // headers: {},
   };
 
   if (environment === 'development') {

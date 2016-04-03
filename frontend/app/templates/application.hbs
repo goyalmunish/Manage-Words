@@ -1,3 +1,15 @@
-<h2 id="title">Welcome to Ember</h2>
+<h1>WordList Client</h1>
 
-{{outlet}}
+<div class="menu">
+  {{#if session.isAuthenticated}}
+    {{#link-to 'flags'}}Flags{{/link-to}}
+    <button {{action 'invalidateSession'}}>Logout</button>
+  {{else}}
+    {{#link-to 'login'}}Login{{/link-to}}
+  {{/if}}
+</div>
+
+<div class="main">
+  {{outlet}}
+</div>
+

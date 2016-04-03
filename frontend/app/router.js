@@ -13,6 +13,7 @@ Router.map(function() {
     this.route('flag', { path: '/:flag_id' });
   });
   this.route('backup');
+  this.route('login');
 });
 
 export default Router;

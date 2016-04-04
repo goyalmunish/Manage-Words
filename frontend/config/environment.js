@@ -22,18 +22,20 @@ module.exports = function(environment) {
   };
 
   ENV['ember-simple-auth'] = {
-    authenticationRoute: 'login',          // default value
-    routeAfterAuthentication: 'index',     // default value
-    routeIfAlreadyAuthenticated: 'index',  // default value
+    authorizer: 'authorizer-token',
+    authenticationRoute: 'login',               // default value
+    routeAfterAuthentication: 'index',          // default value
+    routeIfAlreadyAuthenticated: 'index',       // default value
   };
+
   ENV['ember-simple-auth-token'] = {
-    // serverTokenEndpoint: '/api/token-auth/',
-    // identificationField: 'username',
-    // passwordField: 'password',
-    // tokenPropertyName: 'token',
-    // authorizationPrefix: 'Bearer ',
-    // authorizationHeaderName: 'Authorization',
-    // headers: {},
+    serverTokenEndpoint: '/api/token-auth/',     // default value
+    identificationField: 'user_email',
+    passwordField: 'user_password',
+    tokenPropertyName: 'user_token',
+    authorizationPrefix: 'Bearer ',              // default value
+    authorizationHeaderName: 'Authorization',    // default value
+    headers: {},
   };
 
   if (environment === 'development') {

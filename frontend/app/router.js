@@ -6,7 +6,9 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('user');
+  this.route('users', function() {
+    this.route('user', { path: '/:user_id' });
+  });
   this.route('words');
   this.route('dictionaries');
   this.route('flags', function() {

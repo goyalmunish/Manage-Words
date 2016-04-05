@@ -1,0 +1,20 @@
+<h2>Listing Users:</h2>
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Email</th>
+  </tr>
+  {{#each model as |user|}}
+    <tr>
+      <td>{{user.id}}</td>
+      <td>{{user.fullName}}</td>
+      <td>
+        {{#link-to 'users.user' user}}
+          {{user.email}}
+        {{/link-to}}
+      </td>
+    </tr>
+  {{/each}}
+</table>
+{{outlet}}

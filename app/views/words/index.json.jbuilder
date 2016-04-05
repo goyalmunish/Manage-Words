@@ -1,4 +1,10 @@
-json.array!(@words) do |word|
-  json.extract! word, :word, :trick, :additional_info
-  json.flags word.flags.map { |flag| {:name => flag.name, :value => flag.value} }
+json.data do
+  json.array!(@words) do |word|
+    json.type "words"
+    json.id word.id
+    json.attributes do
+      json.extract! word, :word, :trick, :additional_info, :created_at, :updated_at
+      json.url flag_url(word, format: :json)
+    end
+  end
 end

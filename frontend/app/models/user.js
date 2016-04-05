@@ -13,11 +13,11 @@ export default DS.Model.extend({
   authenticationToken:  DS.attr('string'),
   createdAt:            DS.attr('date'),
   updatedAt:            DS.attr('date'),
-  // relations
-  // words:                DS.hasMany('word'),
-  // dictionaries:         DS.hasMany('dictionary'),
   // computed properties
   fullName: Ember.computed('firstName', 'lastName', function() {
     return `${this.get('firstName')} ${this.get('lastName')}`;
-  })
+  }),
+  // relations
+  // words:                DS.hasMany('word'),
+  // dictionaries:         DS.hasMany('dictionary'),
 });

@@ -9,8 +9,12 @@ Router.map(function() {
   this.route('users', function() {
     this.route('user', { path: '/:user_id' });
   });
-  this.route('words');
-  this.route('dictionaries');
+  this.route('words', function() {
+    this.route('word', { path: '/:word_id' });
+  });
+  this.route('dictionaries', function() {
+    this.route('dictionary', { path: '/:dictionary_id' });
+  });
   this.route('flags', function() {
     this.route('flag', { path: '/:flag_id' });
   });

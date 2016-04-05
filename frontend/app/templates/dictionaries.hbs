@@ -1,1 +1,20 @@
+<h2>Listing Dictionaries:</h2>
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Url</th>
+  </tr>
+  {{#each model as |dictionary|}}
+    <tr>
+      <td>{{dictionary.id}}</td>
+      <td>
+        {{#link-to 'dictionaries.dictionary' dictionary}}
+          {{dictionary.name}}
+        {{/link-to}}
+      </td>
+      <td>{{dictionary.url}}</td>
+    </tr>
+  {{/each}}
+</table>
 {{outlet}}

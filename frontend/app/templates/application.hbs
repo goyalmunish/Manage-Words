@@ -1,4 +1,10 @@
 <h1>WordList Client</h1>
+<div class="menu">
+  {{#link-to 'users'}}Users{{/link-to}}
+  {{#link-to 'flags'}}Flags{{/link-to}}
+  {{#link-to 'words'}}Words{{/link-to}}
+  {{#link-to 'dictionaries'}}Dictionaries{{/link-to}}
+</div>
 
 <div class="menu">
   {{#if session.isAuthenticated}}

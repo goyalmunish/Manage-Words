@@ -8,8 +8,8 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
-    // 'X-User-Email': 'munishapc@gmail.com',  // TODO: code smell
-    // 'X-User-Token': 'EDqxKSvfQKswPZYf1wW7'  // TODO: code smell
+    'X-User-Email': 'munishapc@gmail.com',  // TODO: code smell
+    'X-User-Token': 'EDqxKSvfQKswPZYf1wW7'  // TODO: code smell
   },
   authorizer: 'authorizer:application',
 });

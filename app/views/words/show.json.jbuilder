@@ -1,1 +1,5 @@
-json.extract! @word, :id, :word, :trick, :user_id, :additional_info, :created_at, :updated_at
+json.data do
+  record = @word
+  json.type record.class.base_class.to_s.downcase
+  json.partial! 'word', record: record
+end

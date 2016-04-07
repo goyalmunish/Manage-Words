@@ -1,1 +1,5 @@
-json.extract! @dictionary, :id, :name, :url, :separator, :suffix, :additional_info, :created_at, :updated_at
+json.data do
+  record = @dictionary
+  json.type record.class.base_class.to_s.downcase
+  json.partial! 'dictionary', record: record
+end

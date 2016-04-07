@@ -8,5 +8,5 @@ export default DS.Model.extend({
   createdAt:      DS.attr('date'),
   updatedAt:      DS.attr('date'),
   // associations
-  // words:          DS.hasMany('word'),
+  words:          DS.hasMany('word'),
 });

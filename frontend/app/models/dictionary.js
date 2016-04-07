@@ -10,5 +10,5 @@ export default DS.Model.extend({
   createdAt:      DS.attr('date'),
   updatedAt:      DS.attr('date'),
   // associations
-  // users:          DS.hasMany('user'),
+  users:          DS.hasMany('user'),
 });

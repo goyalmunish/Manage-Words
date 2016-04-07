@@ -8,6 +8,6 @@ export default DS.Model.extend({
   createdAt:      DS.attr('date'),
   updatedAt:      DS.attr('date'),
   // associations
-  // user:           DS.belongsTo('user'),
-  // flags:          DS.hasMany('flag')
+  user:           DS.belongsTo('user'),
+  flags:          DS.hasMany('flag')
 });

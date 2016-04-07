@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.includes(:words => :flags).all
+    @users = User.includes([{:words => :flags}, :dictionaries]).all
   end
 
   def words

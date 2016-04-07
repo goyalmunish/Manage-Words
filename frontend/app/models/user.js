@@ -18,6 +18,6 @@ export default DS.Model.extend({
     return `${this.get('firstName')} ${this.get('lastName')}`;
   }),
   // relations
-  // words:                DS.hasMany('word'),
-  // dictionaries:         DS.hasMany('dictionary'),
+  words:                DS.hasMany('word'),
+  dictionaries:         DS.hasMany('dictionary'),
 });

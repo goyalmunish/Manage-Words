@@ -18,6 +18,9 @@ Router.map(function() {
   this.route('flags', function() {
     this.route('flag', { path: '/:flag_id' });
   });
+  this.route('flag-words', { path: 'flag-words/:flag_id' }, function() {
+    this.route('word', { path: '/:word_id' });
+  });
   this.route('backup');
   this.route('login');
 });

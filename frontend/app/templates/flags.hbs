@@ -3,6 +3,7 @@
   <tr>
     <th>Id</th>
     <th>Flag</th>
+    <th>Words</th>
   </tr>
   {{#each model as |flag|}}
     <tr>
@@ -10,6 +11,11 @@
       <td>
         {{#link-to 'flags.flag' flag}}
           {{flag.name}}-{{flag.value}}
+        {{/link-to}}
+      </td>
+      <td>
+        {{#link-to 'flag-words' flag}}
+          <span>Words</span>
         {{/link-to}}
       </td>
     </tr>

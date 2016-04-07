@@ -1,0 +1,25 @@
+<h2>Listing Words:</h2>
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Word</th>
+    <th>Flags</th>
+    <th>Dictionaries</th>
+    <th>Trick</th>
+  </tr>
+  {{#each words as |word|}}
+    <tr>
+      <td>{{word.id}}</td>
+      <td>
+        {{#link-to word-link word}}
+          {{word.word}}
+        {{/link-to}}
+      </td>
+      <td>
+        {{component 'word-flags' word=word}}
+      </td>
+      <td></td>
+      <td>{{word.trick}}</td>
+    </tr>
+  {{/each}}
+</table>

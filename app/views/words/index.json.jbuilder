@@ -19,8 +19,3 @@ json.included do
     json.partial! 'flags/flags', records: record.flags
   end
 end
-=begin
-json.data do
-  json.partial! 'words', records: @words
-end
-=end

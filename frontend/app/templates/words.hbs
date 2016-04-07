@@ -3,6 +3,8 @@
   <tr>
     <th>Id</th>
     <th>Word</th>
+    <th>Flags</th>
+    <th>Dictionaries</th>
     <th>Trick</th>
   </tr>
   {{#each model as |word|}}
@@ -13,6 +15,10 @@
           {{word.word}}
         {{/link-to}}
       </td>
+      <td>
+        {{component 'word-flags' word=word}}
+      </td>
+      <td></td>
       <td>{{word.trick}}</td>
     </tr>
   {{/each}}

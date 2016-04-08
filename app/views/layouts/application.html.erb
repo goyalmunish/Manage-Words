@@ -51,6 +51,7 @@
       <div class="container-fluid nav-collapse">
         <ul class="nav">
           <% if user_signed_in? %>
+            <li> <%= link_to('Frontend', frontend_path, "data-no-turbolink" => true, :target => '_blank') %> </li>
               <li> <%= link_to('Words', words_path) %> </li>
               <li> <%= link_to('Flags', flags_path) %> </li>
               <% if current_user.type == 'Admin' %>

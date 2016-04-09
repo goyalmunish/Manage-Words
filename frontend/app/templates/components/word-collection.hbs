@@ -1,7 +1,10 @@
-<h2>Filters:</h2>
-{{input type='text' value=word_search}}
-{{input type='text' value=full_search}}
-<h2>Listing Words:</h2>
+<h2>Filters</h2>
+<div>
+  <span>{{input type='text' value=word_search placeholder="Word Search Pattern"}}</span>
+  <span>{{input type='text' value=full_search placeholder="Full Search Pattern"}}</span>
+</div>
+<h2>Listing Words</h2>
+<p><span>No. of words: </span><span>{{filteredWords.length}}</span></p>
 <table>
   <tr>
     <th>Id</th>

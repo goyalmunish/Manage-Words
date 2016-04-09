@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   word_search: null,
   full_search: null,
 
-  filteredWords: Ember.computed('word_search', 'model', function() {
+  filteredWords: Ember.computed('word_search', 'full_search', 'model', function() {
     var filtered_words = this.get('model');
     var word_search = this.get('word_search');
     var full_search = this.get('full_search');

@@ -2,5 +2,10 @@
 <p>Word: {{word.word}}</p>
 <p>Trick: {{word.trick}}</p>
 <p>Additional Info: {{word.additionalInfo}}</p>
-<p>Created at: {{word.createdAt}}</p>
-<p>Updated at: {{word.updatedAt}}</p>
+{{#if isCreatedUpdatedShowing}}
+  <p>Created at: {{word.createdAt}}</p>
+  <p>Updated at: {{word.updatedAt}}</p>
+  <button {{action "hideCreatedUpdated"}}>Hide Created/Updated Info</button>
+{{else}}
+  <button {{action "showCreatedUpdated"}}>Show Created/Updated Info</button>
+{{/if}}

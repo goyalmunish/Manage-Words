@@ -1,8 +1,7 @@
 import Ember from 'ember';
 
-// Properties used as arguments: words, word_search, full_search
-
 export default Ember.Component.extend({
+  // Properties used as arguments: words, word_search, full_search
   filteredWords: Ember.computed('word_search', 'full_search', function() {
     var filtered_words = this.get('words');
     var word_search = this.get('word_search');

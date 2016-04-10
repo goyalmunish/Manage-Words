@@ -1,10 +1,16 @@
 <h2>Filters</h2>
 <div>
-  Search Word: <span>{{input type='text' placeholder="Word Search Pattern"value=word_search }}</span>
-  Full Text Search: <span>{{input type='text' placeholder="Full Search Pattern" value=full_search}}</span>
+  Search Word: <span>{{input type='text' placeholder='Word Search Pattern' value=word_search key-up=(action 'calculateSuggestions')}}</span>
+  Full Text Search: <span>{{input type='text' placeholder='Full Search Pattern' value=full_search key-up=(action 'calculateSuggestions')}}</span>
+</div>
+<div>
+  Top 10 Suggestions:
+  {{#each suggestions as |word|}}
+    <span>{{word}}</span>
+  {{/each}}
 </div>
 <h2>Listing Words</h2>
-<p><span>No. of words: </span><span>{{filteredWords.length}}</span></p>
+<p><span>No. of words: </span><span>{{numberOfFilteredWords}}</span></p>
 <table>
   <tr>
     <th>Id</th>

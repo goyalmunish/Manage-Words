@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+// Properties used as arguments: words, word_search, full_search
+
 export default Ember.Component.extend({
   filteredWords: Ember.computed('word_search', 'full_search', function() {
     var filtered_words = this.get('words');
@@ -15,6 +17,8 @@ export default Ember.Component.extend({
         var result = re_word_search.test(item.get('word'));  // Note: Here we used item.get('word') and not item.word. The later one would work only in templates.
         return result;
       });
+    } else {
+      console.log("Word search for: <blank_value>");
     }
 
     if(full_search) {
@@ -25,6 +29,8 @@ export default Ember.Component.extend({
         var result = re_full_search.test(item.get('word')) || re_full_search.test(item.get('trick')) || re_full_search.test(item.get('additionalInfo'));
         return result;
       });
+    } else {
+      console.log("Full search for: <blank_value>");
     }
 
     return filtered_words;

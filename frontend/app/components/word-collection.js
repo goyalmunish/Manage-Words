@@ -5,13 +5,17 @@ export default Ember.Component.extend({
 
   // Other properties
   suggestions: null,
+  sort_by_possibilities: ['id', 'word', 'trick'],
+  sort_by: null,
 
   // Computed propreties
-  filteredWords: Ember.computed('word_search', 'full_search', function() {
+  filteredWords: Ember.computed('word_search', 'full_search', 'sort_by', function() {
     var filtered_words = this.get('words');
     var word_search = this.get('word_search');
     var full_search = this.get('full_search');
+    var sort_by = this.get('sort_by');
 
+    // word search
     if(word_search) {
       console.log("Word search for: " + word_search);
       var re_word_search = new RegExp(word_search);
@@ -25,6 +29,7 @@ export default Ember.Component.extend({
       console.log("Word search for: <blank_value>");
     }
 
+    // full search
     if(full_search) {
       console.log("Full search for: " + full_search);
       var re_full_search = new RegExp(full_search);
@@ -37,6 +42,14 @@ export default Ember.Component.extend({
       console.log("Full search for: <blank_value>");
     }
 
+    // sorting
+    if(sort_by && this.get('sort_by_possibilities').contains(sort_by)){
+      console.log("SortBy: " + sort_by);
+      filtered_words = filtered_words.sortBy(sort_by);
+    } else {
+      console.log("Tried to sort_by " + sort_by);
+    }
+
     return filtered_words;
   }),
 
@@ -47,6 +60,9 @@ export default Ember.Component.extend({
 
   // Actions
   actions: {
+    setSortBy(sort_by) {
+      this.set('sort_by', sort_by);
+    },
     // this functionality is implemented using actions for learning purpose, though
     // it could be easily done using computed property based on filteredWords
     calculateSuggestions() {

@@ -13,11 +13,11 @@
 <p><span>No. of words: </span><span>{{numberOfFilteredWords}}</span></p>
 <table>
   <tr>
-    <th>Id</th>
-    <th>Word</th>
+    <th {{action 'setSortBy' 'id'}}>Id</th>
+    <th {{action 'setSortBy' 'word'}}>Word</th>
     <th>Flags</th>
     <th>Dictionaries</th>
-    <th>Trick</th>
+    <th {{action 'setSortBy' 'trick'}}>Trick</th>
   </tr>
   {{#each filteredWords as |word|}}
     <tr>

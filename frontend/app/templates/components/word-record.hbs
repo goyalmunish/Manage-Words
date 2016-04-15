@@ -1,11 +1,18 @@
 <h2>Details</h2>
-<p>Word: {{word.word}}</p>
-<p>Trick: {{word.trick}}</p>
-<p>Additional Info: {{word.additionalInfo}}</p>
+<div>Word:</div>
+<div>{{input value=word.word disabled=readonly}}</div>
+<div>Trick:</div>
+<div>{{textarea cols="80" rows="1" value=word.trick disabled=readonly}}</div>
+<div>Additional Info:</div>
+<div>{{textarea cols="80" rows="10" value=word.additionalInfo disabled=readonly}}</div>
 {{#if isCreatedUpdatedShowing}}
-  <p>Created at: {{word.createdAt}}</p>
-  <p>Updated at: {{word.updatedAt}}</p>
-  <button {{action "hideCreatedUpdated"}}>Hide Created/Updated Info</button>
+  <div>Created at: {{word.createdAt}}</div>
+  <div>Updated at: {{word.updatedAt}}</div>
+  <div><button {{action "hideCreatedUpdated"}}>Hide Created/Updated Info</button></div>
 {{else}}
-  <button {{action "showCreatedUpdated"}}>Show Created/Updated Info</button>
+  <div><button {{action "showCreatedUpdated"}}>Show Created/Updated Info</button></div>
 {{/if}}
+<div><button {{action "toggleReadonly"}}>Ediable/Readonly</button></div>
+{{#unless readonly}}
+  <div><button {{action "save"}}>Save</button></div>
+{{/unless}}

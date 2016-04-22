@@ -44,13 +44,39 @@ EOF
 locale  # printing the locale
 
 
+###### Installing Oracle Java 8 ######
+echo "<--- Installing Oracle Java 8 --->"
+echo User: $USER
+if which java > /dev/null ; then
+    echo 'Java is already installed'
+else
+    # installing java
+    sudo apt-add-repository -y ppa:webupd8team/java
+    sudo apt-get -y update
+    echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+    echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
+    sudo apt-get install -y oracle-java8-installer
+    # additional setup
+    echo JAVA_HOME=/usr/lib/jvm/$java_dir >> ~/.bashrc
+    echo export 'PATH=$PATH:$JAVA_HOME' >> ~/.bashrc
+    # reloading profile
+    . /etc/profile
+fi
+# check installation details
+which java
+java -version
+javac -version
+javaws -version | grep 'Web Start'
+
+
+
 ###### Installing Oracle Java 6 ######
 echo "<--- Installing Oracle Java 6 --->"
 echo User: $USER
 if which java > /dev/null ; then
     echo 'Java is already installed'
 else
-    # installing java
+    # installing java 6, if installation of java 8 failed
     sudo mkdir -p /usr/lib/jvm
     cd $java_resource
     sudo cp $java_file.bin /usr/lib/jvm
@@ -121,7 +147,7 @@ which memcached
 ###### Installing R Base ######
 echo "<--- Installing R Base MANUALLY --->"
 echo User: $USER
-# sudo apt-get install r-base
+sudo apt-get install r-base
 # R
 # > install.packages("ggplot2")
 
@@ -191,6 +217,99 @@ fi
 # checking installation details
 which psql
 psql -V
+
+
+###### Installing Watchman ######
+echo "<--- Installing Watchman --->"
+echo User: $USER
+if which watchman > /dev/null ; then
+    echo 'Watchman is already installed'
+else
+    # installing Watchman
+    echo 'Refer: https://facebook.github.io/watchman/docs/install.html'
+    sudo apt-get -y install build-essential
+    sudo apt-get -y install python-dev
+    git clone https://github.com/facebook/watchman.git
+    cd watchman
+    git checkout v4.5.0
+    ./autogen.sh
+    ./configure
+    make
+    sudo make install
+fi
+# check installation details
+which watchman
+watchman --version
+
+
+###### Installing Node and NPM ######
+echo "<--- Installing Node and NPM --->"
+echo User: $USER
+if which node > /dev/null ; then
+    echo 'Node is already installed'
+else
+    # installing Node
+    echo 'Refer: https://github.com/nodesource/distributions/tree/master/deb'
+    sudo apt-get remove --purge nodejs npm
+    curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+fi
+# check installation details
+which node
+which npm
+node --version
+npm -version
+
+
+###### Installing EmberJS ######
+echo "<--- Installing EmberJS --->"
+echo User: $USER
+if which ember > /dev/null ; then
+    echo 'Ember is already installed'
+else
+    # installing EmberJS
+    sudo npm install -g ember-cli
+fi
+# check installation details
+which ember
+ember --version
+
+
+###### Installing Bower ######
+echo "<--- Installing Bower --->"
+echo User: $USER
+if which bower > /dev/null ; then
+    echo 'Bower is already installed'
+else
+    # installing Bower
+    sudo npm install -g bower
+fi
+# check installation details
+which bower
+bower --version
+
+
+###### Installing PhantomJS ######
+echo "<--- Installing PhantomJS --->"
+echo User: $USER
+if which phantomjs > /dev/null ; then
+    echo 'PhantomJS is already installed'
+else
+    # installing PhantomJS
+    sudo npm install -g phantomjs
+fi
+# check installation details
+which phantomjs
+phantomjs --version
+
+
+###### Installing Frontend Dependencies ######
+echo "<--- Installing Frontend Dependencies --->"
+echo User: $USER
+npm install
+cd /vagrant/frontend
+npm install
+bower install
 
 
 ###### Some Settings ######

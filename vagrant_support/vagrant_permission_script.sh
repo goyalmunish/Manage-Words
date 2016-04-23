@@ -1,22 +1,23 @@
 #!/usr/bin/env bash
 
-echo "<--- Start of 'vagrant_rvm_ruby' Script --->"
+echo "<--- Start of 'vagrant_permission_script' Script --->"
 
 ###### Installing RVM ######
 echo "<--- Installing RVM (under 'vagrant' user) --->"
 echo User: $USER
-if which rvm > /dev/null ; then
-    echo 'RVM is already installed'
+if (which rvm > /dev/null) || false ; then
+  echo 'Skipping RVM..'
 else
-    echo "Note: You would be required to manually accept the key be executing command similar to following:"
-    echo "gpg --keyserver hkp://keys.gnupg.net --recv-keys the-given-key"
-    # install RVM stable
-    sudo apt-get -y install curl
-    \curl -sSL https://get.rvm.io | bash -s stable
-    # adding a line to ~/.bashrc to load RVM everytime you open the terminal
-    echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"' >> ~/.bashrc
-    # reloading bash
-    exec bash   # TODO: Note: it reloads bashrc
+  echo 'Installing RVM..'
+  echo "Note: You would be required to manually accept the key be executing command similar to following:"
+  echo "gpg --keyserver hkp://keys.gnupg.net --recv-keys the-given-key"
+  # install RVM stable
+  sudo apt-get -y install curl
+  \curl -sSL https://get.rvm.io | bash -s stable
+  # adding a line to ~/.bashrc to load RVM everytime you open the terminal
+  echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"' >> ~/.bashrc
+  # reloading bash
+  exec bash   # TODO: Note: it reloads bashrc
 fi
 # checking installation details
 which rvm
@@ -38,6 +39,7 @@ rvm list
 if [[ `rvm list` == *'ruby-2.1.6'* ]] ; then
   echo "ruby-2.1.6 is already installed"
 else
+  echo 'Installing Ruby 2.1.6..'
   rvm install 2.1.6 --with-openssl-dir=$rvm_path/usr
 fi
 # checking installation details
@@ -45,5 +47,5 @@ rvm list
 
 
 ###### THE END ######
-echo "<--- END of 'vagrant_rvm_ruby' Script --->"
+echo "<--- END of 'vagrant_permission_script' Script --->"
 

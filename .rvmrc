@@ -1,1 +1,1 @@
-rvm --create ruby-2.1.6@word_list
+rvm --create ruby-2.3.0@word_list

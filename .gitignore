@@ -14,6 +14,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+**/*.log
 
 # Ignoring IDE configuration files and directories
 /.idea
@@ -43,3 +44,6 @@
 
 # Ignore public/generated_data/
 /public/generated_data/
+
+# Ignore node_modules
+/node_modules

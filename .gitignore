@@ -15,6 +15,7 @@
 /log/*.log
 /tmp
 **/*.log
+/.byebug_history
 
 # Ignoring IDE configuration files and directories
 /.idea

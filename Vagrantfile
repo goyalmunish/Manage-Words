@@ -10,9 +10,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  # config.vm.box = "ubuntu/trusty64"
-  # config.vm.box = "hashicorp/precise64"
-  config.vm.box = "ubuntu/xenial64"
+  # config.vm.box = "ubuntu/xenial64"  # Ubuntu 16.04
+  config.vm.box = "ubuntu/trusty64"  # Ubuntu 14.04
+  # config.vm.box = "hashicorp/precise64"  # Ubuntu 12.04
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs

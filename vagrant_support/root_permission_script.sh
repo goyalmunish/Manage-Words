@@ -7,7 +7,7 @@ if [ "$EUID" -ne "0" ] ; then
   exit 1
 fi
 echo `pwd`
-echo 'this script works on Ubuntu 16.04 - 64 bit'
+echo 'this script works on Ubuntu 14.04 - 64 bit'
 
 
 ###### Setting up Variables ######
@@ -221,8 +221,8 @@ EOF
     psql -c "create database template1 with owner=postgres encoding='UTF-8' lc_collate='en_US.utf8' lc_ctype='en_US.utf8' template template0;" -a
     psql -c "update pg_database set datistemplate=true where datname='template1';" -a
 EOF
-  # TODO: This is also requred in case of Ubuntu 14.04, 16.04
-  sudo -u postgres createuser mgoyal -s
+  # TODO: This is also requred in case of Ubuntu 14.04
+  # sudo -u postgres createuser mgoyal -s
   # now restarting the postgres
   sudo /etc/init.d/postgresql restart
 fi
@@ -326,6 +326,7 @@ else
   cd /vagrant/frontend
   npm install
   bower install
+  sudo npm install -g phantomjs
 fi
 
 

@@ -29,7 +29,7 @@ export default Ember.Component.extend({
     },
     save() {
       console.log("Saving to server...");
-      alert("Yet to be implemented");
+      this.word.save();
     }
   }
 });

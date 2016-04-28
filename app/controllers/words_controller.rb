@@ -231,7 +231,39 @@ class WordsController < ApplicationController
     #   params[:word][:flag_ids] = []
     # end
     # resuming to actual logic
-    params.require(:word).permit(:word, :trick, :additional_info, :flag_ids => [])
+
+    if params[:data]
+      # TODO: Remove code smell by finding a better way (such as using https://github.com/cerebris/jsonapi-resources)
+      # Note: This is just a make-ship arrangment
+
+      id = params[:data][:id].to_i
+      attributes = params[:data][:attributes]
+      relationships = params[:data][:relationships][:flags][:data]
+      flag_ids = []
+      relationships.each do |hsh|
+        flag_ids << hsh[:id].to_i
+      end
+      wd_params = ActiveSupport::HashWithIndifferentAccess.new(
+        :id => id,
+        :flag_ids => flag_ids
+      ).merge!(attributes)
+
+      # Rename created-at, updated-at, and additional-info
+      ["created-at".to_sym, "updated-at".to_sym, "additional-info".to_sym].each do |ember_key|
+        ruby_key = ember_key.to_s.split("-").join("_").to_sym
+        wd_params[ruby_key] = wd_params[ember_key]
+        wd_params.delete(ember_key)
+      end
+
+      # Remove :created_at and :updated_at fields
+      [:created_at, :updated_at].each do |ruby_key|
+        wd_params.delete(ruby_key)
+      end
+
+      wd_params
+    else
+      params.require(:word).permit(:word, :trick, :additional_info, :flag_ids => [])
+    end
   end
 
   # called by index action

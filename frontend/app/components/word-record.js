@@ -6,6 +6,8 @@ export default Ember.Component.extend({
   // Other properties
   isCreatedUpdatedShowing: false,
   readonly: true,
+  freshState: true,
+  updateSuccess: false,
 
   // Actions
   actions: {
@@ -21,6 +23,7 @@ export default Ember.Component.extend({
       var readonly = this.get('readonly');
       if(readonly) {
         readonly = false;
+        this.set('freshState', true);
       }
       else {
         readonly = true;
@@ -28,8 +31,18 @@ export default Ember.Component.extend({
       this.set('readonly', readonly);
     },
     save() {
-      console.log("Saving to server...");
-      this.word.save();
+      console.log("Updating to server...");
+      var that = this;
+      this.word.save().then(function() {
+        console.log("Update to server Succeed!");
+        that.set('freshState', false);
+        that.set('updateSuccess', true);
+        that.set('readonly', true);
+      }, function() {
+        console.log("Update to server FAILED!");
+        that.set('freshState', false);
+        that.set('updateSuccess', false);
+      });
     }
   }
 });

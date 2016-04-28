@@ -16,3 +16,12 @@
 {{#unless readonly}}
   <div><button {{action "save"}}>Save</button></div>
 {{/unless}}
+{{#if freshState}}
+  <!-- <div>Notice: No changes made so far!</div> -->
+{{else}}
+  {{#if updateSuccess}}
+    <div>Notice: Successfully updated to server!</div>
+  {{else}}
+    <div>Warning: Update to server failed!</div>
+  {{/if}}
+{{/if}}

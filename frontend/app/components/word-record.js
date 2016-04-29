@@ -4,6 +4,10 @@ export default Ember.Component.extend({
   // Properties used as arguments: word
 
   // Other properties
+  store: Ember.inject.service('store'),  // Note: Here 'store' is injected to component
+  allFlags: Ember.computed('store', function() {
+    return this.get('store').findAll('flag');
+  }),
   isCreatedUpdatedShowing: false,
   readonly: true,
   freshState: true,

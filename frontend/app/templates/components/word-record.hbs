@@ -12,6 +12,10 @@
 {{else}}
   <div><button {{action "showCreatedUpdated"}}>Show Created/Updated Info</button></div>
 {{/if}}
+<div>Associated Flags:</div>
+{{#each allFlags as |flag|}}
+  <div>{{input type="checkbox" name=flag.id checked=false}} {{flag.name}}-{{flag.value}}</div>
+{{/each}}
 <div><button {{action "toggleReadonly"}}>Ediable/Readonly</button></div>
 {{#unless readonly}}
   <div><button {{action "save"}}>Save</button></div>

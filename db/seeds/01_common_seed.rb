@@ -47,6 +47,7 @@ if Flag.count == 0
   Flag.create!(name: 'PR', value: 0, desc: 'Check Pronunciation')
   Flag.create!(name: 'GMAT', value: 0, desc: 'Relevant to GMAT')
   Flag.create!(name: 'GRMR', value: 0, desc: 'Relevant to GRAMMAR')
+  Flag.create!(name: 'L-DE', value: 0, desc: 'German Word')
 end
 
 # Seeding dictionaries

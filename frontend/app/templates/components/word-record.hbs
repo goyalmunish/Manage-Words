@@ -14,7 +14,10 @@
 {{/if}}
 <div>Associated Flags:</div>
 {{#each allFlags as |flag|}}
-  <div>{{input type="checkbox" name=flag.id checked=(has-word-flag word.flags flag.id)}} {{flag.name}}-{{flag.value}}</div>
+<div>
+  <input type="checkbox" name={{word-flag-checkbox-name flag.id}} value="1" checked={{has-word-flag word.flags flag.id}} disabled={{readonly}} onclick={{action 'addRemoveFlag' flag.id}} />
+  {{flag.name}}-{{flag.value}}
+</div>
 {{/each}}
 <div><button {{action "toggleReadonly"}}>Ediable/Readonly</button></div>
 {{#unless readonly}}

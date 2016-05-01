@@ -53,17 +53,22 @@ end
 
 # Seeding dictionaries
 if Dictionary.count == 0
+  # English important ones
   Dictionary.create!(name: 'cambridge', url: 'http://dictionary.cambridge.org/search/british/direct/?q=', separator: '-', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'collins', url: 'http://www.collinsdictionary.com/dictionary/english/', separator: '-', suffix: nil, additional_info: nil)
-  Dictionary.create!(name: 'dict.cc Deutsch-Englisch', url: 'http://www.dict.cc/?s=', separator: '+', suffix: nil, additional_info: nil)
+  Dictionary.create!(name: 'grammarly Thesaurus', url: 'https://www.grammarly.com/words/', separator: '%20', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'merriam_webster', url: 'http://www.merriam-webster.com/dictionary/', separator: '%20', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'google_search', url: 'https://www.google.co.in/webhp?#q=', separator: '+', suffix: '%20meaning', additional_info: nil)
+  # English Others
+  Dictionary.create!(name: 'cambridge Learner', url: 'http://dictionary.cambridge.org/search/learner-english/direct/?q=', separator: '-', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'google_hindi', url: 'https://www.google.co.in/webhp?ie=UTF-8#q=', separator: '%20', suffix: '+meaning+in+hindi', additional_info: nil)
   Dictionary.create!(name: 'macmillan', url: 'http://www.macmillandictionary.com/dictionary/british/', separator: '-', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'longman', url: 'http://www.ldoceonline.com/search/?q=', separator: '%20', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'oxford_learner', url: 'http://www.oxfordlearnersdictionaries.com/definition/english/', separator: '-', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'dictionary_dot_com', url: 'http://dictionary.reference.com/browse/', separator: '+', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'Wordnick', url: 'https://www.wordnik.com/words/', separator: '%20', suffix: nil, additional_info: nil)
+  # Non-English Languages
+  Dictionary.create!(name: 'dict.cc Deutsch-English', url: 'http://www.dict.cc/?s=', separator: '+', suffix: nil, additional_info: nil)
 end
 
 # Seeding Important Users

@@ -31,7 +31,7 @@ require 'securerandom'
 #
 # puts AppSetting.set_if_nil('devise_secret_key', SecureRandom.hex(128))
 # puts "\n!!!!!!!!!!Note: devise_secret_key should never be changed.\n\n"
-# 
+#
 # Seeding AppSettings
 puts AppSetting.set_if_nil('site_name', 'WordList')
 puts AppSetting.set_if_nil('site_url', 'http://manage-words.herokuapp.com')
@@ -55,14 +55,15 @@ end
 if Dictionary.count == 0
   Dictionary.create!(name: 'cambridge', url: 'http://dictionary.cambridge.org/search/british/direct/?q=', separator: '-', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'collins', url: 'http://www.collinsdictionary.com/dictionary/english/', separator: '-', suffix: nil, additional_info: nil)
+  Dictionary.create!(name: 'dict.cc Deutsch-Englisch', url: 'http://www.dict.cc/?s=', separator: '+', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'merriam_webster', url: 'http://www.merriam-webster.com/dictionary/', separator: '%20', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'google_search', url: 'https://www.google.co.in/webhp?#q=', separator: '+', suffix: '%20meaning', additional_info: nil)
+  Dictionary.create!(name: 'google_hindi', url: 'https://www.google.co.in/webhp?ie=UTF-8#q=', separator: '%20', suffix: '+meaning+in+hindi', additional_info: nil)
   Dictionary.create!(name: 'macmillan', url: 'http://www.macmillandictionary.com/dictionary/british/', separator: '-', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'longman', url: 'http://www.ldoceonline.com/search/?q=', separator: '%20', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'oxford_learner', url: 'http://www.oxfordlearnersdictionaries.com/definition/english/', separator: '-', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'dictionary_dot_com', url: 'http://dictionary.reference.com/browse/', separator: '+', suffix: nil, additional_info: nil)
   Dictionary.create!(name: 'Wordnick', url: 'https://www.wordnik.com/words/', separator: '%20', suffix: nil, additional_info: nil)
-  Dictionary.create!(name: 'google_hindi', url: 'https://www.google.co.in/webhp?ie=UTF-8#q=', separator: '%20', suffix: '+meaning+in+hindi', additional_info: nil)
 end
 
 # Seeding Important Users
@@ -74,5 +75,5 @@ if User.count == 0
 end
 
 
-# LAST LINE: 
+# LAST LINE:
 puts "\n"+'!!!!!!!!!!Check your app_settings table and look for nil and "XXX" values, and update them.'+"\n"

@@ -15,6 +15,7 @@ export default Ember.Component.extend({
       console.log(`No. of Flags: ${all_flags.get('length')}`);
     });
     // returning promise, as all promises get resolved (or failed) before rendering of template
+    // return all_flags.sortBy('name');    // TODO: this statement is not working
     return all_flags;
   }),
 

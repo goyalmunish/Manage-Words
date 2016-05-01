@@ -37,9 +37,8 @@
 # Ignoring all .DS_Store (Mac) directories
 **/.DS_Store
 
-# Ignoring all .swp and .swo files
-**/*.swp
-**/*.swo
+# Ignoring all .swp/.swo/.swn .. etc. files
+**/*.sw?
 
 # Ignoring tags file (CTAGS)
 /tags

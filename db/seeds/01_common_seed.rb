@@ -39,15 +39,16 @@ puts AppSetting.set_if_nil('database', 'pg')
 
 # Seeding flags
 if Flag.count == 0
-  Flag.create!(name: 'CL', value: 3, desc: 'Highly Comfortable (Comfort Level 3)')
-  Flag.create!(name: 'CL', value: 2, desc: 'Comfortable (Comfort Level 2)')
-  Flag.create!(name: 'CL', value: 1, desc: 'Slightly Comfortable (Comfort Level 1)')
   Flag.create!(name: 'CL', value: 0, desc: 'Familiar Word (Comfort Level 0)')
-  Flag.create!(name: 'PR', value: 1, desc: 'Getting Comfortable with Pronunciation')
+  Flag.create!(name: 'CL', value: 1, desc: 'Slightly Comfortable (Comfort Level 1)')
+  Flag.create!(name: 'CL', value: 2, desc: 'Comfortable (Comfort Level 2)')
+  Flag.create!(name: 'CL', value: 3, desc: 'Highly Comfortable (Comfort Level 3)')
   Flag.create!(name: 'PR', value: 0, desc: 'Check Pronunciation')
+  Flag.create!(name: 'PR', value: 1, desc: 'Getting Comfortable with Pronunciation')
   Flag.create!(name: 'GMAT', value: 0, desc: 'Relevant to GMAT')
   Flag.create!(name: 'GRMR', value: 0, desc: 'Relevant to GRAMMAR')
   Flag.create!(name: 'L-DE', value: 0, desc: 'German Word')
+  Flag.create!(name: 'L-FR', value: 0, desc: 'French Word')
 end
 
 # Seeding dictionaries

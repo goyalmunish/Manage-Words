@@ -6,15 +6,15 @@ describe AppSetting do
   end
   describe '.find_by_key(k)' do
     it "finds record with existing key" do
-      app_setting1 = create(:app_setting, :key => 'MyKey1', :value => 'do_not_find_it')
-      app_setting = create(:app_setting, :key => 'MyKey', :value => 'find_it')
-      app_setting2 = create(:app_setting, :key => 'MyKey2', :value => 'do_not_find_it')
+      create(:app_setting, :key => 'MyKey1', :value => 'do_not_find_it')
+      create(:app_setting, :key => 'MyKey', :value => 'find_it')
+      create(:app_setting, :key => 'MyKey2', :value => 'do_not_find_it')
       record = AppSetting.find_by_key('my_key')
       expect(record.key).to eq('my_key')
       expect(record.value).to eq('find_it')
     end
     it "returns nil for non-existing key" do
-      app_setting = create(:app_setting, :key => 'MyKey', :value => 'find_it')
+      create(:app_setting, :key => 'MyKey', :value => 'find_it')
       record = AppSetting.find_by_key('non-existing-key')
       expect(record).to be_nil
     end

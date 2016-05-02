@@ -17,7 +17,7 @@ class UsersController < ApplicationController
         # format.html # index.html.erb
         format.xml { render :xml => DataElement.data_backup(@users) }
         format.json { render :json => DataElement.data_backup(@users) }
-        format.download { send_data DataElement.data_backup(@users).to_json, {:filename => "words_for_all_users #{Time.now.getutc}.json".split(' ').join('-')} }
+        format.download { send_data JSON.pretty_generate(DataElement.data_backup(@users)), {:filename => "words_for_all_users #{Time.now.getutc}.json".split(' ').join('-')} }
       end
     end
   end

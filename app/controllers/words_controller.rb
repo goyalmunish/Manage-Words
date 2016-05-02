@@ -87,7 +87,7 @@ class WordsController < ApplicationController
         format.html # index.html.erb
         format.json # index.json.jbuilder
         format.xml { render :xml => @words.to_xml(:include => {:flags => {:only => [:name, :value]}}, :only => [:word, :trick, :additional_info]) }
-        format.download { send_data WordDataElement.word_data_backup(@words).to_json, {:filename => "words #{Time.now.getutc}.json".split(' ').join('-')} }
+        format.download { send_data JSON.pretty_generate(WordDataElement.word_data_backup(@words)), {:filename => "words #{Time.now.getutc}.json".split(' ').join('-')} }
       end
     end
 

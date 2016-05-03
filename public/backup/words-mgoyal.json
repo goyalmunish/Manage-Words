@@ -308,6 +308,39 @@
     ]
   },
   {
+    "word": "Acht",
+    "trick": null,
+    "additional_info": "Acht:\r\nMeaning in English: Eight (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Achtzehn",
+    "trick": null,
+    "additional_info": "Achtzehn:\r\nMeaning in English: Eighteen (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Achzig",
+    "trick": null,
+    "additional_info": "Achzig:\r\nMeaning in English: Eighty (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "acquaintance",
     "trick": "a business acquaintance",
     "additional_info": "acquaintance: \r\na person that you have met but do not know well\r\nSentences: \r\na business acquaintance\r\nthe proprietor was an old acquaintance of his. \r\nIt was Taylor's party that I first made his acquaintance (= first met him).",
@@ -1392,6 +1425,17 @@
     ]
   },
   {
+    "word": "April",
+    "trick": null,
+    "additional_info": "April:\r\nMeaning in English: April (month)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "arable",
     "trick": "arable farming land",
     "additional_info": "arable:\r\ndescribes farming and farm land that is used for, or is suitable for, growing crops\r\nSentences:\r\narable farming/farmers/farms/land\r\nWhen the land was deemed arable the farmer decided to plow.",
@@ -1775,6 +1819,17 @@
     "additional_info": "august:\r\nhaving great importance and especially of the highest social class\r\nSentences:\r\nThe society's august patron, the Duke of Norfolk\r\nThe palace was august in gold and crystal.",
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "August",
+    "trick": null,
+    "additional_info": "August:\r\nMeaning in English: August (month)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -2299,6 +2354,17 @@
     "additional_info": null,
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "Bitte",
+    "trick": null,
+    "additional_info": "Bitte:\r\nMeaning in English: Please",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -5006,6 +5072,237 @@
     ]
   },
   {
+    "word": "Danke",
+    "trick": null,
+    "additional_info": "Danke:\r\nMeaning in English: Thank you",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Abendessen",
+    "trick": null,
+    "additional_info": "das Abendessen:\r\nMeaning in English: Dinner",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Bier",
+    "trick": null,
+    "additional_info": "das Bier:\r\nMeaning in English: Beer",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Brot",
+    "trick": null,
+    "additional_info": "das Brot:\r\nMeaning in English: Bread",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Fleisch",
+    "trick": null,
+    "additional_info": "das Fleisch:\r\nMeaning in English: Meat",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Frühstück",
+    "trick": null,
+    "additional_info": "das Frühstück:\r\nMeaning in English: Breakfast",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Geflügel",
+    "trick": null,
+    "additional_info": "das Geflügel:\r\nMeaning in English: Poultry",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Gemüse",
+    "trick": null,
+    "additional_info": "das Gemüse:\r\nMeaning in English: Vegetable",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Geschäft",
+    "trick": null,
+    "additional_info": "das Geschäft:\r\nMeaning in English: Store, Shop",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Getränk",
+    "trick": null,
+    "additional_info": "das Getränk:\r\nMeaning in English: Beverage",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Hotel",
+    "trick": null,
+    "additional_info": "das Hotel:\r\nMeaning in English: Hotel",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Jahr",
+    "trick": null,
+    "additional_info": "das Jahr:\r\nMeaning in English: Year",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Krankenhaus",
+    "trick": null,
+    "additional_info": "das Krankenhaus:\r\nMeaning in English: Hospital",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Mittagessen",
+    "trick": null,
+    "additional_info": "das Mittagessen:\r\nMeaning in English: Lunch",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Obst",
+    "trick": null,
+    "additional_info": "das Obst:\r\nMeaning in English: Fruit",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Rindfleisch",
+    "trick": null,
+    "additional_info": "das Rindfleisch:\r\nMeaning in English: Beef",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Salz",
+    "trick": null,
+    "additional_info": "das Salz:\r\nMeaning in English: Salt",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Schweinefleisch",
+    "trick": null,
+    "additional_info": "das Schweinefleisch:\r\nMeaning in English: Pork",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Tal",
+    "trick": null,
+    "additional_info": "das Tal:\r\nMeaning in English: Valley",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Wasser",
+    "trick": null,
+    "additional_info": "das Wasser:\r\nMeaning in English: Water",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "das Zimmer",
+    "trick": null,
+    "additional_info": "das Zimmer:\r\nMeaning in English: Room",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "daunt",
     "trick": "not at all daunted by size of the problem",
     "additional_info": "daunt:\r\nto make someone feel slightly frightened or worried about their ability to achieve something; to discourage\r\ndauntless: showing determination and lack of fear\r\nSentences:\r\nShe was not at all daunted by the size of the problem.\r\n..a grueling journey that would have daunted a woman half her age.\r\nThe dauntless ranger scaled the mountain to complete the rescue.\r\nIn spite of the scale of the famine, the relief workers struggled on with dauntless optimism and commitment.",
@@ -5449,6 +5746,127 @@
     ]
   },
   {
+    "word": "der Bahnhof",
+    "trick": null,
+    "additional_info": "der Bahnhof:\r\nMeaning in English: Train station",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Berg",
+    "trick": null,
+    "additional_info": "der Berg:\r\nMeaning in English: Mountain",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Bus",
+    "trick": null,
+    "additional_info": "der Bus:\r\nMeaning in English: Bus",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Busbahnhof",
+    "trick": null,
+    "additional_info": "der Busbahnhof:\r\nMeaning in English: Bus station",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Fisch",
+    "trick": null,
+    "additional_info": "der Fisch:\r\nMeaning in English: Fish",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Flughafen",
+    "trick": null,
+    "additional_info": "der Flughafen:\r\nMeaning in English: Airport",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Fluß",
+    "trick": null,
+    "additional_info": "der Fluß:\r\nMeaning in English: River",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Frühling",
+    "trick": null,
+    "additional_info": "der Frühling:\r\nMeaning in English: Spring",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Geburtstag",
+    "trick": null,
+    "additional_info": "der Geburtstag:\r\nMeaning in English: Birthday",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Herbst",
+    "trick": null,
+    "additional_info": "der Herbst:\r\nMeaning in English: Fall, Autumn",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Hügel",
+    "trick": null,
+    "additional_info": "der Hügel:\r\nMeaning in English: Hill",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "deride",
     "trick": "derided her singing as pathetic",
     "additional_info": "deride:\r\nto laugh at someone in a way which shows you think they are ridiculous or of no value\r\nCheck: ridicule, derision\r\nSentences: \r\nHe derided my singing as pathetic. \r\nThis building, once derided by critics, is now a major tourist attraction. \r\nThe manager really thought that deriding his employees as \"stupid\" or \"lazy\" would motivate them to work harder; instead, it motivated them to hide his office supplies as an act of revenge.",
@@ -5479,11 +5897,209 @@
     ]
   },
   {
+    "word": "der Kaffee",
+    "trick": null,
+    "additional_info": "der Kaffee:\r\nMeaning in English: Coffee",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Mann",
+    "trick": null,
+    "additional_info": "der Mann:\r\nMeaning in English: Husband",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Monat",
+    "trick": null,
+    "additional_info": "der Monat:\r\nMeaning in English: Month",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "derogatory",
     "trick": "derogatory remarks about someone appearance",
     "additional_info": "derogatory:\r\nshowing strong disapproval and not showing respect\r\nSentences:\r\nHe made some derogatory comment/remark about her appearance. \r\nHe refused to withdraw derogatory remarks made about his boss.",
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "der Ozean",
+    "trick": null,
+    "additional_info": "der Ozean:\r\nMeaning in English: Ocean",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Platz",
+    "trick": null,
+    "additional_info": "der Platz:\r\nMeaning in English: Square",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Saft",
+    "trick": null,
+    "additional_info": "der Saft:\r\nMeaning in English: Juice",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Salat",
+    "trick": null,
+    "additional_info": "der Salat:\r\nMeaning in English: Salad",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der See",
+    "trick": null,
+    "additional_info": "der See:\r\nMeaning in English: Lake",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Sohn",
+    "trick": null,
+    "additional_info": "der Sohn:\r\nMeaning in English: Son",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Sommer",
+    "trick": null,
+    "additional_info": "der Sommer:\r\nMeaning in English: Summer",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Tag",
+    "trick": null,
+    "additional_info": "der Tag:\r\nMeaning in English: Day",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Tee",
+    "trick": null,
+    "additional_info": "der Tee:\r\nMeaning in English: Tea",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Turm",
+    "trick": null,
+    "additional_info": "der Turm:\r\nMeaning in English: Tower",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der U-Bahnhof",
+    "trick": null,
+    "additional_info": "der U-Bahnhof:\r\nMeaning in English: Subway station, Underground station",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Vater",
+    "trick": null,
+    "additional_info": "der Vater:\r\nMeaning in English: Father",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Wein",
+    "trick": null,
+    "additional_info": "der Wein:\r\nMeaning in English: Wine",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Winter",
+    "trick": null,
+    "additional_info": "der Winter:\r\nMeaning in English: Winter",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "der Zug",
+    "trick": null,
+    "additional_info": "der Zug:\r\nMeaning in English: Train",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -5605,6 +6221,17 @@
     ]
   },
   {
+    "word": "Deutsch",
+    "trick": null,
+    "additional_info": "Deutsch:\r\nMeaning in English: German",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "deviate",
     "trick": "deviation from the norm",
     "additional_info": "deviate:\r\nto do something which is different from the usual or common way of behaving\r\nto go in different direction\r\nSentences:\r\nThe recent pattern of weather deviates from the norm for this time of year. \r\nThe path follows the river closely, occasionally deviating round a clump of trees. \r\nAny deviation from the party's faith is seen as betrayal. \r\nDeviation from the norm is not tolerated.",
@@ -5634,6 +6261,17 @@
     "additional_info": "dexterity:\r\nthe ability to perform a difficult action quickly and skilfully with the hands, or the ability to think quickly and effectively\r\nSentences:\r\nHe caught the ball with great dexterity. \r\nHe answered the journalists' questions with all the dexterity of a politician. \r\n..Reid's dexterity on the guitar. \r\nThe dexterous gymnast was the epitome of grace on the balance beam.",
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "Dezember",
+    "trick": null,
+    "additional_info": "Dezember:\r\nMeaning in English: December (month)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -5688,6 +6326,182 @@
     "additional_info": "didactic:\r\nsomething that is didactic is intended to teach people something, especially a moral lesson\r\nintended to teach, especially in a way that is too determined or eager, and often fixed and unwilling to change\r\nSentences:\r\na didactic approach to teaching\r\ndidactic literature",
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "die Abfahrt",
+    "trick": null,
+    "additional_info": "die Abfahrt:\r\nMeaning in English: Departure",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "die Ankunft",
+    "trick": null,
+    "additional_info": "die Ankunft:\r\nMeaning in English: Arrival",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "die Apotheke",
+    "trick": null,
+    "additional_info": "die Apotheke:\r\nMeaning in English: Pharmacy, Chemists",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "die Bahn",
+    "trick": null,
+    "additional_info": "die Bahn:\r\nMeaning in English: Train",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "die Brücke",
+    "trick": null,
+    "additional_info": "die Brücke:\r\nMeaning in English: Bridge",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "die Frau",
+    "trick": null,
+    "additional_info": "die Frau:\r\nMeaning in English: Wife",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "die Frucht",
+    "trick": null,
+    "additional_info": "die Frucht:\r\nMeaning in English: Fruit",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "die Karte",
+    "trick": null,
+    "additional_info": "die Karte:\r\nMeaning in English: Map",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "die Kirche",
+    "trick": null,
+    "additional_info": "die Kirche:\r\nMeaning in English: Church",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "die Landkarte",
+    "trick": null,
+    "additional_info": "die Landkarte:\r\nMeaning in English: Map",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "die Mutter",
+    "trick": null,
+    "additional_info": "die Mutter:\r\nMeaning in English: Mother",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "die Schule",
+    "trick": null,
+    "additional_info": "die Schule:\r\nMeaning in English: School",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "die Straße",
+    "trick": null,
+    "additional_info": "die Straße:\r\nMeaning in English: Street",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "die Tochter",
+    "trick": null,
+    "additional_info": "die Tochter:\r\nMeaning in English: Daughter",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "die U-Bahn",
+    "trick": null,
+    "additional_info": "die U-Bahn:\r\nMeaning in English: Subway, Underground",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "die Woche",
+    "trick": null,
+    "additional_info": "die Woche:\r\nMeaning in English: Week",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -6397,11 +7211,55 @@
     ]
   },
   {
+    "word": "Drei",
+    "trick": null,
+    "additional_info": "Drei:\r\nMeaning in English: Three (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Dreißig",
+    "trick": null,
+    "additional_info": "Dreißig:\r\nMeaning in English: Thirty  (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Dreizehn",
+    "trick": null,
+    "additional_info": "Dreizehn:\r\nMeaning in English: Thirteen (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "dressage",
     "trick": "dressage competition for horses",
     "additional_info": "dressage:\r\na competition in which horse riders have to make their horse perform controlled movements\r\nSentences:\r\nThis horse has participated in number of dressage competitions.",
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "Du",
+    "trick": null,
+    "additional_info": "Du:\r\nMeaning in English: You (singular, familiar)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -6691,6 +7549,39 @@
     ]
   },
   {
+    "word": "Eine",
+    "trick": null,
+    "additional_info": "Eine:\r\nMeaning in English: Million (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Eins",
+    "trick": null,
+    "additional_info": "Eins:\r\nMeaning in English: One (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Einundzwanzig",
+    "trick": null,
+    "additional_info": "Einundzwanzig:\r\nMeaning in English: Twenty one (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "elaborate",
     "trick": "elaborate preparations",
     "additional_info": "elaborate:\r\ncontaining a lot of careful detail or many detailed parts\r\nto add more information to or explain something that you have said\r\nSentences:\r\nThey're making the most elaborate preparations for the wedding. \r\nHe came out with such an elaborate excuse that I didn't quite believe him. \r\nThe mayor called for an elaboration on the ordinance's first draft.\r\nThe minister said he was resigning, but refused to elaborate on his reasons for doing so.",
@@ -6704,6 +7595,17 @@
     "additional_info": "elegy:\r\nan elegy is a sad poem, often about someone who has died\r\nSentences:\r\n..a touching elegy for a lost friend\r\nUpon conclusion of the elegy, the casket was closed.",
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "Elf",
+    "trick": null,
+    "additional_info": "Elf:\r\nMeaning in English: Eleven (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -7026,6 +7928,17 @@
     "additional_info": "engender:\r\nto make people have a particular feeling or make a situation start to exist\r\nSentences:\r\nHer latest book has engendered a lot of controversy. \r\nThe minister's speech did not engender confidence in his judgment.",
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "Englisch",
+    "trick": null,
+    "additional_info": "Englisch:\r\nMeaning in English: English",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -8070,6 +8983,17 @@
     ]
   },
   {
+    "word": "Februar",
+    "trick": null,
+    "additional_info": "Februar:\r\nMeaning in English: February (month)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "fecund",
     "trick": null,
     "additional_info": null,
@@ -8583,6 +9507,28 @@
     ]
   },
   {
+    "word": "Freund",
+    "trick": null,
+    "additional_info": "Freund:\r\nMeaning in English: Friend (male)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Freundin",
+    "trick": null,
+    "additional_info": "Freundin:\r\nMeaning in English: Friend (female)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "fringe",
     "trick": "is just a fringe player in domestic market",
     "additional_info": "fringe: \r\n(edge) the outer or less important part of an area, group or activity\r\nbe fringed with sth: if a place is fringed with something, that thing forms a bordre along the edge\r\n(decoration) a decorative edge of hanging narrow strips of materials or threads on a piece of clothing or material\r\nSentences:\r\nthe southern fringe of the city\r\nthe radical fringes of the party\r\nThe river is fringed with wild flowers. \r\na fringe arond the edge of a tablecloth\r\na fringed denim skirt\r\nTen year ago, Royal Enfield was just a fringe player in the domestic motorcycle market plagued by its 50-year-old unreliable iron cast engine.",
@@ -8658,6 +9604,39 @@
     "additional_info": null,
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "Fünf",
+    "trick": null,
+    "additional_info": "Fünf:\r\nMeaning in English: Five (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Fünfzehn",
+    "trick": null,
+    "additional_info": "Fünfzehn:\r\nMeaning in English: Fifteen (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Fünfzig",
+    "trick": null,
+    "additional_info": "Fünfzig:\r\nMeaning in English: Fifty (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -8875,6 +9854,17 @@
     ]
   },
   {
+    "word": "geradeaus",
+    "trick": null,
+    "additional_info": "geradeaus:\r\nMeaning in English: Straight",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "germane",
     "trick": null,
     "additional_info": null,
@@ -8897,6 +9887,17 @@
     "flags_attributes": [
       {
         "name": "GRMR",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "gestern",
+    "trick": null,
+    "additional_info": "gestern:\r\nMeaning in English: Yesterday",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
         "value": 0
       }
     ]
@@ -9238,6 +10239,17 @@
     ]
   },
   {
+    "word": "Gut",
+    "trick": null,
+    "additional_info": "Gut:\r\nMeaning in English: Good",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "hackneyed",
     "trick": null,
     "additional_info": null,
@@ -9570,6 +10582,17 @@
     ]
   },
   {
+    "word": "heute",
+    "trick": null,
+    "additional_info": "heute:\r\nMeaning in English: Today",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "hiatus",
     "trick": null,
     "additional_info": null,
@@ -9588,6 +10611,28 @@
       },
       {
         "name": "GMAT",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "hinauf",
+    "trick": null,
+    "additional_info": "hinauf:\r\nMeaning in English: Up",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "hinunter",
+    "trick": null,
+    "additional_info": "hinunter:\r\nMeaning in English: Down",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
         "value": 0
       }
     ]
@@ -9756,6 +10801,17 @@
     ]
   },
   {
+    "word": "Hundert",
+    "trick": null,
+    "additional_info": "Hundert:\r\nMeaning in English: Hundred (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "hybrid",
     "trick": null,
     "additional_info": null,
@@ -9804,6 +10860,17 @@
     "additional_info": null,
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "Ich",
+    "trick": null,
+    "additional_info": "Ich:\r\nMeaning in English: I",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -9878,6 +10945,17 @@
     "additional_info": null,
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "ihr",
+    "trick": null,
+    "additional_info": "ihr:\r\nMeaning in English: You (plural)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -11752,11 +12830,33 @@
     ]
   },
   {
+    "word": "Ja",
+    "trick": null,
+    "additional_info": "Ja:\r\nMeaning in English: Yes",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "jaded",
     "trick": null,
     "additional_info": null,
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "Januar",
+    "trick": null,
+    "additional_info": "Januar:\r\nMeaning in English: January (month)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -11847,6 +12947,17 @@
     ]
   },
   {
+    "word": "Juli",
+    "trick": null,
+    "additional_info": "Juli:\r\nMeaning in English: July (month)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "jumbo",
     "trick": "jumbo-sized packet",
     "additional_info": "jumbo:\r\nextremely large\r\nSentences:\r\na jumbo bag of sweets\r\na jumbo-sized packet",
@@ -11872,6 +12983,17 @@
       },
       {
         "name": "GMAT",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Juni",
+    "trick": null,
+    "additional_info": "Juni:\r\nMeaning in English: June (month)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
         "value": 0
       }
     ]
@@ -11917,6 +13039,17 @@
     "additional_info": null,
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "kie Kartoffel",
+    "trick": null,
+    "additional_info": "kie Kartoffel:\r\nMeaning in English: Potato",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -11992,6 +13125,17 @@
     "additional_info": null,
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "kurz",
+    "trick": null,
+    "additional_info": "kurz:\r\nMeaning in English: Short",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -12084,6 +13228,17 @@
       },
       {
         "name": "GMAT",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "lang",
+    "trick": null,
+    "additional_info": "lang:\r\nMeaning in English: Long",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
         "value": 0
       }
     ]
@@ -12442,6 +13597,17 @@
       },
       {
         "name": "GMAT",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "links",
+    "trick": null,
+    "additional_info": "links:\r\nMeaning in English: Left",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
         "value": 0
       }
     ]
@@ -12883,6 +14049,17 @@
       },
       {
         "name": "PR",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "März",
+    "trick": null,
+    "additional_info": "März:\r\nMeaning in English: March (month)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
         "value": 0
       }
     ]
@@ -13378,6 +14555,17 @@
     ]
   },
   {
+    "word": "morgen",
+    "trick": null,
+    "additional_info": "morgen:\r\nMeaning in English: Tomorrow",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "morose",
     "trick": null,
     "additional_info": null,
@@ -13603,6 +14791,17 @@
     ]
   },
   {
+    "word": "nahe",
+    "trick": null,
+    "additional_info": "nahe:\r\nMeaning in English: Near",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "naive",
     "trick": "it is little naive of you to believe that..",
     "additional_info": "naive:\r\ntoo willing to believe that someone is telling the truth, that people's intentions in general are good or that life is simple and fair\r\nSentences: \r\nPeople are often naive because they are young and/or have not had much experience of life. \r\nShe was very naive to believe that he'd stay with her. \r\nThey make the naive assumption that because it's popular it must be good. \r\nIt was a little naive of you to think that they would listen to your suggestions.",
@@ -13719,6 +14918,17 @@
     ]
   },
   {
+    "word": "Nein",
+    "trick": null,
+    "additional_info": "Nein:\r\nMeaning in English: No",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "nemesis",
     "trick": null,
     "additional_info": null,
@@ -13756,6 +14966,39 @@
     "additional_info": null,
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "Neun",
+    "trick": null,
+    "additional_info": "Neun:\r\nMeaning in English: Nine (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Neunzehn",
+    "trick": null,
+    "additional_info": "Neunzehn:\r\nMeaning in English: Nineteen (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Neunzig",
+    "trick": null,
+    "additional_info": "Neunzig:\r\nMeaning in English: Ninety (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -13916,6 +15159,17 @@
     ]
   },
   {
+    "word": "November",
+    "trick": null,
+    "additional_info": "November:\r\nMeaning in English: November (month)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "noxious",
     "trick": null,
     "additional_info": null,
@@ -13967,6 +15221,17 @@
     "additional_info": null,
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "Null",
+    "trick": null,
+    "additional_info": "Null:\r\nMeaning in English: Zero (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -14259,6 +15524,17 @@
       },
       {
         "name": "GMAT",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Oktober",
+    "trick": null,
+    "additional_info": "Oktober:\r\nMeaning in English: October (month)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
         "value": 0
       }
     ]
@@ -14860,6 +16136,17 @@
     "additional_info": null,
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "Parken",
+    "trick": null,
+    "additional_info": "Parken:\r\nMeaning in English: Parking",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -16623,6 +17910,17 @@
     ]
   },
   {
+    "word": "Prost!",
+    "trick": null,
+    "additional_info": "Prost!:\r\nMeaning in English: Cheers!",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "protagonist",
     "trick": "antagonists are hunting down protagonists",
     "additional_info": "protagonist:\r\n(supporter) an important supporter of an idea or political system\r\n(character) one of the main character in a story or a play\r\nCheck: antagonist\r\nSentences:\r\nKey protagonists of the revolution were hunted down and executed.",
@@ -17222,6 +18520,17 @@
     "additional_info": null,
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "rechts",
+    "trick": null,
+    "additional_info": "rechts:\r\nMeaning in English: Right",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -18390,6 +19699,17 @@
     ]
   },
   {
+    "word": "Schlecht",
+    "trick": null,
+    "additional_info": "Schlecht:\r\nMeaning in English: Bad",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "scholastic",
     "trick": null,
     "additional_info": null,
@@ -18499,6 +19819,39 @@
     ]
   },
   {
+    "word": "Sechs",
+    "trick": null,
+    "additional_info": "Sechs:\r\nMeaning in English: Six (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Sechzehn",
+    "trick": null,
+    "additional_info": "Sechzehn:\r\nMeaning in English: Sixteen (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Sechzig",
+    "trick": null,
+    "additional_info": "Sechzig:\r\nMeaning in English: Sixty (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "seclusion",
     "trick": null,
     "additional_info": null,
@@ -18598,6 +19951,17 @@
     "additional_info": null,
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "September",
+    "trick": null,
+    "additional_info": "September:\r\nMeaning in English: September (month)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -18746,6 +20110,61 @@
     "additional_info": null,
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "sie",
+    "trick": null,
+    "additional_info": "sie:\r\nMeaning in English: They",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Sie",
+    "trick": null,
+    "additional_info": "Sie:\r\nMeaning in English: You (singular, familiar)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Sieben",
+    "trick": null,
+    "additional_info": "Sieben:\r\nMeaning in English: Seven (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Siebzehn",
+    "trick": null,
+    "additional_info": "Siebzehn:\r\nMeaning in English: Seventeen (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Siebzig",
+    "trick": null,
+    "additional_info": "Siebzig:\r\nMeaning in English: Seventy (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -20302,6 +21721,17 @@
     ]
   },
   {
+    "word": "Tausend",
+    "trick": null,
+    "additional_info": "Tausend:\r\nMeaning in English: Thousand (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "taut",
     "trick": null,
     "additional_info": null,
@@ -21520,6 +22950,17 @@
     ]
   },
   {
+    "word": "vegetarisch",
+    "trick": null,
+    "additional_info": "vegetarisch:\r\nMeaning in English: Vegetarian",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "venerable",
     "trick": "vererable college",
     "additional_info": "venerable: \r\ndeserving respect because of age, hight position, or religious or historical importance\r\nSentences: \r\na venerable tradition/company/family\r\na vererable college",
@@ -21588,6 +23029,39 @@
       },
       {
         "name": "GMAT",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Vier",
+    "trick": null,
+    "additional_info": "Vier:\r\nMeaning in English: Four (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Vierzehn",
+    "trick": null,
+    "additional_info": "Vierzehn:\r\nMeaning in English: Fourteen (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Vierzig",
+    "trick": null,
+    "additional_info": "Vierzig:\r\nMeaning in English: Forty (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
         "value": 0
       }
     ]
@@ -21763,6 +23237,17 @@
     ]
   },
   {
+    "word": "weit",
+    "trick": null,
+    "additional_info": "weit:\r\nMeaning in English: Far",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "welter",
     "trick": "welter of projects",
     "additional_info": null,
@@ -21861,6 +23346,17 @@
     "additional_info": "His winsome words moved the crowd to love him even more.",
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "Wir",
+    "trick": null,
+    "additional_info": "Wir:\r\nMeaning in English: We",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   },
   {
@@ -22023,6 +23519,17 @@
     ]
   },
   {
+    "word": "Zehn",
+    "trick": null,
+    "additional_info": "Zehn:\r\nMeaning in English: Ten (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
     "word": "zeitgeist",
     "trick": "zeitgeist of late 70s",
     "additional_info": "zeitgeist:\r\nspirit of the times\r\nthe ​general set of ​ideas, ​beliefs, ​feelings, etc. that is ​typical of a ​particular ​period in ​history\r\nSentences:\r\nThe story captured the zeitgeist of the late 1960s.",
@@ -22055,6 +23562,39 @@
     "additional_info": "zoom: \r\nto move very quickly\r\nif prices or sales zoom, they increase suddenly and quickly\r\nSentences: \r\nIn the last few meters of the race, she suddenly zoomed ahead. \r\nHouse prices suddenly zoomed last year.",
     "flags_attributes": [
 
+    ]
+  },
+  {
+    "word": "Zwanzig",
+    "trick": null,
+    "additional_info": "Zwanzig:\r\nMeaning in English: Twenty (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Zwei",
+    "trick": null,
+    "additional_info": "Zwei:\r\nMeaning in English: Two (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "word": "Zwölf",
+    "trick": null,
+    "additional_info": "Zwölf:\r\nMeaning in English: Twelve (counting)",
+    "flags_attributes": [
+      {
+        "name": "L-DE",
+        "value": 0
+      }
     ]
   }
 ]

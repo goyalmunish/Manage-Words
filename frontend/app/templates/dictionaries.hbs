@@ -4,6 +4,8 @@
     <th>Id</th>
     <th>Name</th>
     <th>Url</th>
+    <th>Separator</th>
+    <th>Suffix</th>
   </tr>
   {{#each model as |dictionary|}}
     <tr>
@@ -14,6 +16,8 @@
         {{/link-to}}
       </td>
       <td>{{dictionary.url}}</td>
+      <td>{{dictionary.separator}}</td>
+      <td>{{dictionary.suffix}}</td>
     </tr>
   {{/each}}
 </table>

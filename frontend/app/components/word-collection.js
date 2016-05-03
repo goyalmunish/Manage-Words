@@ -10,19 +10,19 @@ export default Ember.Component.extend({
 
   // Computed propreties
   filteredWords: Ember.computed('word_search', 'full_search', 'sort_by', function() {
-    var filtered_words = this.get('words');
-    var word_search = this.get('word_search');
-    var full_search = this.get('full_search');
-    var sort_by = this.get('sort_by');
+    let filtered_words = this.get('words');
+    let word_search = this.get('word_search');
+    let full_search = this.get('full_search');
+    let sort_by = this.get('sort_by');
 
     // word search
     if(word_search) {
       console.log("Word search for: " + word_search);
-      var re_word_search = new RegExp(word_search);
+      let re_word_search = new RegExp(word_search);
 
       // filtered_words = words.filterBy('word', word_search);
       filtered_words = filtered_words.filter(function(item) {
-        var result = re_word_search.test(item.get('word'));  // Note: Here we used item.get('word') and not item.word. The later one would work only in templates.
+        let result = re_word_search.test(item.get('word'));  // Note: Here we used item.get('word') and not item.word. The later one would work only in templates.
         return result;
       });
     } else {
@@ -32,10 +32,10 @@ export default Ember.Component.extend({
     // full search
     if(full_search) {
       console.log("Full search for: " + full_search);
-      var re_full_search = new RegExp(full_search);
+      let re_full_search = new RegExp(full_search);
 
       filtered_words = filtered_words.filter(function(item) {
-        var result = re_full_search.test(item.get('word')) || re_full_search.test(item.get('trick')) || re_full_search.test(item.get('additionalInfo'));
+        let result = re_full_search.test(item.get('word')) || re_full_search.test(item.get('trick')) || re_full_search.test(item.get('additionalInfo'));
         return result;
       });
     } else {
@@ -67,12 +67,14 @@ export default Ember.Component.extend({
     // it could be easily done using computed property based on filteredWords
     calculateSuggestions() {
       if (this.get('word_search') || this.get('full_search')) {
-        var suggestions = this.get('filteredWords').map(function(item) {
+        let suggestions = this.get('filteredWords').map(function(item) {
           return item.get('word');
         });
         this.set('suggestions', suggestions.slice(0,9));
       } else {
-        this.set('suggestions').clear();
+        if (this.get('suggestion')) {
+          this.get('suggestions').clear();
+        }
       }
     }
   }

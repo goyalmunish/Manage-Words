@@ -30,7 +30,9 @@
       <td>
         {{component 'word-flags' word=word}}
       </td>
-      <td></td>
+      <td>
+        {{component 'user-word-dictionary-links' word=word.word user=word.user}}
+      </td>
       <td>{{word.trick}}</td>
     </tr>
   {{/each}}

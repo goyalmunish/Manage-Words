@@ -11,7 +11,7 @@ class Word < ActiveRecord::Base
 
   # CALLBACKS
   before_validation :convert_blank_to_nil, :strip_string_fields
-  before_validation :down_case_word
+  # before_validation :down_case_word
   after_save :remove_similar_flags_with_lower_level
 
   # VALIDATIONS

@@ -18,13 +18,18 @@ export default Ember.Component.extend({
     // word search
     if(word_search) {
       console.log("Word search for: " + word_search);
-      let re_word_search = new RegExp(word_search);
+      try {
+        console.log("----");
+        let re_word_search = new RegExp(word_search);
 
-      // filtered_words = words.filterBy('word', word_search);
-      filtered_words = filtered_words.filter(function(item) {
-        let result = re_word_search.test(item.get('word'));  // Note: Here we used item.get('word') and not item.word. The later one would work only in templates.
-        return result;
-      });
+        // filtered_words = words.filterBy('word', word_search);
+        filtered_words = filtered_words.filter(function(item) {
+          let result = re_word_search.test(item.get('word'));  // Note: Here we used item.get('word') and not item.word. The later one would work only in templates.
+          return result;
+        });
+      } catch(e) {
+        console.log(`Supressing error: ${e}`);
+      }
     } else {
       console.log("Word search for: <blank_value>");
     }
@@ -32,12 +37,16 @@ export default Ember.Component.extend({
     // full search
     if(full_search) {
       console.log("Full search for: " + full_search);
-      let re_full_search = new RegExp(full_search);
+      try {
+        let re_full_search = new RegExp(full_search);
 
-      filtered_words = filtered_words.filter(function(item) {
-        let result = re_full_search.test(item.get('word')) || re_full_search.test(item.get('trick')) || re_full_search.test(item.get('additionalInfo'));
-        return result;
-      });
+        filtered_words = filtered_words.filter(function(item) {
+          let result = re_full_search.test(item.get('word')) || re_full_search.test(item.get('trick')) || re_full_search.test(item.get('additionalInfo'));
+          return result;
+        });
+      } catch(e) {
+        console.log(`Supressing error: ${e}`);
+      }
     } else {
       console.log("Full search for: <blank_value>");
     }

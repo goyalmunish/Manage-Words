@@ -12,7 +12,7 @@ export default Ember.Component.extend({
     let all_flags = this.get('store').findAll('flag');
     // Note that if we put below console.log call here, it would just print 0
     all_flags.then(function() {
-      console.log(`No. of Flags: ${all_flags.get('length')}`);
+      // console.log(`No. of Flags: ${all_flags.get('length')}`);
     });
     // returning promise, as all promises get resolved (or failed) before rendering of template
     // return all_flags.sortBy('name');    // TODO: this statement is not working
@@ -56,7 +56,6 @@ export default Ember.Component.extend({
       });
     },
     addRemoveFlag(id) {
-      // console.log("addRemoveFlag started executing..");
         let that = this;
         let word = that.get('word');   // Note that it is not a promise
         let wordFlags = word.get('flags');
@@ -85,7 +84,7 @@ export default Ember.Component.extend({
             }
           },
           function(error) {
-            console.log(`Warning: Promise reject with error: ${error}`);
+            console.log(`Warning: Promise got rejected with error: ${error}`);
           }
         );
       }

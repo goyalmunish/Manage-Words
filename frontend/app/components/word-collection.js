@@ -10,6 +10,7 @@ export default Ember.Component.extend({
 
   // Computed propreties
   filteredWords: Ember.computed('word_search', 'full_search', 'sort_by', function() {
+    console.log("-----FILTERING-----");
     let filtered_words = this.get('words');
     let word_search = this.get('word_search');
     let full_search = this.get('full_search');
@@ -19,7 +20,6 @@ export default Ember.Component.extend({
     if(word_search) {
       console.log("Word search for: " + word_search);
       try {
-        console.log("----");
         let re_word_search = new RegExp(word_search);
 
         // filtered_words = words.filterBy('word', word_search);

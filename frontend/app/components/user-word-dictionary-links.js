@@ -7,10 +7,10 @@ export default Ember.Component.extend({
 
   // Computed propreties
   dictLinksForUserWord: Ember.computed('user', 'word', function() {
-    var user = this.get('user');
-    var word = this.get('word');
-    var dictionaries = user.get('dictionaries');
-    var links = [];
+    let user = this.get('user');
+    let word = this.get('word');
+    let dictionaries = user.get('dictionaries');
+    let links = [];
     dictionaries.forEach(function(dict) {
       // generating the link url
       let dict_name = dict.get('name');

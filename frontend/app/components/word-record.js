@@ -9,7 +9,7 @@ export default Ember.Component.extend({
   freshState: true,
   updateSuccess: false,
   allFlags: Ember.computed(function() {
-    var all_flags = this.get('store').findAll('flag');
+    let all_flags = this.get('store').findAll('flag');
     // Note that if we put below console.log call here, it would just print 0
     all_flags.then(function() {
       console.log(`No. of Flags: ${all_flags.get('length')}`);
@@ -30,7 +30,7 @@ export default Ember.Component.extend({
       this.set('isCreatedUpdatedShowing', false);
     },
     toggleReadonly() {
-      var readonly = this.get('readonly');
+      let readonly = this.get('readonly');
       if(readonly) {
         readonly = false;
         this.set('freshState', true);
@@ -41,8 +41,8 @@ export default Ember.Component.extend({
       this.set('readonly', readonly);
     },
     save() {
-      var word = this.get('word');
-      var that = this;
+      let word = this.get('word');
+      let that = this;
       console.log(`Updating word with id ${word.id} to server...`);
       word.save().then(function() {
         console.log("Update to server Succeed!");
@@ -57,9 +57,9 @@ export default Ember.Component.extend({
     },
     addRemoveFlag(id) {
       // console.log("addRemoveFlag started executing..");
-        var that = this;
-        var word = that.get('word');   // Note that it is not a promise
-        var wordFlags = word.get('flags');
+        let that = this;
+        let word = that.get('word');   // Note that it is not a promise
+        let wordFlags = word.get('flags');
       // Method 1:
       if (false) {
         console.log("Note: This if-block should not execute, take it as a reference in using Ember.RSVP.hash and findRecord with PushObject");

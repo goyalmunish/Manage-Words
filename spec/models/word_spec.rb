@@ -283,7 +283,7 @@ describe Word do
         expect(word).to receive(:strip_string_fields)
         word.valid?
       end
-      it "before_validation -> calls '#down_case_word'" do
+      it "before_validation -> no more calls '#down_case_word'" do
         # Note: good test case for reference (in learning)
         # Note: "When to use doubles?": while testing a particular method, we should be testing only its responsibility and not what it expects from PUBLIC METHODS, so any custom method that it calls should be mocked
         # Note: for "Message Expectations" on real or stubbed method, and there are two patterns to achieve it: "Message Expectation Pattern" and "Test Spies Pattern"
@@ -293,7 +293,7 @@ describe Word do
         # Note: a real or mock method both can register how many times they were called
         # Note: for test cases within same context, first you should write positive and general test cases and then the boundary conditions based test cases
         word = build(:word) # Note: word is real object, not double
-        expect(word).to receive(:down_case_word)  # Note: raising expectation to receive this method anytime before example ends
+        expect(word).not_to receive(:down_case_word)  # Note: raising expectation to receive this method anytime before example ends
         word.valid?
       end
       it "after_save -> calls '#remove_similar_flags_with_lower_level'" do

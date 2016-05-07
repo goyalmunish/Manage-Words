@@ -4383,6 +4383,14 @@
     ]
   },
   {
+    "word": "continuum",
+    "trick": null,
+    "additional_info": "continuum:\r\nsomething that changes in character gradually or in very slight stages without any clear dividing points\r\na continuous series or whole, no part of which is perceptibly different from the adjacent parts\r\nSentences:\r\nProject life cycles can range along a continuum from predictive or plan-driven approaches at one end to adaptive or change-driven approaches at the other.",
+    "flags_attributes": [
+
+    ]
+  },
+  {
     "word": "contract",
     "trick": "the metal contracted",
     "additional_info": "contract:\r\n(shorten) to make or become shorter or narrower or generally smaller\r\n(agreement) a legal document that states and explains a formal agreement between two different people or groups, or the agreement itself\r\nCheck: expand\r\nSentences:\r\nIn spoken English, \"do not\" often contracts to \"don't\". \r\nAs it cooled, the metal contracted. \r\n..a contract of employment\r\nNote: \r\n'contract' is opposite of 'expand'",
@@ -8573,7 +8581,10 @@
     "trick": "expedite economic reforms",
     "additional_info": "expedite:\r\nto make something happen more quickly\r\nSentences:\r\nSomething needs to be done to expedite the process.\r\nHe promised to expedite economic reforms.",
     "flags_attributes": [
-
+      {
+        "name": "PR",
+        "value": 0
+      }
     ]
   },
   {
@@ -13477,9 +13488,12 @@
   {
     "word": "liaison",
     "trick": null,
-    "additional_info": null,
+    "additional_info": "liaison:\r\ncommunication between people or groups who works with each other\r\nsomeone who helps groups to work effectively with each other\r\nSentences:\r\nThe PMO integrates data and information from corporate strategic projects and evaluates how higher level strategic objectives are being fulfilled. The PMO is the natural liaison between the organization’s portfolios, programs, projects, and the corporate measurement systems (e.g. balanced scorecard).",
     "flags_attributes": [
-
+      {
+        "name": "PR",
+        "value": 0
+      }
     ]
   },
   {

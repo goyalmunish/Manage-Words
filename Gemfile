@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.6'
+ruby '2.1.9'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
 # Use postgresql as the database for Active Record
@@ -38,7 +38,7 @@ gem 'spring', group: :development
 
 # Test related gems
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 3.0'
   gem 'rspec-activemodel-mocks'
   gem 'shoulda-matchers', '2.6.1', require: false # TODO: when updated to latest version (2.6.2 at that time, validate_uniqueness_of started failing
   gem 'autotest-rails'

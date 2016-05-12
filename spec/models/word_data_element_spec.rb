@@ -40,7 +40,7 @@ describe WordDataElement do
       user = create(:user)
       word1 = create(:word, user: user, word: 'word1')
       word2 = create(:word, user: user, word: 'word2')
-      word3 = create(:word, user: user, word: 'word3')
+      create(:word, user: user, word: 'word3')
       flag1 = create(:flag, name: 'CL', value: 1)
       flag2 = create(:flag, name: 'CP', value: 2)
       flag3 = create(:flag, name: 'K', value: 3)
@@ -87,7 +87,7 @@ describe WordDataElement do
         Word.destroy_all
         User.destroy_all
         user = create(:user, :email => 'test_user@word_list.com')
-        word1 = create(:word, user: user, word: 'word1')
+        create(:word, user: user, word: 'word1')
         WordDataElement.restore_word_data_backup(:user => user, :array_data => backup_data)
         expect(Word.all.size).to be 3
         expect(Word.where(:word => 'word1').first.flags.count).to be 0

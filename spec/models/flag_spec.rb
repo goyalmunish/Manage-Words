@@ -19,7 +19,7 @@ describe Flag do
     flag_k_0 = create(:flag_k_0)
     flag_k_1 = create(:flag_k_1)
     flags << flag_cl_1; flags << flag_cl_2; flags << flag_cp_1; flags << flag_cp_0; flags << flag_k_0; flags << flag_k_1;
-    original_id_array = [flag_cl_1.id, flag_cl_2.id, flag_cp_1.id, flag_cp_0.id, flag_k_0.id, flag_k_1.id].sort
+    # original_id_array = [flag_cl_1.id, flag_cl_2.id, flag_cp_1.id, flag_cp_0.id, flag_k_0.id, flag_k_1.id].sort
     expected_id_array = [flag_cl_2.id, flag_cp_1.id, flag_k_1.id].sort
     expect(Flag.flag_ids_with_available_max_level.sort).to eq(expected_id_array)
   end

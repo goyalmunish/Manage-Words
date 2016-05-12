@@ -151,12 +151,16 @@ class Flag < ActiveRecord::Base
     # finding max index for given flag_name
     flag_hash = self.flag_hash_with_sorted_array_values
     max_index = flag_hash[flag_name.to_s.to_sym].size - 1
+
+    max_index
   end
 
   # index is based on return value of flag_hash_with_sorted_array_values
   def self.current_index_for_flag(flag)
     flag_hash = self.flag_hash_with_sorted_array_values
     current_index = flag_hash[flag.name.to_sym].index(flag.value)
+
+    current_index
   end
 
 end

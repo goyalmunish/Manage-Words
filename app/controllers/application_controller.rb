@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  # Handling unhandled exceptions 
+  # Handling unhandled exceptions
   if %w(production development test).include? Rails.env
     rescue_from Exception do |ex|
       respond_to do |format|

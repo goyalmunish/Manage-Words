@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe AppSetting do
-  context 'Testing Validation' do 
+  context 'Testing Validation' do
     it { should validate_presence_of(:key)}
   end
   describe '.find_by_key(k)' do
@@ -92,19 +92,19 @@ describe AppSetting do
       expect(app_setting.to_s).to eq(":my_key => 'some_value'")
     end
   end
-  
+
   context "Tests relevant for only developer" do
     context 'Testing Associations' do
       # no associations
     end
-    context 'Testing Callbacks' do 
-      it "before_validation -> calls '#underscore_the_key'" do 
+    context 'Testing Callbacks' do
+      it "before_validation -> calls '#underscore_the_key'" do
         app_setting = build(:app_setting)
         allow(app_setting).to receive(:underscore_the_key)
         expect(app_setting).to receive(:underscore_the_key)
         app_setting.save
       end
-      it "#underscore_the_key" do 
+      it "#underscore_the_key" do
         app_setting = build(:app_setting, :key => 'MyKey')
         app_setting.valid?
         expect(app_setting.key).to eq('my_key')

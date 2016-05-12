@@ -57,7 +57,7 @@ class DataElement
 
   # wrapper for external dependencies
   def self.get_user_from_email_wrapper(email)
-    user = User.where(:email => email).first
+    User.where(:email => email).first
   end
 
   # wrapper for external dependencies

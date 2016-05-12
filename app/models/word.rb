@@ -3,7 +3,7 @@ class Word < ActiveRecord::Base
   include CommonModel # custom library placed in lib directory, containing methods common to all models
 
   # ASSOCIATIONS
-  # Note: below associations are basically messages that this model responds to and hence the design allows it to be directly called within this model  
+  # Note: below associations are basically messages that this model responds to and hence the design allows it to be directly called within this model
   belongs_to :user
   # has_and_belongs_to_many :flags
   has_many :flags_words

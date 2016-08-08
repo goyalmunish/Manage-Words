@@ -21,6 +21,9 @@ describe Word do
       # Refer: https://github.com/thoughtbot/shoulda-matchers/issues/884
       user = create(:user, :email => 'user@user.com')
       subject.user_id = user.id
+      unless subject.word
+        subject.word = "word"
+      end
       should validate_uniqueness_of(:word).scoped_to(:user_id)
     end
   end

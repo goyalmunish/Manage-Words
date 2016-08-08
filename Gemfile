@@ -34,7 +34,7 @@ gem 'spring', group: :development
 group :development, :test do
   gem 'rspec-rails', '>=3.5'
   gem 'rspec-activemodel-mocks'
-  gem 'shoulda-matchers', '3.0.1'
+  gem 'shoulda-matchers', '~>3.1'
   gem 'autotest-rails'
   gem 'database_cleaner'
   gem 'factory_girl_rails'

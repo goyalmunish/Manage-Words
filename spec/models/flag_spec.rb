@@ -13,6 +13,9 @@ describe Flag do
     it {
       # Refer: https://github.com/thoughtbot/shoulda-matchers/issues/884
       subject.value = 2
+      unless subject.name
+        subject.name = "flag"
+      end
       should validate_uniqueness_of(:name).scoped_to(:value)
     }
   end

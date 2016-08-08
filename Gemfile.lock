@@ -199,7 +199,7 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
-    shoulda-matchers (3.0.1)
+    shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
     simple_token_authentication (1.14.0)
       actionmailer (>= 3.2.6, < 6)
@@ -283,7 +283,7 @@ DEPENDENCIES
   sass-rails
   sdoc
   selenium-webdriver
-  shoulda-matchers (= 3.0.1)
+  shoulda-matchers (~> 3.1)
   simple_token_authentication
   simplecov
   spring

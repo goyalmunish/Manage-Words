@@ -14,6 +14,9 @@ describe Dictionary do
       # Refer: https://github.com/thoughtbot/shoulda-matchers/issues/884
       subject.url = "some_url"
       subject.separator = "sep"
+      unless subject.name
+        subject.name = "some_name"
+      end
       should validate_uniqueness_of(:name)
     end
   end

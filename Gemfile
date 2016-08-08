@@ -34,7 +34,7 @@ gem 'spring', group: :development
 group :development, :test do
   gem 'rspec-rails', '>=3.5'
   gem 'rspec-activemodel-mocks'
-  gem 'shoulda-matchers', '2.6.1' # TODO: when updated to latest version (2.6.2 at that time) validate_uniqueness_of started failing
+  gem 'shoulda-matchers', '3.0.1'
   gem 'autotest-rails'
   gem 'database_cleaner'
   gem 'factory_girl_rails'

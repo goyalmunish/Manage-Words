@@ -85,7 +85,6 @@ RSpec.configure do |config|
   config.include FeatureHelper, :type => :feature
 end
 
-=begin
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     # Choose a test framework:
@@ -99,4 +98,4 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
-=end
+

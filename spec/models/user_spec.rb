@@ -39,13 +39,18 @@ describe User do
   end
 
   context 'Testing Validations' do
-    it { should validate_presence_of(:first_name)}
-    it { should validate_presence_of(:last_name)}
-    it { should validate_presence_of(:email)}
-    it { should validate_uniqueness_of(:email)}
-    it { should ensure_length_of(:first_name).is_at_most(15) }
-    it { should ensure_length_of(:last_name).is_at_most(15) }
-    it { should ensure_length_of(:additional_info).is_at_most(100) }
+    it { should validate_presence_of(:first_name) }
+    it { should validate_presence_of(:last_name) }
+    it { should validate_presence_of(:email) }
+    it { should validate_length_of(:first_name).is_at_most(15) }
+    it { should validate_length_of(:last_name).is_at_most(15) }
+    it { should validate_length_of(:additional_info).is_at_most(100) }
+    it do
+      # Refer: https://github.com/thoughtbot/shoulda-matchers/issues/884
+      subject.first_name = "first_name"
+      subject.last_name = "last_name"
+      should validate_uniqueness_of(:email).case_insensitive
+    end
   end
 
   context "Tests relevant for only developer" do

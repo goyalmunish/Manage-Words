@@ -2,12 +2,19 @@ require 'spec_helper'
 
 describe Flag do
   context 'Testing Validations' do
-    it { should validate_presence_of(:name)}
-    it { should validate_presence_of(:value)}
-    it { should validate_uniqueness_of(:name).scoped_to(:value)}
-    it { should ensure_length_of(:name).is_at_most(5) }
-    it { should ensure_length_of(:desc).is_at_most(100) }
-    it { should validate_numericality_of(:value)}
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:value) }
+    it { should validate_length_of(:name).is_at_most(5) }
+    it { should validate_length_of(:desc).is_at_most(100) }
+    it { 
+      # Note that "munish".to_i == 0, so even if you pass a sting that doesn't look an integer, that will pass
+      # should validate_numericality_of(:value)
+    }
+    it {
+      # Refer: https://github.com/thoughtbot/shoulda-matchers/issues/884
+      subject.value = 2
+      should validate_uniqueness_of(:name).scoped_to(:value)
+    }
   end
 
   it ".flag_ids_with_available_max_level" do

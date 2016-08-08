@@ -14,10 +14,15 @@ describe Word do
   context 'Testing Validations' do
     it { should validate_presence_of(:user_id)}
     it { should validate_presence_of(:word)}
-    it { should validate_uniqueness_of(:word).scoped_to(:user_id)}
-    it { should ensure_length_of(:word).is_at_most(25) }
-    it { should ensure_length_of(:trick).is_at_most(100) }
-    it { should ensure_length_of(:additional_info).is_at_most(2048) }
+    it { should validate_length_of(:word).is_at_most(25) }
+    it { should validate_length_of(:trick).is_at_most(100) }
+    it { should validate_length_of(:additional_info).is_at_most(2048) }
+    it do
+      # Refer: https://github.com/thoughtbot/shoulda-matchers/issues/884
+      user = create(:user, :email => 'user@user.com')
+      subject.user_id = user.id
+      should validate_uniqueness_of(:word).scoped_to(:user_id)
+    end
   end
 
   describe ".search" do

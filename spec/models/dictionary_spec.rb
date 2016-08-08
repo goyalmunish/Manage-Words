@@ -5,12 +5,17 @@ describe Dictionary do
     it { should validate_presence_of(:name)}
     it { should validate_presence_of(:url)}
     it { should validate_presence_of(:separator)}
-    it { should validate_uniqueness_of(:name)}
-    it { should ensure_length_of(:name).is_at_most(25) }
-    it { should ensure_length_of(:url).is_at_most(150) }
-    it { should ensure_length_of(:separator).is_at_most(5) }
-    it { should ensure_length_of(:suffix).is_at_most(25) }
-    it { should ensure_length_of(:additional_info).is_at_most(250) }
+    it { should validate_length_of(:name).is_at_most(25) }
+    it { should validate_length_of(:url).is_at_most(150) }
+    it { should validate_length_of(:separator).is_at_most(5) }
+    it { should validate_length_of(:suffix).is_at_most(25) }
+    it { should validate_length_of(:additional_info).is_at_most(250) }
+    it do
+      # Refer: https://github.com/thoughtbot/shoulda-matchers/issues/884
+      subject.url = "some_url"
+      subject.separator = "sep"
+      should validate_uniqueness_of(:name)
+    end
   end
   describe "#url_for_phrase" do
     it "works with 1 word phrase" do

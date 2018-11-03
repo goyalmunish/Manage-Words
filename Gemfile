@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'
-gem 'rails', '4.1.15'
-gem 'pg'
+ruby '2.5.1'
+gem 'rails', '4.2.8'
+gem 'pg', "~> 0.20"
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 # Use CoffeeScript for .js.coffee assets and views
 # gem 'coffee-rails', '~> 4.0.0'
-gem 'therubyracer', platforms: :ruby
-gem 'libv8', '3.16.14.13'
+gem 'therubyracer', '0.12.3', platforms: :ruby
+gem 'libv8', '3.16.14.15'
 
 gem 'jquery-rails'
 gem 'turbolinks'
@@ -84,4 +84,5 @@ end
 gem 'dalli'
 gem 'connection_pool'
 gem 'ember-cli-rails'
+gem 'httparty'
 

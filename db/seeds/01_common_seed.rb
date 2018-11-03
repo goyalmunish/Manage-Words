@@ -73,6 +73,8 @@ if ['development', 'production'].include? ENV['RAILS_ENV']
   end
 
   # Seeding Important Users
+  # Note: Ideally credentials will be handled through environment variable or configuration management such as consul
+  # Note: Just hard coding the credentials for keeping it simple for development environment
   if User.count == 0
     User.create!(:first_name => 'Munish', :last_name => 'Goyal', :type => 'Admin', :email => 'munishapc@gmail.com', :password => 'munishgoyal', :password_confirmation => 'munishgoyal')
     User.create!(:first_name => 'Ritika', :last_name => 'Goyal', :type => 'General', :email => 'ritikamittal9@gmail.com', :password => 'munishgoyal', :password_confirmation => 'munishgoyal')

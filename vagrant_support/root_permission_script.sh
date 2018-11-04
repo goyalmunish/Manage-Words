@@ -14,7 +14,7 @@ echo 'this script works on Ubuntu 16.04 - 64 bit'
 echo "<--- Setting up Variables --->"
 echo User: $USER
 # Mysql
-mysql_root_passwd=root
+mysql_root_passwd=root    # credentials and secrets are exposed just for demonstration
 export mysql_root_passwd  # making the variable available to subshells
 # Postgres
 postgres_postgres_passwd=postgres  # TODO: it is duplicated in the below script, to correct it

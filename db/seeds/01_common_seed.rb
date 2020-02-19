@@ -46,8 +46,11 @@ if ['development', 'production'].include? ENV['RAILS_ENV']
     Flag.create!(name: 'CL', value: 3, desc: 'Highly Comfortable (Comfort Level 3)')
     Flag.create!(name: 'PR', value: 0, desc: 'Check Pronunciation')
     Flag.create!(name: 'PR', value: 1, desc: 'Getting Comfortable with Pronunciation')
-    Flag.create!(name: 'GMAT', value: 0, desc: 'Relevant to GMAT')
+    Flag.create!(name: 'GEN', value: 0, desc: 'General Word')
     Flag.create!(name: 'GRMR', value: 0, desc: 'Relevant to GRAMMAR')
+    Flag.create!(name: 'MAG1K', value: 1, desc: 'Magoosh GRE High Frequency Words')
+    Flag.create!(name: 'MAG1K', value: 2, desc: 'Magoosh GRE Basic Words')
+    Flag.create!(name: 'MAG1K', value: 3, desc: 'Magoosh GRE High Advanced Words')
     Flag.create!(name: 'L-DE', value: 0, desc: 'German Word')
     Flag.create!(name: 'L-FR', value: 0, desc: 'French Word')
   end

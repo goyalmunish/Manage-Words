@@ -85,4 +85,4 @@ gem 'dalli'
 gem 'connection_pool'
 gem 'ember-cli-rails'
 gem 'httparty'
-
+gem 'tzinfo-data'

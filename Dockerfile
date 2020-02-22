@@ -8,38 +8,53 @@ SHELL ["/bin/bash", "-lc"]
 
 RUN apt-get update \
     && apt-get install -y \
+      mysql-server \
+      memcached \
       r-base \
     && rm -rf /var/lib/apt/lists/* \
     && echo 'Done: Additional packages!'
 
-RUN git clone https://github.com/goyalmunish/manage-words \
-    && eval "$(/root/.rbenv/bin/rbenv init -)" \
+ENV RUBY_VERSION 2.6.6
+ENV BUNDLER_VERSION 1.17.1
+
+RUN /root/.rbenv/bin/rbenv install ${RUBY_VERSION} \
+    && /root/.rbenv/bin/rbenv local ${RUBY_VERSION} \
+    && /root/.rbenv/bin/rbenv which ruby \
+    && echo ruby --version \
+    && echo 'Done: Installed Ruby!'
+
+# note if the repo has changed, you would need to run
+# docker build with `--no-cache` option if you clone the repo
+# instead of copying it from local
+COPY ./ manage-words
+RUN eval "$(/root/.rbenv/bin/rbenv init -)" \
     && cd manage-words \
-    && /root/.rbenv/bin/rbenv install 2.5.1 \
-    && /root/.rbenv/bin/rbenv local 2.5.1 \
     && /root/.rbenv/bin/rbenv which ruby \
     && cd .. && cd manage-words \
     && echo ruby --version \
-    && gem install bundler:1.17.1 \
+    && gem install bundler:${BUNDLER_VERSION} \
     && bundle install \
     && gem list \
+    && echo 'Done: Repo cloning!'
 
+ENV RAILS_ENV development
 
-COPY ./conf/mgoyal_shell_helpers.sh ${DIR_DATA_TEMP}/mgoyal_shell_helpers.sh
+RUN cd manage-words \
+    && eval "$(/root/.rbenv/bin/rbenv init -)" \
+    && /root/.rbenv/bin/rbenv which ruby \
+    && export RAILS_ENV=${RAILS_ENV} \
+    && service mysql start \
+    && bundle exec rake db:create \
+    && bundle exec rake db:migrate \
+    && bundle exec rake db:seed \
+    && echo 'Done: Database preparation!'
+
 CMD [ \
-        "/bin/bash", "-c", \
+        "/bin/zsh", "-c", \
         " \
-        mkdir -p ${DIR_DATA} ${DIR_HOME}/${DIR_HOME_CODE_NAME} \
-        && ln -s -f ${DIR_DATA_MAIN_PROJ} ${DIR_HOME}/${DIR_HOME_CODE_NAME}/${DIR_HOME_MAIN_PROJ_NAME} \
-        && cd ${DIR_HOME}/${DIR_HOME_CODE_NAME}/${DIR_HOME_MAIN_PROJ_NAME} \
-        && . conf/mgoyal_commands.sh \
-        && . conf/mgoyal_shell_helpers.sh \
-        && KEYCHAIN_ENABLED=False && . conf/mgoyal_bashrc_zshrc_common \
-        && insert_if_missing \"$source_bashrc_common\" ~/.bashrc \"append\" \
-        && insert_if_missing \"$source_zshrc_common\" ~/.zshrc \"append\" \
-        && echo \"export DOCKER_HOST=tcp://$(netstat -rn | grep UG | awk '{ print $2 }'):2375\" >> ${DIR_HOME}/.bashrc_zshrc_current \
-        && . ${DIR_DATA_TEMP}/mgoyal_shell_helpers.sh \
-        && cd ~/manage-words \
+        cd ~/manage-words \
+        && eval "$(/root/.rbenv/bin/rbenv init -)" \
+        && service mysql start \
         && bundle exec rails s -b 0.0.0.0 -p 3000 \
         " \
     ]
@@ -49,46 +64,8 @@ CMD [ \
 # docker build -t goyalmunish/manage-words -f Dockerfile ./
 # # push the image
 # docker push manage-words:latest
-# 
-# # function to run the image
-# mwimagerun () {
-#   additional_options="$@"
-#   # run docker command
-#   mkdir -p ~/.ssh
-#   mkdir -p ~/.kube
-#   mkdir -p ~/.config/gcloud
-#   mkdir -p ~/.aws
-#   mkdir -p ~/MG/cst
-#   mkdir -p ~/Code
-#   cmd="docker run -it -d --privileged \
-#     --name manage-words \
-#     -e PS_START=de-$(uname -n) \
-#     -e HOST_PLATFORM=$(uname -s) \
-#     -v ~/.ssh:/root/.ssh \
-#     -v ~/.kube:/root/.kube \
-#     -v ~/.config/gcloud:/root/.config/gcloud \
-#     -v ~/.aws:/root/.aws \
-#     -v ~/MG/cst:/data/main_proj \
-#     -v ~/Code:/root/Code \
-#     ${additional_options} \
-#     goyalmunish/manage-words"
-#   if [[ ! -z $DEVENV_RUN_CMD ]]; then
-#       cmd="${cmd} ${DEVENV_RUN_CMD}"
-#   fi
-#   # echo the command
-#   echo $cmd
-#   # run the command
-#   eval $cmd
-#   # make sure a network exist with same name as ${DEVENV_NET}
-#   docker network create ${DEVENV_NET} || true
-#   # attach container to the network
-#   denetcon manage-words
-#   # reset non-default variables
-#   unset DEVENV_RUN_CMD
-#   DEVENV_CONTAINER="${DEVENV_NET}"
-# }
-# 
-# # example run
-# cd ~/MG/cst
-# mwimagerun -v $SSH_AUTH_SOCK:/ssh-agent -e SSH_AUTH_SOCK=/ssh-agent
-# mwimagerun -p 3000:3000
+
+# # run image
+# docker run -it -d --name manage-words -e PS_START=de-$(uname -n) -e HOST_PLATFORM=$(uname -s) -p 3000:3000 goyalmunish/manage-words
+# for testing out CMD, you might like to run the image as follows
+# docker run -it -d --name manage-words -e PS_START=de-$(uname -n) -e HOST_PLATFORM=$(uname -s) -p 3000:3000 goyalmunish/manage-words /bin/bash -c "ping -i 0.2 $(gateway_ip)"

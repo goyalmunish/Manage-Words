@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.5.1'
+ruby '2.6.6'
 gem 'rails', '4.2.8'
-gem 'pg', "~> 0.20"
+gem 'mysql2', '~> 0.4.0'
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'

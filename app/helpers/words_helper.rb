@@ -11,7 +11,7 @@ module WordsHelper
     name << "USERID-#{user_id}"
     name << "FILTERS-AND-ORDERS-#{filters_and_orders.inspect}"
     name << "COUNT-#{Word.count}"
-    name << "MAX-UPDATED-AT-#{Word.maximum(:updated_at).try(:getutc)}"
+    name << "MAX-UPDATED-AT-#{Word.maximum(:updated_at).try(:getutc)}".split.join("_")
     if filters_and_orders[:sort_by] == 'random'
       # cached fragment should not be used in case of random sorting
       name << "RANDOM-AT-#{Time.now.to_s}"
@@ -26,7 +26,7 @@ module WordsHelper
     name << "USERID-#{user_id}"
     name << "WORDID-#{word.id}"
     name << "FLAGIDS-#{word.flag_ids.inspect}"
-    name << "WORD-UPDATED-AT-#{word.updated_at.try(:getutc)}"
+    name << "WORD-UPDATED-AT-#{word.updated_at.try(:getutc)}".split.join("_")
     return_value = name.join('__')
     Rails.logger.info "Cache Name: #{return_value}"
     return return_value

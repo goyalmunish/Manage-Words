@@ -50,22 +50,12 @@ RUN eval "$(${RBENV_PATH} init -)" \
     && echo 'Done: Setting up database!'
 
 CMD [ \
-        "/bin/bash", "-c", \
+        "/bin/zsh", "-c", \
         " \
         eval \"$(/root/.rbenv/bin/rbenv init -)\" \
         && cd manage-words \
         && service mysql start \
+        && service memcached start \
         && bundle exec rails s -b 0.0.0.0 -p 3000 \
         " \
     ]
-
-# # build the image locally
-# cd manage-words
-# docker build -t goyalmunish/manage-words -f Dockerfile ./
-# # push the image
-# docker push manage-words:latest
-
-# # run image
-# docker run -it -d --name manage-words -e PS_START=de-$(uname -n) -e HOST_PLATFORM=$(uname -s) -p 3000:3000 goyalmunish/manage-words
-# for testing out CMD, you might like to run the image as follows
-# docker run -it -d --name manage-words -e PS_START=de-$(uname -n) -e HOST_PLATFORM=$(uname -s) -p 3000:3000 goyalmunish/manage-words /bin/bash -c "ping -i 0.2 $(gateway_ip)"

@@ -1,7 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    ZenTest (4.12.0)
     actionmailer (4.2.8)
       actionpack (= 4.2.8)
       actionview (= 4.2.8)
@@ -39,8 +38,6 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     arel (6.0.4)
-    autotest-rails (4.2.1)
-      ZenTest (~> 4.5)
     awesome_print (1.8.0)
     bcrypt (3.1.13)
     builder (3.2.4)
@@ -284,7 +281,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  autotest-rails
   awesome_print
   byebug
   capybara

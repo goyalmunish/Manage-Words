@@ -16,44 +16,44 @@ RUN apt-get update \
 
 ENV RUBY_VERSION 2.6.6
 ENV BUNDLER_VERSION 1.17.1
+ENV RBENV_PATH /root/.rbenv/bin/rbenv
 
-RUN /root/.rbenv/bin/rbenv install ${RUBY_VERSION} \
-    && /root/.rbenv/bin/rbenv local ${RUBY_VERSION} \
-    && /root/.rbenv/bin/rbenv which ruby \
-    && echo ruby --version \
+RUN ${RBENV_PATH} install ${RUBY_VERSION} \
+    && ${RBENV_PATH} local ${RUBY_VERSION} \
+    && ${RBENV_PATH} global ${RUBY_VERSION} \
+    && ${RBENV_PATH} versions \
+    && ruby_path=$(${RBENV_PATH} which ruby) \
+    && $ruby_path --version \
     && echo 'Done: Installed Ruby!'
+
+ENV RAILS_ENV development
 
 # note if the repo has changed, you would need to run
 # docker build with `--no-cache` option if you clone the repo
 # instead of copying it from local
 COPY ./ manage-words
-RUN eval "$(/root/.rbenv/bin/rbenv init -)" \
+RUN eval "$(${RBENV_PATH} init -)" \
     && cd manage-words \
-    && /root/.rbenv/bin/rbenv which ruby \
-    && cd .. && cd manage-words \
-    && echo ruby --version \
     && gem install bundler:${BUNDLER_VERSION} \
+    && export RAILS_ENV=${RAILS_ENV} \
     && bundle install \
     && gem list \
-    && echo 'Done: Repo cloning!'
+    && echo 'Done: Copying the repo and bundle install!'
 
-ENV RAILS_ENV development
-
-RUN cd manage-words \
-    && eval "$(/root/.rbenv/bin/rbenv init -)" \
-    && /root/.rbenv/bin/rbenv which ruby \
+RUN eval "$(${RBENV_PATH} init -)" \
+    && cd manage-words \
     && export RAILS_ENV=${RAILS_ENV} \
     && service mysql start \
     && bundle exec rake db:create \
     && bundle exec rake db:migrate \
     && bundle exec rake db:seed \
-    && echo 'Done: Database preparation!'
+    && echo 'Done: Setting up database!'
 
 CMD [ \
-        "/bin/zsh", "-c", \
+        "/bin/bash", "-c", \
         " \
-        cd ~/manage-words \
-        && eval "$(/root/.rbenv/bin/rbenv init -)" \
+        eval \"$(/root/.rbenv/bin/rbenv init -)\" \
+        && cd manage-words \
         && service mysql start \
         && bundle exec rails s -b 0.0.0.0 -p 3000 \
         " \

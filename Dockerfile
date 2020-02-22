@@ -26,7 +26,7 @@ RUN ${RBENV_PATH} install ${RUBY_VERSION} \
     && $ruby_path --version \
     && echo 'Done: Installed Ruby!'
 
-ENV RAILS_ENV development
+ENV RAILS_ENV production
 
 # note if the repo has changed, you would need to run
 # docker build with `--no-cache` option if you clone the repo

@@ -35,8 +35,8 @@ if ['development', 'production'].include? ENV['RAILS_ENV']
   #
   # Seeding AppSettings
   puts AppSetting.set_if_nil('site_name', 'WordList')
-  puts AppSetting.set_if_nil('site_url', 'http://manage-words.herokuapp.com')
-  puts AppSetting.set_if_nil('database', 'pg')
+  puts AppSetting.set_if_nil('site_url', 'http://devenv.com')
+  puts AppSetting.set_if_nil('database', 'mysql')
 
   # Seeding flags
   if Flag.count == 0
@@ -44,15 +44,15 @@ if ['development', 'production'].include? ENV['RAILS_ENV']
     Flag.create!(name: 'CL', value: 1, desc: 'Slightly Comfortable (Comfort Level 1)')
     Flag.create!(name: 'CL', value: 2, desc: 'Comfortable (Comfort Level 2)')
     Flag.create!(name: 'CL', value: 3, desc: 'Highly Comfortable (Comfort Level 3)')
+    Flag.create!(name: 'CL', value: 4, desc: 'Learnt Word (Comfort Level 4)')
     Flag.create!(name: 'PR', value: 0, desc: 'Check Pronunciation')
-    Flag.create!(name: 'PR', value: 1, desc: 'Getting Comfortable with Pronunciation')
     Flag.create!(name: 'GEN', value: 0, desc: 'General Word')
-    Flag.create!(name: 'GRMR', value: 0, desc: 'Relevant to GRAMMAR')
+    Flag.create!(name: 'GRMR', value: 0, desc: 'Relevant for GRAMMAR')
     Flag.create!(name: 'MAG1K', value: 1, desc: 'Magoosh GRE High Frequency Words')
     Flag.create!(name: 'MAG1K', value: 2, desc: 'Magoosh GRE Basic Words')
     Flag.create!(name: 'MAG1K', value: 3, desc: 'Magoosh GRE High Advanced Words')
-    Flag.create!(name: 'L-DE', value: 0, desc: 'German Word')
     Flag.create!(name: 'L-FR', value: 0, desc: 'French Word')
+    Flag.create!(name: 'L-DE', value: 0, desc: 'German Word')
   end
 
   # Seeding dictionaries
@@ -60,9 +60,9 @@ if ['development', 'production'].include? ENV['RAILS_ENV']
     # English important ones
     Dictionary.create!(name: 'cambridge', url: 'http://dictionary.cambridge.org/search/british/direct/?q=', separator: '-', suffix: nil, additional_info: nil)
     Dictionary.create!(name: 'collins', url: 'http://www.collinsdictionary.com/dictionary/english/', separator: '-', suffix: nil, additional_info: nil)
+    Dictionary.create!(name: 'google_search', url: 'https://www.google.co.in/webhp?#q=', separator: '+', suffix: '%20meaning', additional_info: nil)
     Dictionary.create!(name: 'grammarly Thesaurus', url: 'https://www.grammarly.com/words/', separator: '%20', suffix: nil, additional_info: nil)
     Dictionary.create!(name: 'merriam_webster', url: 'http://www.merriam-webster.com/dictionary/', separator: '%20', suffix: nil, additional_info: nil)
-    Dictionary.create!(name: 'google_search', url: 'https://www.google.co.in/webhp?#q=', separator: '+', suffix: '%20meaning', additional_info: nil)
     # English Others
     Dictionary.create!(name: 'cambridge Learner', url: 'http://dictionary.cambridge.org/search/learner-english/direct/?q=', separator: '-', suffix: nil, additional_info: nil)
     Dictionary.create!(name: 'google_hindi', url: 'https://www.google.co.in/webhp?ie=UTF-8#q=', separator: '%20', suffix: '+meaning+in+hindi', additional_info: nil)

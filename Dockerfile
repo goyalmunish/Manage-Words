@@ -26,20 +26,21 @@ RUN ${RBENV_PATH} install ${RUBY_VERSION} \
     && $ruby_path --version \
     && echo 'Done: Installed Ruby!'
 
-ENV RAILS_ENV production
+COPY Gemfile manage-words/Gemfile
+COPY Gemfile.lock manage-words/Gemfile.lock
+RUN eval "$(${RBENV_PATH} init -)" \
+    && cd manage-words \
+    && gem install bundler:${BUNDLER_VERSION} \
+    && RAILS_ENV=development bundle install \
+    && gem list \
+    && echo 'Done: Copying Gemfile, copying Gemfile.lock and bundle install'
 
 # note if the repo has changed, you would need to run
 # docker build with `--no-cache` option if you clone the repo
 # instead of copying it from local
 COPY ./ manage-words
-RUN eval "$(${RBENV_PATH} init -)" \
-    && cd manage-words \
-    && gem install bundler:${BUNDLER_VERSION} \
-    && export RAILS_ENV=${RAILS_ENV} \
-    && bundle install \
-    && gem list \
-    && echo 'Done: Copying the repo and bundle install!'
 
+ENV RAILS_ENV production
 RUN eval "$(${RBENV_PATH} init -)" \
     && cd manage-words \
     && export RAILS_ENV=${RAILS_ENV} \

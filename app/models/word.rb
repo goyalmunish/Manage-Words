@@ -104,6 +104,20 @@ class Word < ActiveRecord::Base
             search_full_pg_regex(search_text)
           end
         end
+      elsif database == 'mysql'
+        if search_type == 'word'
+          if search_negative
+            search_word_mysql_regex_not(search_text)
+          else
+            search_word_mysql_regex(search_text)
+          end
+        elsif search_type == 'record'
+          if search_negative
+            search_full_mysql_regex_not(search_text)
+          else
+            search_full_mysql_regex(search_text)
+          end
+        end
       else
         if search_type == 'word'
           if search_negative
@@ -150,10 +164,16 @@ class Word < ActiveRecord::Base
   scope :search_word_text_not, lambda { |search_text| where.not('word LIKE :text', :text => "%#{search_text}%") }
   scope :search_full_text, lambda { |search_text| where('word LIKE :text OR trick LIKE :text OR additional_info LIKE :text', :text => "%#{search_text}%") }
   scope :search_full_text_not, lambda { |search_text| where.not('word LIKE :text OR trick LIKE :text OR additional_info LIKE :text', :text => "%#{search_text}%") }
-  scope :search_word_pg_regex, lambda { |search_text| where('word ~* :text', :text => search_text) } # Note: it works only in postgres
-  scope :search_word_pg_regex_not, lambda { |search_text| where.not('word ~* :text', :text => search_text) } # Note: it works only in postgres
-  scope :search_full_pg_regex, lambda { |search_text| where('word ~* :text OR trick ~* :text OR additional_info ~* :text', :text => search_text) } # Note: it works only in postgres
-  scope :search_full_pg_regex_not, lambda { |search_text| where.not('word ~* :text OR trick ~* :text OR additional_info ~* :text', :text => search_text) } # Note: it works only in postgres
+  # below queries work only in mysql
+  scope :search_word_mysql_regex, lambda { |search_text| where('word REGEXP :text', :text => search_text) }
+  scope :search_word_mysql_regex_not, lambda { |search_text| where.not('word REGEXP :text', :text => search_text) }
+  scope :search_full_mysql_regex, lambda { |search_text| where('word REGEXP :text OR trick ~* :text OR additional_info ~* :text', :text => search_text) }
+  scope :search_full_mysql_regex_not, lambda { |search_text| where.not('word REGEXP :text OR trick ~* :text OR additional_info ~* :text', :text => search_text) }
+  # below queries work only in postgres
+  scope :search_word_pg_regex, lambda { |search_text| where('word ~* :text', :text => search_text) }
+  scope :search_word_pg_regex_not, lambda { |search_text| where.not('word ~* :text', :text => search_text) }
+  scope :search_full_pg_regex, lambda { |search_text| where('word ~* :text OR trick ~* :text OR additional_info ~* :text', :text => search_text) }
+  scope :search_full_pg_regex_not, lambda { |search_text| where.not('word ~* :text OR trick ~* :text OR additional_info ~* :text', :text => search_text) }
 
 
   protected

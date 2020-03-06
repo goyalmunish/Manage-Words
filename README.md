@@ -68,6 +68,8 @@ which can be ordered and filtered using custom defined filters, such as below:
   <img src="./support/ss_filters.png" width="100%">
 </p>
 
+_The plain text (for word or/and whole record), regex (for work or/and whole record) searches are supported._
+
 _**Adjusting Comfort Levels:**_
 
 During a test, once can upgrade or downgrade comfort level of that word in terms of meaning and pronunciation.

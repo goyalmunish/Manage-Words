@@ -11,6 +11,9 @@ RUN apt-get update \
       mysql-server \
       memcached \
       r-base \
+    && memcached --version \
+    && mysql --version \
+    && R --version \
     && rm -rf /var/lib/apt/lists/* \
     && echo 'Done: Additional packages!'
 
@@ -49,6 +52,8 @@ RUN eval "$(${RBENV_PATH} init -)" \
     && bundle exec rake db:migrate \
     && bundle exec rake db:seed \
     && echo 'Done: Setting up database!'
+
+EXPOSE 3000/tcp
 
 CMD [ \
         "/bin/zsh", "-c", \

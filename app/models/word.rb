@@ -167,8 +167,8 @@ class Word < ActiveRecord::Base
   # below queries work only in mysql
   scope :search_word_mysql_regex, lambda { |search_text| where('word REGEXP :text', :text => search_text) }
   scope :search_word_mysql_regex_not, lambda { |search_text| where.not('word REGEXP :text', :text => search_text) }
-  scope :search_full_mysql_regex, lambda { |search_text| where('word REGEXP :text OR trick ~* :text OR additional_info ~* :text', :text => search_text) }
-  scope :search_full_mysql_regex_not, lambda { |search_text| where.not('word REGEXP :text OR trick ~* :text OR additional_info ~* :text', :text => search_text) }
+  scope :search_full_mysql_regex, lambda { |search_text| where('word REGEXP :text OR trick REGEXP :text OR additional_info REGEXP :text', :text => search_text) }
+  scope :search_full_mysql_regex_not, lambda { |search_text| where.not('word REGEXP :text OR trick REGEXP :text OR additional_info REGEXP :text', :text => search_text) }
   # below queries work only in postgres
   scope :search_word_pg_regex, lambda { |search_text| where('word ~* :text', :text => search_text) }
   scope :search_word_pg_regex_not, lambda { |search_text| where.not('word ~* :text', :text => search_text) }

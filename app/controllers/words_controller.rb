@@ -217,7 +217,7 @@ class WordsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_word
-    @word = current_user.words.includes(:flags).find(params[:id])
+    @word = current_user.words.includes(:flags).friendly.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

@@ -90,6 +90,8 @@ GEM
     ffi (1.9.25)
     foreman (0.85.0)
       thor (~> 0.19.1)
+    friendly_id (5.3.0)
+      activerecord (>= 4.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     html_page (0.1.0)
@@ -298,6 +300,7 @@ DEPENDENCIES
   ember-cli-rails
   factory_girl_rails
   foreman
+  friendly_id
   httparty
   jbuilder (>= 2.4.0)
   jquery-rails

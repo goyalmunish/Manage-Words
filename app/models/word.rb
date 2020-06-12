@@ -1,6 +1,8 @@
 require 'common_model'
 class Word < ActiveRecord::Base
   include CommonModel # custom library placed in lib directory, containing methods common to all models
+  extend FriendlyId
+  friendly_id :word, use: :slugged
 
   # ASSOCIATIONS
   # Note: below associations are basically messages that this model responds to and hence the design allows it to be directly called within this model

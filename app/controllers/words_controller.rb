@@ -7,6 +7,8 @@ class WordsController < ApplicationController
   def index
     @page_title = ['Words']
 
+    sanitize_flag_id
+
     # conditionally clear_all_filters_and_orders
     if params[:reset]
       clear_all_filters_and_orders
@@ -214,6 +216,7 @@ class WordsController < ApplicationController
 
   # helper method
   def current_filters_and_orders
+    sanitize_flag_id
     filters_and_orders = Hash.new
     # existing filters or orders
     [:flag_id, :sort_by, :filter_by, :search_text, :search_type, :search_negative, :record_limit].each do |elem|
@@ -228,6 +231,13 @@ class WordsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_word
     @word = current_user.words.includes(:flags).friendly.find(params[:id])
+  end
+
+  def sanitize_flag_id
+    # case when flag_id contains multiple ids as string
+    if params[:flag_id] && params[:flag_id].split.size > 1
+      params[:flag_id] = params[:flag_id].split
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

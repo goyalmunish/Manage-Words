@@ -17,7 +17,7 @@
   </p>
 
   <p>
-    <strong>Pronunciation: (beta-support)</strong>
+    <strong>Pronunciation:</strong> (beta-support)
       <% path_mp3 = "https://dictionary.cambridge.org/media/english/us_pron/#{@word.word[0]}/#{@word.word[0...3]}/#{@word.word[0...5]}/#{@word.word}.mp3" %>
       <% path_ogg = "https://dictionary.cambridge.org/media/english/us_pron/#{@word.word[0]}/#{@word.word[0...3]}/#{@word.word[0...5]}/#{@word.word}.ogg" %>
       <div>
@@ -36,8 +36,17 @@
 
   <p>
     <strong>Additional info:</strong>
-  <pre><%= @word.additional_info %></pre>
+    <pre><%= @word.additional_info %></pre>
   </p>
+</div>
+<div class="div2">
+  <h2>Related Words</h2>
+  <p><%= "Below are words related to #{@word.word}:" %></p>
+  <div class="related_words">
+    <% @word.related_words.each do |related_word| %>
+        <%= link_to related_word, word_path(related_word), {:class => "btn btn-default"} %>
+    <% end %>
+  </div>
 </div>
 <div class="div2">
   <h2>Associated Flags</h2>

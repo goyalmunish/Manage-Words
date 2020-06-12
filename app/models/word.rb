@@ -77,6 +77,15 @@ class Word < ActiveRecord::Base
     self.flag_ids = ids
   end
 
+  def related_words
+    return [] if not additional_info
+    check_statement = additional_info.split("\n").
+      select{|line| line =~ /Check.:*/}.first
+    return [] if not check_statement
+    check_statement.split(":")[-1].split.
+      map{|word| word.gsub(/[^a-z\-]/i, '')}
+  end
+
   def self.search(args)
     # getting arguments
     database = args[:database]

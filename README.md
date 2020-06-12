@@ -36,11 +36,21 @@ docker push goyalmunish/manage-words:latest
 _**Running the docker image:**_
 
 ```sh
-# run image
+# running image in production mode
 docker run -it -d --name manage-words -e PS_START=de-$(uname -n) -e HOST_PLATFORM=$(uname -s) -p 3000:3000 goyalmunish/manage-words
 
-# for testing out CMD, you might like to run the image as follows
-docker run -it -d --name manage-words -e PS_START=de-$(uname -n) -e HOST_PLATFORM=$(uname -s) -p 3000:3000 goyalmunish/manage-words /bin/bash -c "ping -i 0.2 $(gateway_ip)"
+# running the image for development
+cd manage-words/
+docker run -it -d --name manage-words -e PS_START=de-$(uname -n) -e HOST_PLATFORM=$(uname -s) -p 3000:3000 -v $(pwd):/root/manage-words goyalmunish/manage-words /bin/bash -c "ping -i 0.2 $(gateway_ip)"
+docker exec -it manage-words /bin/zsh
+# once you are inside the container
+cd ~/manage-words
+service mysql start; service memcached start
+export RAILS_ENV=development
+bundle exec rake db:create
+bundle exec rake db:migrate
+bundle exec rake db:seed
+bundle exec rails s -b 0.0.0.0 -p 3000
 ```
 
 _**Debugging:**_

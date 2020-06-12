@@ -13,11 +13,8 @@
 
 ActiveRecord::Schema.define(version: 20200612080730) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "app_settings", force: :cascade do |t|
-    t.string   "key",                     null: false
+    t.string   "key",        limit: 255,  null: false
     t.string   "value",      limit: 1024
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -38,8 +35,8 @@ ActiveRecord::Schema.define(version: 20200612080730) do
   add_index "dictionaries", ["name"], name: "index_dictionaries_on_name", unique: true, using: :btree
 
   create_table "dictionaries_users", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "dictionary_id"
+    t.integer  "user_id",       limit: 4
+    t.integer  "dictionary_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,7 +45,7 @@ ActiveRecord::Schema.define(version: 20200612080730) do
 
   create_table "flags", force: :cascade do |t|
     t.string   "name",       limit: 5,   null: false
-    t.integer  "value",                  null: false
+    t.integer  "value",      limit: 4,   null: false
     t.string   "desc",       limit: 100
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -57,8 +54,8 @@ ActiveRecord::Schema.define(version: 20200612080730) do
   add_index "flags", ["name", "value"], name: "index_flags_on_name_and_value", unique: true, using: :btree
 
   create_table "flags_words", force: :cascade do |t|
-    t.integer  "word_id"
-    t.integer  "flag_id"
+    t.integer  "word_id",    limit: 4
+    t.integer  "flag_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -68,23 +65,23 @@ ActiveRecord::Schema.define(version: 20200612080730) do
   create_table "users", force: :cascade do |t|
     t.string   "first_name",             limit: 15,               null: false
     t.string   "last_name",              limit: 15,               null: false
-    t.string   "type"
-    t.string   "provider"
-    t.string   "uid"
+    t.string   "type",                   limit: 255
+    t.string   "provider",               limit: 255
+    t.string   "uid",                    limit: 255
     t.string   "additional_info",        limit: 100
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                              default: "", null: false
-    t.string   "encrypted_password",                 default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "authentication_token"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "authentication_token",   limit: 255
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", using: :btree
@@ -94,11 +91,11 @@ ActiveRecord::Schema.define(version: 20200612080730) do
   create_table "words", force: :cascade do |t|
     t.string   "word",            limit: 25,   null: false
     t.string   "trick",           limit: 100
-    t.integer  "user_id",                      null: false
+    t.integer  "user_id",         limit: 4,    null: false
     t.string   "additional_info", limit: 2048
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "slug"
+    t.string   "slug",            limit: 255
   end
 
   add_index "words", ["slug"], name: "index_words_on_slug", unique: true, using: :btree

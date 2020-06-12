@@ -29,14 +29,24 @@ class WordsController < ApplicationController
 
     # checking filters
     if params[:flag_id]
-      if params[:flag_id].to_i > 0
-        @flag = Flag.find(params[:flag_id])
-        @temp_words = @words.with_flag_id(@flag.id)
-      elsif params[:flag_id].to_i == 0
-        @temp_words = @words.without_flag
+      if params[:flag_id].kind_of? Array
+        flag_ids = params[:flag_id].map{|id| id.to_i}.sort
+        # flag_ids = Flag.find(params[:flag_id]).pluck(:id)
+        relevant_word_ids = []
+        flag_ids.map do |flag_id|
+          relevant_word_ids << @words.with_flag_id(flag_id).pluck(:id)
+        end
+        @words = @words.where(:id => relevant_word_ids)
+      else
+        if params[:flag_id].to_i > 0
+          @flag = Flag.find(params[:flag_id])
+          @temp_words = @words.with_flag_id(@flag.id)
+        elsif params[:flag_id].to_i == 0
+          @temp_words = @words.without_flag
+        end
+        relevant_word_ids = @temp_words.pluck(:id)
+        @words = @words.where(:id => relevant_word_ids)
       end
-      relevant_word_ids = @temp_words.pluck(:id)
-      @words = @words.where(:id => relevant_word_ids)
     end
     if params[:filter_by]
       if params[:filter_by] == 'without_trick'

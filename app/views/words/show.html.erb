@@ -20,11 +20,13 @@
     <strong>Pronunciation: (beta-support)</strong>
       <% path_mp3 = "https://dictionary.cambridge.org/media/english/us_pron/#{@word.word[0]}/#{@word.word[0...3]}/#{@word.word[0...5]}/#{@word.word}.mp3" %>
       <% path_ogg = "https://dictionary.cambridge.org/media/english/us_pron/#{@word.word[0]}/#{@word.word[0...3]}/#{@word.word[0...5]}/#{@word.word}.ogg" %>
-      <audio preload="none" controls controlsList="nodownload" layout="nodisplay">
-        <source type="audio/mpeg" src="<%= path_mp3 %>" />
-        <source type="audio/ogg" src="<%= path_ogg %>" />
-        Your browser does not support the audio element.
-      <audio>
+      <div>
+        <audio preload="none" controls controlsList="nodownload" layout="nodisplay">
+          <source type="audio/mpeg" src="<%= path_mp3 %>" />
+          <source type="audio/ogg" src="<%= path_ogg %>" />
+          Your browser does not support the audio element.
+        <audio>
+      </div>
   </p>
 
   <p>

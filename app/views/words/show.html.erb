@@ -1,5 +1,9 @@
 <div class="div2">
-  <h2>Word Details</h2>
+  <% if @word.id %>
+    <h2>Word Details</h2>
+  <% else @word.id %>
+    <h2>Word Details (Temp)</h2>
+  <% end %>
 
   <p>
     <strong>User:</strong>
@@ -39,23 +43,32 @@
     <pre><%= @word.additional_info %></pre>
   </p>
 </div>
-<div class="div2">
-  <h2>Related Words</h2>
-  <p><%= "Below are words related to #{@word.word}:" %></p>
-  <div class="related_words">
-    <% @word.related_words.each do |related_word| %>
-        <%= link_to related_word, word_path(related_word), {:class => "btn btn-default"} %>
-    <% end %>
+
+<% if @word.id %>
+  <div class="div2">
+    <h2>Related Words</h2>
+    <p><%= "Below are words related to #{@word.word}:" %></p>
+    <div class="related_words">
+      <% @word.related_words.each do |related_word| %>
+          <%= link_to related_word, word_path(related_word), {:class => "btn btn-default"} %>
+      <% end %>
+    </div>
   </div>
-</div>
-<div class="div2">
-  <h2>Associated Flags</h2>
-  <%= render 'word_flags_span', :word => @word %>
-</div>
+
+  <div class="div2">
+    <h2>Associated Flags</h2>
+    <%= render 'word_flags_span', :word => @word %>
+  </div>
+<% end %>
+
 <div class="div2">
   <h2>Navigation</h2>
-  <%= link_to 'Edit', edit_word_path(@word), {:class => "btn btn-primary"} %> |
-  <%= link_to 'Destroy', @word, {method: :delete, data: {confirm: 'Are you sure?'}, :class => "btn btn-danger"} %> |
+  <% if @word.id %>
+    <%= link_to 'Edit', edit_word_path(@word), {:class => "btn btn-primary"} %> |
+    <%= link_to 'Destroy', @word, {method: :delete, data: {confirm: 'Are you sure?'}, :class => "btn btn-danger"} %> |
+  <% else %>
+    <%= link_to 'Create', new_word_path(temp_word: @word.word), {:class => "btn btn-primary"} %> |
+  <% end %>
   <%= link_to 'Back', words_path, {:class => "btn btn-default"} %>
 </div>
 

@@ -113,14 +113,21 @@ class WordsController < ApplicationController
 
   # GET /words/1
   # GET /words/1.json
+  # GET /words/acme
+  # GET /words/acme.json
   def show
-    @page_title = [@word.word]
     @dictionaries = current_user.dictionaries
+    @page_title = [@word.word]
   end
 
   # GET /words/new
   def new
     @word = current_user.words.build
+    # patch for handling temp words
+    if params[:temp_word]
+      @word.word = params[:temp_word]
+      params.delete(:temp_word)
+    end
   end
 
   # GET /words/1/edit
@@ -231,6 +238,17 @@ class WordsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_word
     @word = current_user.words.includes(:flags).friendly.find(params[:id])
+  rescue ActiveRecord::RecordNotFound => ex
+    # set temporary word if given :id is a word (not integer)
+    # only in case of show action
+    temp_id = params[:id]
+    if (temp_id.to_i.to_s != temp_id) && (params[:action] == "show")
+      params[:word] = {word: temp_id}
+      params[:id] = nil
+      @word = current_user.words.build(word_params)
+    else
+      raise ex
+    end
   end
 
   def sanitize_flag_id

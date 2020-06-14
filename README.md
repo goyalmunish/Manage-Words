@@ -53,6 +53,19 @@ bundle exec rake db:seed
 bundle exec rails s -b 0.0.0.0 -p 3000
 ```
 
+or, you can just run:
+
+```sh
+# running production image
+RAILS_ENV=production . ./script/image.sh
+
+# running development image
+RAILS_ENV=development . ./script/image.sh
+
+# just building and pushing the image
+RAILS_ENV="" . ./script/image.sh
+```
+
 _**Debugging:**_
 
 ```sh

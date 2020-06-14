@@ -28,6 +28,14 @@ class Word < ActiveRecord::Base
   #   last_updated_record.touch
   # end
 
+  def self.get_stem(word)
+    Lingua.stemmer(word, language: "en")
+  end
+
+  def get_stem
+    self.class.get_stem(self.word).split.join("-")
+  end
+
   # it returns number of associated flags for given passed word collection
   # knows a word has_many flags
   def self.number_of_flag_associations(word_collection)
@@ -75,6 +83,50 @@ class Word < ActiveRecord::Base
     ids.delete(indices[:current_flag_id])
     ids << indices[:next_flag_id]
     self.flag_ids = ids
+  end
+
+  def masked_trick
+    word_stem = self.get_stem
+    word_trick = self.trick
+    return word_trick unless word_trick
+
+    word_found = false
+
+    trick_stems = []
+    trick = word_trick.downcase.split.map do |word|
+      sanitized_word = word.gsub(/[^a-z\-]/i, '')
+      trick_word_stem = self.class.get_stem(sanitized_word)
+      trick_stems << trick_word_stem
+      if (word.size >= 3) && (trick_word_stem == word_stem)
+        word_found = true
+        "___"
+      else
+        word
+      end
+    end.join(" ")
+
+    # if main word's stem not directly matching with word stems of trick
+    # then try with regex match
+    unless word_found
+      trick = word_trick.downcase.split.map do |word|
+        sanitized_word = word.gsub(/[^a-z\-]/i, '')
+        trick_word_stem = self.class.get_stem(sanitized_word)
+        trick_stems << trick_word_stem
+        stems = [word_stem, trick_word_stem].sort{|a, b| a.size <=> b.size}
+        if (word.size >= 3) && (stems[-1] =~ /#{stems[0]}/)
+          "___"
+        else
+          word
+        end
+      end.join(" ")
+    end
+
+    # log details if word not found in trick
+    unless word_found
+      logger.warn %Q(Direct Stem Mismatch: The word "#{self.word}" (id-#{self.id}) with stem "#{word_stem}" not found in word's trick with stems #{trick_stems})
+    end
+
+    trick
   end
 
   def related_words

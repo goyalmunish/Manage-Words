@@ -43,14 +43,20 @@ docker run -it -d --name manage-words -e PS_START=de-$(uname -n) -e HOST_PLATFOR
 cd manage-words/
 docker run -it -d --name manage-words -e PS_START=de-$(uname -n) -e HOST_PLATFORM=$(uname -s) -p 3000:3000 -v $(pwd):/root/manage-words goyalmunish/manage-words /bin/bash -c "ping -i 0.2 $(gateway_ip)"
 docker exec -it manage-words /bin/zsh
-# once you are inside the container
-cd ~/manage-words
+
+# start services in development mode
+# exec into the container, and then
 service mysql start; service memcached start
+cd ~/manage-words
 export RAILS_ENV=development
 bundle exec rake db:create
 bundle exec rake db:migrate
 bundle exec rake db:seed
-bundle exec rails s -b 0.0.0.0 -p 3000
+
+# start server in development mode
+RAILS_ENV=development bundle exec rails server -b 0.0.0.0 -p 3000
+# run console in development mode
+RAILS_ENV=development bundle exec rails console
 ```
 
 or, you can just run:

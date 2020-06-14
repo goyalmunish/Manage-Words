@@ -53,6 +53,7 @@ if ['development', 'production'].include? ENV['RAILS_ENV']
     Flag.create!(name: 'MAG1K', value: 3, desc: 'Magoosh GRE High Advanced Words')
     Flag.create!(name: 'L-FR', value: 0, desc: 'French Word')
     Flag.create!(name: 'L-DE', value: 0, desc: 'German Word')
+    Flag.create!(name: 'RED', value: 0, desc: 'Red Flagged (Flag a word temporarily)')
   end
 
   # Seeding dictionaries

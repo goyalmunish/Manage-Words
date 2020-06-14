@@ -21,11 +21,12 @@ module WordsHelper
     return return_value
   end
 
-  def word_fragment_name(user_id, word)
+  def word_fragment_name(user_id, word, filters_and_orders)
     name = Array.new
     name << "USERID-#{user_id}"
     name << "WORDID-#{word.id}"
     name << "FLAGIDS-#{word.flag_ids.inspect}"
+    name << "MASK-#{!! (filters_and_orders[:mask] == "true")}"
     name << "WORD-UPDATED-AT-#{word.updated_at.try(:getutc)}".split.join("_")
     return_value = name.join('__')
     Rails.logger.info "Cache Name: #{return_value}"

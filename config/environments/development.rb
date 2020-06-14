@@ -16,7 +16,11 @@ Rails.application.configure do
 
   # Configuring cache store
   config.cache_store = :dalli_store, {pool_size: 12}
-  # uncomment following to temporary enable caching even in development mode
+  # comment out following to disable caching in development mode
+  # caching is disabled by default as any code changes might not
+  # reflect if data is coming from cache
+  # but, to help in caching related development you might like to
+  # turn it on by uncommenting following two lines
   # config.consider_all_requests_local       = true
   # config.action_controller.perform_caching = true
 

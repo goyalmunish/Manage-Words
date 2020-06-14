@@ -89,7 +89,7 @@ class WordsController < ApplicationController
     # responding
     current_etag = [current_user.id, current_filters_and_orders, @words]
     if ENV['RAILS_ENV'] == 'development'
-      current_etag << Time.now  # adding time as parameter to disable etags in development mode
+      # current_etag << Time.now  # adding time as parameter to disable etags in development mode
     end
     if params[:sort_by] == 'random'
       current_etag = Time.now # skipping caching in case of random sort
@@ -226,7 +226,7 @@ class WordsController < ApplicationController
     sanitize_flag_id
     filters_and_orders = Hash.new
     # existing filters or orders
-    [:flag_id, :sort_by, :filter_by, :search_text, :search_type, :search_negative, :record_limit].each do |elem|
+    [:flag_id, :sort_by, :filter_by, :mask, :search_text, :search_type, :search_negative, :record_limit].each do |elem|
       if params[elem]
         filters_and_orders[elem] = params[elem]
       end
@@ -306,7 +306,7 @@ class WordsController < ApplicationController
 
   # called by index action
   def clear_all_filters_and_orders
-    [:flag_id, :sort_by, :filter_by, :reset].each do |elem|
+    [:flag_id, :sort_by, :filter_by, :reset, :mask].each do |elem|
       params[elem] = nil
       # session[elem] = nil # though, this is not required
     end

@@ -214,6 +214,7 @@ GEM
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
     rspec-support (3.9.3)
+    ruby-stemmer (2.0.1)
     rubyzip (2.3.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -310,6 +311,7 @@ DEPENDENCIES
   rinruby
   rspec-activemodel-mocks
   rspec-rails (>= 3.5)
+  ruby-stemmer (>= 2.0.0)
   sass-rails
   sdoc
   selenium-webdriver

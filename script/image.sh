@@ -1,3 +1,6 @@
+# execute me as
+# . ./script/image.sh
+
 # set required envs
 PROJECT_NAME=manage-words
 IMAGE_NAME=goyalmunish/${PROJECT_NAME}
